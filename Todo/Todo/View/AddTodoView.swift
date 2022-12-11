@@ -20,13 +20,23 @@ struct AddTodoView: View {
     
     let priorities = ["High", "Normal", "Low"]
     
+    // THEME
+    @ObservedObject var theme = ThemeSettings.shared
+    var themes: [Theme] = themeData
+    
     // MARK: - BODY
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
-                Form {
+                VStack(alignment: .leading, spacing: 20) {
                     // MARK: - TODO NAME
                     TextField("Todo", text: $name)
+                        .padding()
+                        .background {
+                            Color(UIColor.tertiarySystemFill)
+                        }
+                        .cornerRadius(9)
+                        .font(.system(size: 24, weight: .bold, design: .default))
                     
                     // MARK: - TODO PRIORITY
                     Picker("Priority", selection: $priority) {
@@ -58,8 +68,20 @@ struct AddTodoView: View {
                         dismiss.callAsFunction()
                     } label: {
                         Text("Save")
+                            .font(.system(size: 24, weight: .bold, design: .default))
+                            .padding()
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .background {
+                                themes[theme.themeSettings].themeColor
+                            }
+                            .cornerRadius(9)
+                            .foregroundColor(.white)
                     } //: BUTTON
-                } //: FORM
+                } //: VSTACK
+                .padding(.horizontal)
+                .padding(.vertical, 30)
+                
+                Spacer()
             } //: VSTACK
             .navigationTitle("Todo")
             .navigationBarTitleDisplayMode(.inline)
@@ -70,11 +92,12 @@ struct AddTodoView: View {
                     Image(systemName: "xmark")
                 }
 
-            }
+            } //: TOOLBAR
             .alert(isPresented: $errorShowing) {
                 Alert(title: Text("errorTitle"), message: Text(errorTitle), dismissButton: .default(Text("OK")))
             }
         } //: NAVIGATION
+        .accentColor(themes[theme.themeSettings].themeColor)
     }
 }
 
