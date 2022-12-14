@@ -11,6 +11,12 @@
 		79426C972949FD33007AEAE7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79426C962949FD33007AEAE7 /* ContentView.swift */; };
 		79426C992949FD35007AEAE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79426C982949FD35007AEAE7 /* Assets.xcassets */; };
 		79426C9C2949FD35007AEAE7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79426C9B2949FD35007AEAE7 /* Preview Assets.xcassets */; };
+		79426CAB2949FE79007AEAE7 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79426CAA2949FE79007AEAE7 /* FeedView.swift */; };
+		79426CAE2949FEF8007AEAE7 /* TweetRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79426CAD2949FEF8007AEAE7 /* TweetRowView.swift */; };
+		79426CB1294A013F007AEAE7 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79426CB0294A013F007AEAE7 /* MainTabView.swift */; };
+		79426CB8294A01FA007AEAE7 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79426CB7294A01FA007AEAE7 /* ExploreView.swift */; };
+		79426CBA294A020A007AEAE7 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79426CB9294A020A007AEAE7 /* NotificationsView.swift */; };
+		79426CBC294A0219007AEAE7 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79426CBB294A0219007AEAE7 /* MessagesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		79426C962949FD33007AEAE7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		79426C982949FD35007AEAE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79426C9B2949FD35007AEAE7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		79426CAA2949FE79007AEAE7 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		79426CAD2949FEF8007AEAE7 /* TweetRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetRowView.swift; sourceTree = "<group>"; };
+		79426CB0294A013F007AEAE7 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		79426CB7294A01FA007AEAE7 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		79426CB9294A020A007AEAE7 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		79426CBB294A0219007AEAE7 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +63,10 @@
 		79426C932949FD33007AEAE7 /* TwitterClone */ = {
 			isa = PBXGroup;
 			children = (
+				79426CA52949FE41007AEAE7 /* Extensions */,
+				79426CA42949FE3D007AEAE7 /* Model */,
+				79426CA32949FE36007AEAE7 /* Service */,
+				79426CA22949FE2F007AEAE7 /* Core */,
 				79426C942949FD33007AEAE7 /* TwitterCloneApp.swift */,
 				79426C962949FD33007AEAE7 /* ContentView.swift */,
 				79426C982949FD35007AEAE7 /* Assets.xcassets */,
@@ -65,6 +81,120 @@
 				79426C9B2949FD35007AEAE7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		79426CA22949FE2F007AEAE7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				79426CA72949FE5D007AEAE7 /* Components */,
+				79426CB6294A01E4007AEAE7 /* Profile */,
+				79426CB4294A01BD007AEAE7 /* Explore */,
+				79426CB3294A01BB007AEAE7 /* Notifications */,
+				79426CB2294A01B9007AEAE7 /* Messages */,
+				79426CAF294A0130007AEAE7 /* MainTab */,
+				79426CA62949FE57007AEAE7 /* Feed */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		79426CA32949FE36007AEAE7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		79426CA42949FE3D007AEAE7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		79426CA52949FE41007AEAE7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		79426CA62949FE57007AEAE7 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				79426CA92949FE6A007AEAE7 /* ViewModels */,
+				79426CA82949FE66007AEAE7 /* View */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		79426CA72949FE5D007AEAE7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				79426CAC2949FEEB007AEAE7 /* Tweets */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		79426CA82949FE66007AEAE7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				79426CAA2949FE79007AEAE7 /* FeedView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		79426CA92949FE6A007AEAE7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		79426CAC2949FEEB007AEAE7 /* Tweets */ = {
+			isa = PBXGroup;
+			children = (
+				79426CAD2949FEF8007AEAE7 /* TweetRowView.swift */,
+			);
+			path = Tweets;
+			sourceTree = "<group>";
+		};
+		79426CAF294A0130007AEAE7 /* MainTab */ = {
+			isa = PBXGroup;
+			children = (
+				79426CB0294A013F007AEAE7 /* MainTabView.swift */,
+			);
+			path = MainTab;
+			sourceTree = "<group>";
+		};
+		79426CB2294A01B9007AEAE7 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				79426CBB294A0219007AEAE7 /* MessagesView.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		79426CB3294A01BB007AEAE7 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				79426CB9294A020A007AEAE7 /* NotificationsView.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		79426CB4294A01BD007AEAE7 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				79426CB7294A01FA007AEAE7 /* ExploreView.swift */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		79426CB6294A01E4007AEAE7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +267,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79426CBC294A0219007AEAE7 /* MessagesView.swift in Sources */,
 				79426C972949FD33007AEAE7 /* ContentView.swift in Sources */,
+				79426CAE2949FEF8007AEAE7 /* TweetRowView.swift in Sources */,
+				79426CAB2949FE79007AEAE7 /* FeedView.swift in Sources */,
 				79426C952949FD33007AEAE7 /* TwitterCloneApp.swift in Sources */,
+				79426CB8294A01FA007AEAE7 /* ExploreView.swift in Sources */,
+				79426CB1294A013F007AEAE7 /* MainTabView.swift in Sources */,
+				79426CBA294A020A007AEAE7 /* NotificationsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,8 +409,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,8 +438,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
