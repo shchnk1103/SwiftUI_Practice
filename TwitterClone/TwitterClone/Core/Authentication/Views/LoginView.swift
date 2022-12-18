@@ -16,27 +16,12 @@ struct LoginView: View {
         VStack {
             
             // header view
-            VStack(alignment: .leading) {
-                HStack {
-                    Spacer()
-                }
-                
-                Text("Hello.")
-                Text("Welcome Back")
-            }
-            .font(.largeTitle)
-            .fontWeight(.semibold)
-            .foregroundColor(.white)
-            .frame(maxWidth: .infinity, minHeight: 260)
-            .padding(.leading)
-            .background {
-                Color(.systemBlue)
-            }
-            .clipShape(RoundedShape(corners: [.bottomRight]))
+            AuthHeaderView(title1: "Hello.", title2: "Welcome back.")
             
             VStack(spacing: 40) {
-                TextField("Email", text: $email)
-                TextField("Password", text: $password)
+                CustomInputView(imageName: "envelope", placeholderText: "Email", text: $email)
+                
+                CustomInputView(imageName: "lock", placeholderText: "Password", text: $password)
             }
             .padding(.horizontal, 32)
             .padding(.top, 44)
