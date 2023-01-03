@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		799ACD4729645A37000275E4 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799ACD4629645A37000275E4 /* TabBarView.swift */; };
 		79E8BFD8296301B00030B927 /* DesignCodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E8BFD7296301B00030B927 /* DesignCodeApp.swift */; };
 		79E8BFDA296301B00030B927 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E8BFD9296301B00030B927 /* ContentView.swift */; };
 		79E8BFDC296301B00030B927 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79E8BFDB296301B00030B927 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		799ACD4629645A37000275E4 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		79E8BFD4296301B00030B927 /* DesignCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79E8BFD7296301B00030B927 /* DesignCodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignCodeApp.swift; sourceTree = "<group>"; };
 		79E8BFD9296301B00030B927 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +42,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		799ACD4829645BE3000275E4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				79E8BFD9296301B00030B927 /* ContentView.swift */,
+				79F057F2296419870008A69E /* HexagonView.swift */,
+				79F057F429641BDF0008A69E /* BlobView.swift */,
+				79F057F0296409340008A69E /* AccountView.swift */,
+				799ACD4629645A37000275E4 /* TabBarView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		799ACD4929645BFD000275E4 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				79F057EE2963FF070008A69E /* Styles.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
 		79E8BFCB296301AF0030B927 = {
 			isa = PBXGroup;
 			children = (
@@ -60,11 +82,8 @@
 			isa = PBXGroup;
 			children = (
 				79E8BFD7296301B00030B927 /* DesignCodeApp.swift */,
-				79E8BFD9296301B00030B927 /* ContentView.swift */,
-				79F057F0296409340008A69E /* AccountView.swift */,
-				79F057F429641BDF0008A69E /* BlobView.swift */,
-				79F057EE2963FF070008A69E /* Styles.swift */,
-				79F057F2296419870008A69E /* HexagonView.swift */,
+				799ACD4829645BE3000275E4 /* View */,
+				799ACD4929645BFD000275E4 /* Styles */,
 				79E8BFDB296301B00030B927 /* Assets.xcassets */,
 				79E8BFDD296301B00030B927 /* Preview Content */,
 			);
@@ -151,6 +170,7 @@
 			files = (
 				79F057F1296409340008A69E /* AccountView.swift in Sources */,
 				79F057F3296419870008A69E /* HexagonView.swift in Sources */,
+				799ACD4729645A37000275E4 /* TabBarView.swift in Sources */,
 				79F057EF2963FF070008A69E /* Styles.swift in Sources */,
 				79F057F529641BDF0008A69E /* BlobView.swift in Sources */,
 				79E8BFDA296301B00030B927 /* ContentView.swift in Sources */,
