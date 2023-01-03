@@ -12,6 +12,7 @@
 		79E8BFDC296301B00030B927 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79E8BFDB296301B00030B927 /* Assets.xcassets */; };
 		79E8BFDF296301B00030B927 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79E8BFDE296301B00030B927 /* Preview Assets.xcassets */; };
 		79F057EF2963FF070008A69E /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F057EE2963FF070008A69E /* Styles.swift */; };
+		79F057F1296409340008A69E /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F057F0296409340008A69E /* AccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		79E8BFDB296301B00030B927 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79E8BFDE296301B00030B927 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		79F057EE2963FF070008A69E /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		79F057F0296409340008A69E /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				79E8BFD7296301B00030B927 /* DesignCodeApp.swift */,
 				79E8BFD9296301B00030B927 /* ContentView.swift */,
+				79F057F0296409340008A69E /* AccountView.swift */,
 				79E8BFDB296301B00030B927 /* Assets.xcassets */,
 				79E8BFDD296301B00030B927 /* Preview Content */,
 				79F057EE2963FF070008A69E /* Styles.swift */,
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79F057F1296409340008A69E /* AccountView.swift in Sources */,
 				79F057EF2963FF070008A69E /* Styles.swift in Sources */,
 				79E8BFDA296301B00030B927 /* ContentView.swift in Sources */,
 				79E8BFD8296301B00030B927 /* DesignCodeApp.swift in Sources */,
