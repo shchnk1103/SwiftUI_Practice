@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7938878329655A8100E5FE29 /* TabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938878229655A8100E5FE29 /* TabModel.swift */; };
 		7938878529656F2C00E5FE29 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938878429656F2C00E5FE29 /* HomeView.swift */; };
+		794176DC2966F97D000C28B5 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794176DB2966F97D000C28B5 /* Model.swift */; };
 		799ACD4729645A37000275E4 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799ACD4629645A37000275E4 /* TabBarView.swift */; };
 		79E17B662966997400071680 /* FeaturedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B652966997400071680 /* FeaturedItem.swift */; };
 		79E17B6829669ACD00071680 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B6729669ACD00071680 /* NavigationBarView.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		7938878229655A8100E5FE29 /* TabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
 		7938878429656F2C00E5FE29 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		794176DB2966F97D000C28B5 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		799ACD4629645A37000275E4 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		79E17B652966997400071680 /* FeaturedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedItem.swift; sourceTree = "<group>"; };
 		79E17B6729669ACD00071680 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				7938878229655A8100E5FE29 /* TabModel.swift */,
 				79E17B6929669F0700071680 /* PreferenceKeys.swift */,
 				79E17B6D2966A66D00071680 /* CourseModel.swift */,
+				794176DB2966F97D000C28B5 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				79E17B662966997400071680 /* FeaturedItem.swift in Sources */,
 				79E17B762966BE0000071680 /* Animations.swift in Sources */,
 				79E17B6A29669F0700071680 /* PreferenceKeys.swift in Sources */,
+				794176DC2966F97D000C28B5 /* Model.swift in Sources */,
 				79E8BFD8296301B00030B927 /* DesignCodeApp.swift in Sources */,
 				79E17B6C2966A24A00071680 /* AnimatableFontModifier.swift in Sources */,
 			);
