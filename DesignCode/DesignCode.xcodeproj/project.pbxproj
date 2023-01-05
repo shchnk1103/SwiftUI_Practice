@@ -16,6 +16,8 @@
 		79E17B6C2966A24A00071680 /* AnimatableFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B6B2966A24A00071680 /* AnimatableFontModifier.swift */; };
 		79E17B6E2966A66D00071680 /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B6D2966A66D00071680 /* CourseModel.swift */; };
 		79E17B702966AE7B00071680 /* MatchedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B6F2966AE7B00071680 /* MatchedView.swift */; };
+		79E17B722966B8EA00071680 /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B712966B8EA00071680 /* CourseItem.swift */; };
+		79E17B742966B99200071680 /* CourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B732966B99200071680 /* CourseView.swift */; };
 		79E8BFD8296301B00030B927 /* DesignCodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E8BFD7296301B00030B927 /* DesignCodeApp.swift */; };
 		79E8BFDA296301B00030B927 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E8BFD9296301B00030B927 /* ContentView.swift */; };
 		79E8BFDC296301B00030B927 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79E8BFDB296301B00030B927 /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 		79E17B6B2966A24A00071680 /* AnimatableFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableFontModifier.swift; sourceTree = "<group>"; };
 		79E17B6D2966A66D00071680 /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
 		79E17B6F2966AE7B00071680 /* MatchedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedView.swift; sourceTree = "<group>"; };
+		79E17B712966B8EA00071680 /* CourseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
+		79E17B732966B99200071680 /* CourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseView.swift; sourceTree = "<group>"; };
 		79E8BFD4296301B00030B927 /* DesignCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79E8BFD7296301B00030B927 /* DesignCodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignCodeApp.swift; sourceTree = "<group>"; };
 		79E8BFD9296301B00030B927 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 				79F057F429641BDF0008A69E /* BlobView.swift */,
 				79E17B652966997400071680 /* FeaturedItem.swift */,
 				79E17B6729669ACD00071680 /* NavigationBarView.swift */,
+				79E17B712966B8EA00071680 /* CourseItem.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -87,6 +92,7 @@
 				79F057F0296409340008A69E /* AccountView.swift */,
 				79E8BFD9296301B00030B927 /* ContentView.swift */,
 				79E17B6F2966AE7B00071680 /* MatchedView.swift */,
+				79E17B732966B99200071680 /* CourseView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -210,6 +216,7 @@
 			files = (
 				7938878529656F2C00E5FE29 /* HomeView.swift in Sources */,
 				79F057F1296409340008A69E /* AccountView.swift in Sources */,
+				79E17B742966B99200071680 /* CourseView.swift in Sources */,
 				79E17B6829669ACD00071680 /* NavigationBarView.swift in Sources */,
 				7938878329655A8100E5FE29 /* TabModel.swift in Sources */,
 				79E17B702966AE7B00071680 /* MatchedView.swift in Sources */,
@@ -219,6 +226,7 @@
 				79F057EF2963FF070008A69E /* Styles.swift in Sources */,
 				79F057F529641BDF0008A69E /* BlobView.swift in Sources */,
 				79E8BFDA296301B00030B927 /* ContentView.swift in Sources */,
+				79E17B722966B8EA00071680 /* CourseItem.swift in Sources */,
 				79E17B662966997400071680 /* FeaturedItem.swift in Sources */,
 				79E17B6A29669F0700071680 /* PreferenceKeys.swift in Sources */,
 				79E8BFD8296301B00030B927 /* DesignCodeApp.swift in Sources */,
