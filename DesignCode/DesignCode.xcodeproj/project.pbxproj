@@ -12,6 +12,7 @@
 		799ACD4729645A37000275E4 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799ACD4629645A37000275E4 /* TabBarView.swift */; };
 		79E17B662966997400071680 /* FeaturedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B652966997400071680 /* FeaturedItem.swift */; };
 		79E17B6829669ACD00071680 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B6729669ACD00071680 /* NavigationBarView.swift */; };
+		79E17B6A29669F0700071680 /* PreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B6929669F0700071680 /* PreferenceKeys.swift */; };
 		79E8BFD8296301B00030B927 /* DesignCodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E8BFD7296301B00030B927 /* DesignCodeApp.swift */; };
 		79E8BFDA296301B00030B927 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E8BFD9296301B00030B927 /* ContentView.swift */; };
 		79E8BFDC296301B00030B927 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79E8BFDB296301B00030B927 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		799ACD4629645A37000275E4 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		79E17B652966997400071680 /* FeaturedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedItem.swift; sourceTree = "<group>"; };
 		79E17B6729669ACD00071680 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		79E17B6929669F0700071680 /* PreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeys.swift; sourceTree = "<group>"; };
 		79E8BFD4296301B00030B927 /* DesignCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79E8BFD7296301B00030B927 /* DesignCodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignCodeApp.swift; sourceTree = "<group>"; };
 		79E8BFD9296301B00030B927 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				7938878229655A8100E5FE29 /* TabModel.swift */,
+				79E17B6929669F0700071680 /* PreferenceKeys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				79F057F529641BDF0008A69E /* BlobView.swift in Sources */,
 				79E8BFDA296301B00030B927 /* ContentView.swift in Sources */,
 				79E17B662966997400071680 /* FeaturedItem.swift in Sources */,
+				79E17B6A29669F0700071680 /* PreferenceKeys.swift in Sources */,
 				79E8BFD8296301B00030B927 /* DesignCodeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
