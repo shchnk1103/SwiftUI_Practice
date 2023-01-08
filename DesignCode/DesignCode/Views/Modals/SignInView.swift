@@ -13,12 +13,13 @@ struct SignInView: View {
         case password
     }
     
-    @State var email: String = ""
-    @State var password: String = ""
-    @State var circleY: CGFloat = 120
-    @State var emailY: CGFloat = 0
-    @State var passwordY: CGFloat = 0
-    @State var circleColor: Color = .blue
+    @State private var email: String = ""
+    @State private var password: String = ""
+    @State private var circleY: CGFloat = 120
+    @State private var emailY: CGFloat = 0
+    @State private var passwordY: CGFloat = 0
+    @State private var circleColor: Color = .blue
+    @State private var appear: [Bool] = [false, false, false]
     @FocusState var focusedField: Field?
     @EnvironmentObject var model: Model
     
@@ -27,54 +28,57 @@ struct SignInView: View {
             Text("Sign in")
                 .font(.largeTitle)
                 .bold()
+                .opacity(appear[0] ? 1 : 0)
+                .offset(y: appear[0] ? 0 : 20)
             
             Text("Access 120+ hours of courses, tutorials and livestreams")
                 .font(.headline)
-            
-            TextField("Email", text: $email)
-                .inputStyle(icon: "mail")
-                .textContentType(.emailAddress)
-                .keyboardType(.emailAddress)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-                .focused($focusedField, equals: .email)
-                .shadow(
-                    color: focusedField == .email ? .primary.opacity(0.3) : .clear
-                    , radius: 10, x: 0, y: 3
-                )
-                .overlay(geometry)
-                .onPreferenceChange(CirclePreferenceKey.self) { value in
-                    emailY = value
-                    circleY = value
-                }
-            
-            SecureField("Password", text: $password)
-                .inputStyle(icon: "lock")
-                .textContentType(.password)
-                .focused($focusedField, equals: .password)
-                .shadow(
-                    color: focusedField == .password ? .primary.opacity(0.3) : .clear
-                    , radius: 10, x: 0, y: 3
-                )
-                .overlay(geometry)
-                .onPreferenceChange(CirclePreferenceKey.self) { value in
-                    passwordY = value
-                }
-            
-            Button {
-                
-            } label: {
-                Text("Sign in")
-                    .frame(maxWidth: .infinity)
-            }
-            .font(.headline)
-            .blendMode(.overlay)
-            .buttonStyle(.angular)
-            .tint(.accentColor)
-            .controlSize(.large)
-            .shadow(color: Color("Shadow").opacity(0.2), radius: 30, x: 0, y: 30)
+                .opacity(appear[1] ? 1 : 0)
+                .offset(y: appear[1] ? 0 : 20)
             
             Group {
+                TextField("Email", text: $email)
+                    .inputStyle(icon: "mail")
+                    .textContentType(.emailAddress)
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .focused($focusedField, equals: .email)
+                    .shadow(
+                        color: focusedField == .email ? .primary.opacity(0.3) : .clear
+                        , radius: 10, x: 0, y: 3
+                    )
+                    .overlay(geometry)
+                    .onPreferenceChange(CirclePreferenceKey.self) { value in
+                        emailY = value
+                        circleY = value
+                    }
+                
+                SecureField("Password", text: $password)
+                    .inputStyle(icon: "lock")
+                    .textContentType(.password)
+                    .focused($focusedField, equals: .password)
+                    .shadow(
+                        color: focusedField == .password ? .primary.opacity(0.3) : .clear
+                        , radius: 10, x: 0, y: 3
+                    )
+                    .overlay(geometry)
+                    .onPreferenceChange(CirclePreferenceKey.self) { value in
+                        passwordY = value
+                    }
+                
+                Button {
+                    
+                } label: {
+                    Text("Sign in")
+                        .frame(maxWidth: .infinity)
+                }
+                .font(.headline)
+                .blendMode(.overlay)
+                .buttonStyle(.angular)
+                .tint(.accentColor)
+                .controlSize(.large)
+                .shadow(color: Color("Shadow").opacity(0.2), radius: 30, x: 0, y: 30)
                 
                 Divider()
                 
@@ -86,10 +90,12 @@ struct SignInView: View {
                         Text("**Sign up**")
                     }
                 }
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .tint(.secondary)
             }
-            .font(.footnote)
-            .foregroundColor(.secondary)
-            .tint(.secondary)
+            .opacity(appear[2] ? 1 : 0)
+            .offset(y: appear[2] ? 0 : 20)
         }
         .padding(20)
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 30, style: .continuous))
@@ -111,6 +117,17 @@ struct SignInView: View {
                     circleY = passwordY
                     circleColor = .red
                 }
+            }
+        }
+        .onAppear {
+            withAnimation(.spring().delay(0.1)) {
+                appear[0] = true
+            }
+            withAnimation(.spring().delay(0.2)) {
+                appear[1] = true
+            }
+            withAnimation(.spring().delay(0.3)) {
+                appear[2] = true
             }
         }
     }
