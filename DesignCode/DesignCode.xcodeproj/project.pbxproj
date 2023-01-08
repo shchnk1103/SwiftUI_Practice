@@ -25,6 +25,8 @@
 		798D4934296AB2DD00C335A7 /* SectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D4933296AB2DD00C335A7 /* SectionRow.swift */; };
 		798D4936296AB41400C335A7 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D4935296AB41400C335A7 /* SectionView.swift */; };
 		798D4938296AB83A00C335A7 /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D4937296AB83A00C335A7 /* PlayView.swift */; };
+		798D493A296ABAAC00C335A7 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D4939296ABAAC00C335A7 /* ExploreView.swift */; };
+		798D493C296AD4DE00C335A7 /* SmallCourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D493B296AD4DE00C335A7 /* SmallCourseItem.swift */; };
 		799ACD4729645A37000275E4 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799ACD4629645A37000275E4 /* TabBarView.swift */; };
 		79E17B662966997400071680 /* FeaturedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B652966997400071680 /* FeaturedItem.swift */; };
 		79E17B6829669ACD00071680 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B6729669ACD00071680 /* NavigationBarView.swift */; };
@@ -64,6 +66,8 @@
 		798D4933296AB2DD00C335A7 /* SectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRow.swift; sourceTree = "<group>"; };
 		798D4935296AB41400C335A7 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		798D4937296AB83A00C335A7 /* PlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
+		798D4939296ABAAC00C335A7 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		798D493B296AD4DE00C335A7 /* SmallCourseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCourseItem.swift; sourceTree = "<group>"; };
 		799ACD4629645A37000275E4 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		79E17B652966997400071680 /* FeaturedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedItem.swift; sourceTree = "<group>"; };
 		79E17B6729669ACD00071680 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 				798D492F296AB14900C335A7 /* CircularView.swift */,
 				798D4933296AB2DD00C335A7 /* SectionRow.swift */,
 				798D4937296AB83A00C335A7 /* PlayView.swift */,
+				798D493B296AD4DE00C335A7 /* SmallCourseItem.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 				798D4935296AB41400C335A7 /* SectionView.swift */,
 				7956FD852967F4330023BE47 /* SearchView.swift */,
 				798D4928296A8DFC00C335A7 /* Modals */,
+				798D4939296ABAAC00C335A7 /* ExploreView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 				798D4936296AB41400C335A7 /* SectionView.swift in Sources */,
 				79F057F1296409340008A69E /* AccountView.swift in Sources */,
 				798D4938296AB83A00C335A7 /* PlayView.swift in Sources */,
+				798D493C296AD4DE00C335A7 /* SmallCourseItem.swift in Sources */,
 				79E17B742966B99200071680 /* CourseView.swift in Sources */,
 				79E17B6829669ACD00071680 /* NavigationBarView.swift in Sources */,
 				7956FD882967F8570023BE47 /* Suggestion.swift in Sources */,
@@ -287,6 +294,7 @@
 				79F057F3296419870008A69E /* HexagonView.swift in Sources */,
 				799ACD4729645A37000275E4 /* TabBarView.swift in Sources */,
 				7956FD8C29680B450023BE47 /* AngularButtonStyle.swift in Sources */,
+				798D493A296ABAAC00C335A7 /* ExploreView.swift in Sources */,
 				798D492C296A9E4A00C335A7 /* AddressModel.swift in Sources */,
 				79E17B6E2966A66D00071680 /* CourseModel.swift in Sources */,
 				7956FD9229683EF00023BE47 /* SignInView.swift in Sources */,
