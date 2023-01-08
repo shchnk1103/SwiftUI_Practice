@@ -114,11 +114,19 @@
 				79E17B6F2966AE7B00071680 /* MatchedView.swift */,
 				79E17B732966B99200071680 /* CourseView.swift */,
 				7956FD852967F4330023BE47 /* SearchView.swift */,
+				798D4928296A8DFC00C335A7 /* Modals */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		798D4928296A8DFC00C335A7 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
 				7956FD89296807910023BE47 /* SignUpView.swift */,
 				7956FD8F29683EA20023BE47 /* ModalView.swift */,
 				7956FD9129683EF00023BE47 /* SignInView.swift */,
 			);
-			path = Views;
+			path = Modals;
 			sourceTree = "<group>";
 		};
 		799ACD4929645BFD000275E4 /* Styles */ = {
