@@ -20,6 +20,11 @@
 		798D492A296A948000C335A7 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D4929296A948000C335A7 /* AvatarView.swift */; };
 		798D492C296A9E4A00C335A7 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D492B296A9E4A00C335A7 /* AddressModel.swift */; };
 		798D492E296AAA1D00C335A7 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D492D296AAA1D00C335A7 /* CoinModel.swift */; };
+		798D4930296AB14900C335A7 /* CircularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D492F296AB14900C335A7 /* CircularView.swift */; };
+		798D4932296AB28200C335A7 /* CourseSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D4931296AB28200C335A7 /* CourseSectionModel.swift */; };
+		798D4934296AB2DD00C335A7 /* SectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D4933296AB2DD00C335A7 /* SectionRow.swift */; };
+		798D4936296AB41400C335A7 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D4935296AB41400C335A7 /* SectionView.swift */; };
+		798D4938296AB83A00C335A7 /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798D4937296AB83A00C335A7 /* PlayView.swift */; };
 		799ACD4729645A37000275E4 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799ACD4629645A37000275E4 /* TabBarView.swift */; };
 		79E17B662966997400071680 /* FeaturedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B652966997400071680 /* FeaturedItem.swift */; };
 		79E17B6829669ACD00071680 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E17B6729669ACD00071680 /* NavigationBarView.swift */; };
@@ -54,6 +59,11 @@
 		798D4929296A948000C335A7 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		798D492B296A9E4A00C335A7 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
 		798D492D296AAA1D00C335A7 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
+		798D492F296AB14900C335A7 /* CircularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularView.swift; sourceTree = "<group>"; };
+		798D4931296AB28200C335A7 /* CourseSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionModel.swift; sourceTree = "<group>"; };
+		798D4933296AB2DD00C335A7 /* SectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRow.swift; sourceTree = "<group>"; };
+		798D4935296AB41400C335A7 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
+		798D4937296AB83A00C335A7 /* PlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
 		799ACD4629645A37000275E4 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		79E17B652966997400071680 /* FeaturedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedItem.swift; sourceTree = "<group>"; };
 		79E17B6729669ACD00071680 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
@@ -96,6 +106,7 @@
 				7956FD872967F8570023BE47 /* Suggestion.swift */,
 				798D492B296A9E4A00C335A7 /* AddressModel.swift */,
 				798D492D296AAA1D00C335A7 /* CoinModel.swift */,
+				798D4931296AB28200C335A7 /* CourseSectionModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -110,6 +121,9 @@
 				79E17B6729669ACD00071680 /* NavigationBarView.swift */,
 				79E17B712966B8EA00071680 /* CourseItem.swift */,
 				798D4929296A948000C335A7 /* AvatarView.swift */,
+				798D492F296AB14900C335A7 /* CircularView.swift */,
+				798D4933296AB2DD00C335A7 /* SectionRow.swift */,
+				798D4937296AB83A00C335A7 /* PlayView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -122,6 +136,7 @@
 				79E8BFD9296301B00030B927 /* ContentView.swift */,
 				79E17B6F2966AE7B00071680 /* MatchedView.swift */,
 				79E17B732966B99200071680 /* CourseView.swift */,
+				798D4935296AB41400C335A7 /* SectionView.swift */,
 				7956FD852967F4330023BE47 /* SearchView.swift */,
 				798D4928296A8DFC00C335A7 /* Modals */,
 			);
@@ -260,7 +275,9 @@
 			files = (
 				7956FD862967F4330023BE47 /* SearchView.swift in Sources */,
 				7938878529656F2C00E5FE29 /* HomeView.swift in Sources */,
+				798D4936296AB41400C335A7 /* SectionView.swift in Sources */,
 				79F057F1296409340008A69E /* AccountView.swift in Sources */,
+				798D4938296AB83A00C335A7 /* PlayView.swift in Sources */,
 				79E17B742966B99200071680 /* CourseView.swift in Sources */,
 				79E17B6829669ACD00071680 /* NavigationBarView.swift in Sources */,
 				7956FD882967F8570023BE47 /* Suggestion.swift in Sources */,
@@ -273,6 +290,7 @@
 				798D492C296A9E4A00C335A7 /* AddressModel.swift in Sources */,
 				79E17B6E2966A66D00071680 /* CourseModel.swift in Sources */,
 				7956FD9229683EF00023BE47 /* SignInView.swift in Sources */,
+				798D4930296AB14900C335A7 /* CircularView.swift in Sources */,
 				79F057EF2963FF070008A69E /* Styles.swift in Sources */,
 				79F057F529641BDF0008A69E /* BlobView.swift in Sources */,
 				79E8BFDA296301B00030B927 /* ContentView.swift in Sources */,
@@ -281,10 +299,12 @@
 				7956FD8A296807910023BE47 /* SignUpView.swift in Sources */,
 				79E17B762966BE0000071680 /* Animations.swift in Sources */,
 				79E17B6A29669F0700071680 /* PreferenceKeys.swift in Sources */,
+				798D4934296AB2DD00C335A7 /* SectionRow.swift in Sources */,
 				798D492E296AAA1D00C335A7 /* CoinModel.swift in Sources */,
 				7956FD8E2968108F0023BE47 /* InputStyle.swift in Sources */,
 				794176DC2966F97D000C28B5 /* Model.swift in Sources */,
 				79E8BFD8296301B00030B927 /* DesignCodeApp.swift in Sources */,
+				798D4932296AB28200C335A7 /* CourseSectionModel.swift in Sources */,
 				79E17B6C2966A24A00071680 /* AnimatableFontModifier.swift in Sources */,
 				7956FD9029683EA20023BE47 /* ModalView.swift in Sources */,
 			);
