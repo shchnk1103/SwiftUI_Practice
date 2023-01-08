@@ -11,6 +11,7 @@ struct AccountView: View {
     @State private var isDeleted: Bool = false
     @State private var isPinned: Bool = false
     @Environment(\.dismiss) var dismiss
+    @AppStorage("isLogged") var isLogged: Bool = true
     
     var body: some View {
         NavigationStack {
@@ -20,6 +21,14 @@ struct AccountView: View {
                 menu
                 
                 links
+                
+                Button {
+                    isLogged = false
+                    dismiss()
+                } label: {
+                    Text("Sign out")
+                }
+                .tint(.red)
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Account")
@@ -29,7 +38,6 @@ struct AccountView: View {
                 } label: {
                     Text("Done").bold()
                 }
-
             }
         }
     }
