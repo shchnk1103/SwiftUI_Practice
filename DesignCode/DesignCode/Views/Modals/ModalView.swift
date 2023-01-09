@@ -48,6 +48,7 @@ struct ModalView: View {
                     .offset(y: appear[2] ? 0 : 10)
                     .blur(radius: appear[2] ? 0 : 40)
                     .allowsHitTesting(false)
+                    .accessibilityHidden(true)
             )
             
             Button {

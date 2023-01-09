@@ -14,7 +14,7 @@ struct TabBarView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            let hasHomeIndicator = geometry.safeAreaInsets.bottom > 20
+            let hasHomeIndicator = geometry.safeAreaInsets.bottom - 88 > 20
             
             HStack {
                 buttons
