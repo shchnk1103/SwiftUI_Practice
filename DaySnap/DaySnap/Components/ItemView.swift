@@ -26,6 +26,10 @@ struct ItemView: View {
             content
             
             Spacer()
+            
+            Image(systemName: "ellipsis.circle")
+                .font(.title)
+                .foregroundColor(.secondary)
         }
     }
     
@@ -46,7 +50,7 @@ struct ItemView: View {
             HStack(spacing: 0) {
                 Text(flag ? "距离" : "坚持")
                     .font(.body)
-                    .foregroundColor(.black.opacity(0.6))
+                    .foregroundColor(.secondary)
                 Text((flag
                       ? countdown?.name ?? ""
                       : checkin?.name ?? "")
@@ -58,7 +62,7 @@ struct ItemView: View {
             HStack(alignment: .center, spacing: 0) {
                 Text(flag ? "还有 " : "已经 ")
                     .font(.body)
-                    .foregroundColor(.black.opacity(0.6))
+                    .foregroundColor(.secondary)
                 Text(flag
                      ? "\(daysUntilDate(countdown?.targetDate ?? Date()) ?? 0)"
                      : "\(checkin?.persistDay ?? 0)/\(checkin?.targetDate ?? "")")
@@ -66,7 +70,7 @@ struct ItemView: View {
                     .fontWeight(.semibold)
                 Text(" 天")
                     .font(.body)
-                    .foregroundColor(.black.opacity(0.6))
+                    .foregroundColor(.secondary)
             }
         }
     }

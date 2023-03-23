@@ -76,6 +76,7 @@ struct EditView: View {
             Spacer()
         }
         .padding(.horizontal, 15)
+        .padding(.top, 50)
     }
     
     var pinToggle: some View {

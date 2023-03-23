@@ -27,7 +27,7 @@ struct CusDatePickerView: View {
             
             Spacer()
             
-            DatePicker("", selection: $selectedDate, displayedComponents: [.date, .hourAndMinute])
+            DatePicker("", selection: $selectedDate, displayedComponents: [.date])
                 .labelsHidden()
         }
         .padding(10)
