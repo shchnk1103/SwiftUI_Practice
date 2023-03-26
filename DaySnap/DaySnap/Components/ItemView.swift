@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ItemView: View {
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var checkinStore: CheckinStore
     @EnvironmentObject var countdownStore: CountdownStore
     @Binding var flag: Bool
@@ -30,14 +31,23 @@ struct ItemView: View {
             Image(systemName: "ellipsis.circle")
                 .font(.title)
                 .foregroundColor(.secondary)
+                .padding(.trailing)
+        }
+        .overlay {
+            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                .stroke(colorScheme == .dark ? .white.opacity(0.6) : .gray.opacity(0.5), lineWidth: 1)
+                .shadow(color: colorScheme == .dark ? .white : .gray, radius: 8, x: 0, y: 0)
         }
     }
     
     var roundedRectangle: some View {
         RoundedRectangle(cornerRadius: 8, style: .continuous)
-            .stroke(.black.opacity(0.5), lineWidth: 1)
+            .stroke(
+                colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.5),
+                lineWidth: 1
+            )
             .frame(width: 60, height: 60)
-            .foregroundColor(.white)
+            .foregroundColor(colorScheme == .dark ? .black : .white)
             .overlay {
                 Text((flag ? countdown?.emojiText : checkin?.emojiText) ?? "🥰")
                     .font(.largeTitle)
@@ -56,7 +66,7 @@ struct ItemView: View {
                       : checkin?.name ?? "")
                 )
                 .font(.body)
-                .foregroundColor(.black)
+                .foregroundColor(colorScheme == .dark ? .white : .black)
             }
             
             HStack(alignment: .center, spacing: 0) {

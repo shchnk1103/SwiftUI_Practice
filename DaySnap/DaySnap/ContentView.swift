@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     @EnvironmentObject var countdownStore: CountdownStore
     @EnvironmentObject var checkinStore: CheckinStore
     @State private var selectedTab: Tab = .home
@@ -28,6 +29,7 @@ struct ContentView: View {
             TabBarView(selectedTab: $selectedTab)
                 .padding(.bottom, 20)
         }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
     }
 }
 

@@ -8,34 +8,39 @@
 import SwiftUI
 
 struct MeView: View {
-    @State private var isDarkMode: Bool = false
-    @State private var isDarkModeWithSystem: Bool = true
+    @Environment(\.colorScheme) var colorScheme
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+    @State private var isDarkModeWithSystem: Bool = false
     
     var body: some View {
         VStack {
             HeaderView()
-                .padding(.horizontal, 15)
-                .padding(.top, 20)
+                .padding()
             
             List {
                 Section {
                     Toggle(isOn: $isDarkMode, label: {
                         HStack {
                             Image(systemName: "sun.min.fill")
+                                .foregroundColor(.primary)
                                 .padding(1)
                             Text("暗黑模式")
-                                .foregroundColor(.black)
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
                         }
                     })
                     .toggleStyle(CustomTopToggleStyle())
+                    .onChange(of: isDarkMode) { newValue in
+                        self.isDarkMode = isDarkMode
+                    }
                     
                     Toggle(isOn: $isDarkModeWithSystem, label: {
                         HStack {
                             Image(systemName: "iphone")
                                 .renderingMode(.original)
+                                .foregroundColor(.primary)
                                 .padding(1)
                             Text("暗黑模式跟随系统")
-                                .foregroundColor(.black)
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
                         }
                     })
                     .toggleStyle(CustomTopToggleStyle())

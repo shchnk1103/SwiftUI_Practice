@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ItemListView: View {
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var countdownStore: CountdownStore
     @EnvironmentObject var checkinStore: CheckinStore
     @EnvironmentObject var vm: HomeViewModel
@@ -15,6 +16,7 @@ struct ItemListView: View {
     @Binding var wantToCheckin: Bool
     @State private var showingAlert = false
     @State private var countdownToDelete: Countdown? = nil
+    @State private var selectedCountdown: Countdown? = nil
     @State private var checkinToDelete: Checkin? = nil
     @State private var showSheet: Bool = false
     
@@ -25,13 +27,10 @@ struct ItemListView: View {
                     Text("nothing")
                     Spacer()
                 } else {
-                    List(countdownStore.countdowns) { countdown in
-                        Button {
-                            showSheet = true
-                        } label: {
+                    List {
+                        ForEach(countdownStore.countdowns) { countdown in
                             ItemView(flag: $flag, id: countdown.id)
-                                // 删除按钮
-                                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button {
                                         showingAlert = true
                                         countdownToDelete = countdown
@@ -40,12 +39,18 @@ struct ItemListView: View {
                                     }
                                     .tint(.red)
                                 }
+                                .onTapGesture {
+                                    self.selectedCountdown = countdown
+                                }
                         }
-                        .sheet(isPresented: $showSheet) {
+                        .sheet(item: $selectedCountdown) { countdown in
                             EditView(item: $countdownStore.countdowns[countdownStore.countdowns.firstIndex(of: countdown)!])
                         }
+                        .listRowSeparator(.hidden)
                     }
-                    .listStyle(PlainListStyle())
+                    .listStyle(.plain)
+                    
+                    Spacer()
                 }
             } else {
                 if checkinStore.checkins.isEmpty {
@@ -54,31 +59,34 @@ struct ItemListView: View {
                 } else {
                     List(checkinStore.checkins) { checkin in
                         ItemView(flag: $flag, id: checkin.id)
-                        // 删除按钮
-                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                            Button {
-                                showingAlert = true
-                                checkinToDelete = checkin
-                            } label: {
-                                Image(systemName: "trash")
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            // 删除按钮
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button {
+                                    showingAlert = true
+                                    checkinToDelete = checkin
+                                } label: {
+                                    Image(systemName: "trash")
+                                }
+                                .tint(.red)
                             }
-                            .tint(.red)
-                        }
-                        // 打卡按钮
-                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                            Button {
-                                wantToCheckin = true
-                                vm.selectedData = checkin
-                            } label: {
-                                Image(systemName: "flag.checkered.circle")
+                            // 打卡按钮
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                Button {
+                                    wantToCheckin = true
+                                    vm.selectedData = checkin
+                                } label: {
+                                    Image(systemName: "flag.checkered.circle")
+                                }
+                                .tint(.cyan)
                             }
-                            .tint(.cyan)
-                        }
+                            .listRowSeparator(.hidden)
                     }
                     .listStyle(PlainListStyle())
                 }
             }
         }
+        .padding()
         // 确认删除
         .alert(isPresented: $showingAlert) {
             Alert(
@@ -102,16 +110,16 @@ struct ItemListView: View {
         }
     }
 }
+
+struct ItemListView_Previews: PreviewProvider {
+    static let countdownStore = CountdownStore()
+    static let checkinStore = CheckinStore()
+    static let vm = HomeViewModel()
     
-    struct ItemListView_Previews: PreviewProvider {
-        static let countdownStore = CountdownStore()
-        static let checkinStore = CheckinStore()
-        static let vm = HomeViewModel()
-        
-        static var previews: some View {
-            ItemListView(flag: .constant(false), wantToCheckin: .constant(false))
-                .environmentObject(countdownStore)
-                .environmentObject(checkinStore)
-                .environmentObject(vm)
-        }
+    static var previews: some View {
+        ItemListView(flag: .constant(true), wantToCheckin: .constant(false))
+            .environmentObject(countdownStore)
+            .environmentObject(checkinStore)
+            .environmentObject(vm)
     }
+}

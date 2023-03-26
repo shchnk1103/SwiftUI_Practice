@@ -9,12 +9,13 @@ import SwiftUI
 import Combine
 
 struct NumberOnlyTextField: View {
+    @Environment(\.colorScheme) var colorScheme
     @Binding var persistDate: String
     
     var body: some View {
         HStack {
             Image(systemName: "calendar")
-                .foregroundColor(Color.black.opacity(0.85))
+                .foregroundColor(.secondary)
             
             TextField("准备坚持几天", text: $persistDate)
                 .keyboardType(.numberPad)
@@ -30,9 +31,9 @@ struct NumberOnlyTextField: View {
                 .textFieldStyle(.automatic)
         }
         .padding(10)
-        .background(Color.white)
+        .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
         .cornerRadius(8)
-        .shadow(color: Color.black.opacity(0.25), radius: 8, x: 0, y: 0)
+        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
     }
 }
 

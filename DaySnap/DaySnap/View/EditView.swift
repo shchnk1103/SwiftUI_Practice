@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditView: View {
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var countdownStore: CountdownStore
     @Binding var item: Countdown
     @State private var text: String = ""
@@ -60,9 +61,9 @@ struct EditView: View {
                                 }
                         }
                     }
-                    .background(Color.white)
+                    .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
                     .cornerRadius(8)
-                    .shadow(color: Color.black.opacity(0.25), radius: 8, x: 0, y: 0)
+                    .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
                 }
                 
                 button
@@ -70,7 +71,7 @@ struct EditView: View {
             .padding(20)
             .overlay {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .stroke(Color.black, lineWidth: 1)
+                    .stroke(colorScheme == .dark ? .white : .black, lineWidth: 1)
             }
             
             Spacer()
@@ -83,9 +84,10 @@ struct EditView: View {
         Toggle(isOn: $isPinned) {
             HStack {
                 Image(systemName: "square.topthird.inset.filled")
+                    .foregroundColor(.secondary)
                     .padding(1)
                 Text("置顶")
-                    .foregroundColor(.black.opacity(0.25))
+                    .foregroundColor(colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25))
             }
         }
         .toggleStyle(CustomTopToggleStyle())
@@ -96,18 +98,19 @@ struct EditView: View {
             self.item.isPinned = self.isPinned
         }
         .padding(10)
-        .background(Color.white)
+        .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
         .cornerRadius(8)
-        .shadow(color: Color.black.opacity(0.25), radius: 8, x: 0, y: 0)
+        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
     }
     
     var reminderToggle: some View {
         Toggle(isOn: $isReminder, label: {
             HStack {
                 Image(systemName: "timer")
+                    .foregroundColor(.secondary)
                     .padding(1)
                 Text("定期提醒")
-                    .foregroundColor(.black.opacity(0.25))
+                    .foregroundColor(colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25))
             }
         })
         .toggleStyle(CustomTopToggleStyle())
@@ -128,12 +131,12 @@ struct EditView: View {
                 Spacer()
                 Text("更新")
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(colorScheme == .dark ? .black : .white)
                     .padding(.vertical, 12)
                 Spacer()
             }
             .background(RoundedRectangle(cornerRadius: 8, style: .continuous))
-            .foregroundColor(.black)
+            .foregroundColor(colorScheme == .dark ? .white : .black)
         }
     }
     

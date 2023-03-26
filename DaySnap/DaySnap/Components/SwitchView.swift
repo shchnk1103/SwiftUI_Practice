@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SwitchView: View {
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var countdownStore: CountdownStore
     @EnvironmentObject var checkinStore: CheckinStore
     @Binding var isCountdownButtonClicked: Bool
@@ -40,7 +41,11 @@ struct SwitchView: View {
         }
         .background(isCountdownButtonClicked ? .black : .white)
         .cornerRadius(8)
-        .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 0)
+        .overlay {
+            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                .stroke(colorScheme == .dark ? .white.opacity(0.5) : .black, lineWidth: 1)
+        }
+        .shadow(color: colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.25), radius: 4, x: 0, y: 0)
     }
     
     var checkinButton: some View {
@@ -63,7 +68,11 @@ struct SwitchView: View {
         }
         .background(isCountdownButtonClicked ? .white : .black)
         .cornerRadius(8)
-        .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 0)
+        .overlay {
+            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                .stroke(colorScheme == .dark ? .white.opacity(0.5) : .gray.opacity(0.8), lineWidth: 1)
+        }
+        .shadow(color: colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.25), radius: 4, x: 0, y: 0)
     }
 }
 

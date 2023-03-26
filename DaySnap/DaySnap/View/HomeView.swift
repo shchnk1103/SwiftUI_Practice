@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var countdownStore: CountdownStore
     @EnvironmentObject var checkinStore: CheckinStore
     @StateObject private var vm = HomeViewModel()
@@ -76,7 +77,7 @@ struct HomeView: View {
             }
             .zIndex(1)
             .padding(.bottom, offset < switchHeight ? -offset : -switchHeight)
-            .background(Color.white)
+            .background(colorScheme == .dark ? .black : .white)
             .overlay {
                 GeometryReader { geo -> Color in
                     let height = geo.frame(in: .global).maxY

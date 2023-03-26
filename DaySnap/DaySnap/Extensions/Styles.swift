@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct CustomTopToggleStyle: ToggleStyle {
+    @Environment(\.colorScheme) var colorSchceme
+    
     func makeBody(configuration: Configuration) -> some View {
         HStack {
             configuration.label
@@ -19,11 +21,11 @@ struct CustomTopToggleStyle: ToggleStyle {
                 }
             } label: {
                 RoundedRectangle(cornerRadius: 8)
-                    .foregroundColor(configuration.isOn ? .gray : .white)
+                    .foregroundColor(configuration.isOn ? (colorSchceme == .dark ? .black : .gray) : (colorSchceme == .dark ? .gray : .white))
                     .frame(width: 32, height: 16)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black.opacity(0.25), lineWidth: 1)
+                            .stroke(colorSchceme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), lineWidth: 1)
                     )
                     .overlay(
                         HStack {
@@ -31,7 +33,7 @@ struct CustomTopToggleStyle: ToggleStyle {
                                 Spacer()
                             }
                             Circle()
-                                .fill(Color.black)
+                                .fill(colorSchceme == .dark ? .white : .black)
                             if !configuration.isOn {
                                 Spacer()
                             }

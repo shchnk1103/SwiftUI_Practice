@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CusDatePickerView: View {
+    @Environment(\.colorScheme) var colorScheme
     @Binding var selectedDate: Date
     var iconName: String = "calendar"
     
@@ -20,10 +21,11 @@ struct CusDatePickerView: View {
     var body: some View {
         HStack {
             Image(systemName: iconName)
+                .foregroundColor(.secondary)
             
             Text("选择时间")
                 .lineLimit(1)
-                .foregroundColor(.black.opacity(0.25))
+                .foregroundColor(colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25))
             
             Spacer()
             
@@ -31,9 +33,9 @@ struct CusDatePickerView: View {
                 .labelsHidden()
         }
         .padding(10)
-        .background(Color.white)
+        .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
         .cornerRadius(8)
-        .shadow(color: Color.black.opacity(0.25), radius: 8, x: 0, y: 0)
+        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
     }
 }
 
