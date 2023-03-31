@@ -11,7 +11,11 @@ struct ItemView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var checkinStore: CheckinStore
     @EnvironmentObject var countdownStore: CountdownStore
+    @EnvironmentObject var vm: HomeViewModel
     @Binding var flag: Bool
+    @Binding var showingAlert: Bool
+    @Binding var wantToCheckin: Bool
+    @State private var swipeOffset:CGFloat = 0
     var id: UUID
     private var countdown: Countdown? {
         countdownStore.countdowns.filter({ $0.id == id }).first ?? nil
@@ -21,22 +25,41 @@ struct ItemView: View {
     }
     
     var body: some View {
-        HStack {
-            roundedRectangle
-            
-            content
-            
-            Spacer()
-            
-            Image(systemName: "ellipsis.circle")
-                .font(.title)
-                .foregroundColor(.secondary)
-                .padding(.trailing)
-        }
-        .overlay {
-            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .stroke(colorScheme == .dark ? .white.opacity(0.6) : .gray.opacity(0.5), lineWidth: 1)
-                .shadow(color: colorScheme == .dark ? .white : .gray, radius: 8, x: 0, y: 0)
+        ZStack {
+            GeometryReader { geo in
+                HStack(spacing: 0) {
+                    // 打卡按钮
+                    checkinButton
+                    
+                    // Content
+                    HStack {
+                        roundedRectangle
+                        
+                        content
+                        
+                        Color.white
+                            .frame(height: 80)
+                        
+                        Image(systemName: "ellipsis.circle")
+                            .font(.title)
+                            .foregroundColor(.secondary)
+                            .padding(.trailing)
+                    }
+                    .frame(width: geo.size.width)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            .stroke(colorScheme == .dark ? .white.opacity(0.6) : .gray.opacity(0.5), lineWidth: 1)
+                            .shadow(color: colorScheme == .dark ? .white : .gray, radius: 8, x: 0, y: 0)
+                    }
+                    .offset(x: swipeOffset)
+                    .gesture(drag)
+                    
+                    // 删除按钮
+                    deleteButton
+                }
+                .offset(x: -70)
+            }
+            .frame(height: 80)
         }
     }
     
@@ -76,13 +99,66 @@ struct ItemView: View {
                 Text(flag
                      ? "\(daysUntilDate(countdown?.targetDate ?? Date()) ?? 0)"
                      : "\(checkin?.persistDay ?? 0)/\(checkin?.targetDate ?? "")")
-                    .font(.title)
-                    .fontWeight(.semibold)
+                .font(.title)
+                .fontWeight(.semibold)
                 Text(" 天")
                     .font(.body)
                     .foregroundColor(.secondary)
             }
         }
+    }
+    
+    var checkinButton: some View {
+        Button {
+            wantToCheckin = true
+            vm.selectedData = checkin
+        } label: {
+            Image(systemName: "flag.checkered.circle")
+                .font(.title)
+                .foregroundColor(.white)
+                .frame(width: 60, height: 60)
+                .background(Color.cyan, in: Circle())
+        }
+        .offset(x: 60)
+        .offset(x: swipeOffset - 60)
+        .opacity(swipeOffset / 100)
+        .padding(.trailing, 10)
+    }
+    
+    var deleteButton: some View {
+        Button {
+            showingAlert = true
+            if flag {
+                vm.selectedCountdown = countdown
+            } else {
+                vm.selectedData = checkin
+            }
+        } label: {
+            Image(systemName: "trash")
+                .font(.title)
+                .foregroundColor(.white)
+                .frame(width: 60, height: 60)
+                .background(Color.red, in: Circle())
+        }
+        .offset(x: 60)
+        .offset(x: swipeOffset - 60)
+        .opacity(-swipeOffset / 100)
+        .padding(.leading, 10)
+    }
+    
+    var drag: some Gesture {
+        DragGesture()
+            .onChanged({ value in
+                if flag {
+                    guard value.translation.width < 0 else { return }
+                    swipeOffset = value.translation.width
+                } else {
+                    swipeOffset = value.translation.width
+                }
+            })
+            .onEnded({ value in
+                swipeOffset = flag ? (value.translation.width <= -70 ? -80 : 0) : (value.translation.width >= 70 ? 80 : (value.translation.width <= -70 ? -80 : 0))
+            })
     }
     
     func daysUntilDate(_ targetDate: Date) -> Int? {
@@ -104,7 +180,7 @@ struct ItemView_Previews: PreviewProvider {
     static let countdownStore = CountdownStore()
     
     static var previews: some View {
-        ItemView(flag: .constant(false), id: UUID())
+        ItemView(flag: .constant(false), showingAlert: .constant(false), wantToCheckin: .constant(false), id: UUID())
             .environmentObject(checkinStore)
             .environmentObject(countdownStore)
     }

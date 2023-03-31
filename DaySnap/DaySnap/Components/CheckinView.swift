@@ -116,6 +116,9 @@ struct CheckinView: View {
                     // 重新渲染页面
                     self.vm.selectedData?.persistDay = checkin.persistDay
                 }
+                
+                flag = true
+                flag = false
             }
         } label: {
             HStack {

@@ -10,6 +10,7 @@ import SwiftUI
 
 class HomeViewModel: ObservableObject {
     @Published var selectedData: Checkin?
+    @Published var selectedCountdown: Countdown?
     @Published var headerHeight: CGFloat = 0
 
     var selectedCheckin: Binding<Checkin?> {

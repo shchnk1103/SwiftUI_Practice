@@ -14,6 +14,7 @@ struct HomeView: View {
     @StateObject private var vm = HomeViewModel()
     @State private var isCountdownButtonClicked = true
     @State private var wantToCheckin: Bool = false
+    @State private var showingAlert: Bool = false
     @State private var offset: CGFloat = 0
     @State private var startOffset: CGFloat = 0
     @State private var scrollViewHeight: CGFloat = 0
@@ -30,6 +31,7 @@ struct HomeView: View {
                     .padding()
                     .offset(getOffset())
                     .opacity(getOpacity())
+                    // GeometryReader
                     .overlay {
                         GeometryReader { geo -> Color in
                             let maxY = geo.frame(in: .global).maxY
@@ -58,6 +60,7 @@ struct HomeView: View {
                         .padding()
                         .offset(y: offset > 0 ? (offset <= switchOffset ? -offset : -switchOffset) : 0)
                 }
+                // GeometryReader
                 .overlay {
                     GeometryReader { geo -> Color in
                         let maxY = geo.frame(in: .global).maxY
@@ -78,6 +81,7 @@ struct HomeView: View {
             .zIndex(1)
             .padding(.bottom, offset < switchHeight ? -offset : -switchHeight)
             .background(colorScheme == .dark ? .black : .white)
+            // GeometryReader
             .overlay {
                 GeometryReader { geo -> Color in
                     let height = geo.frame(in: .global).maxY
@@ -98,7 +102,7 @@ struct HomeView: View {
             
             // Content
             ScrollView(.vertical, showsIndicators: false) {
-                ItemListView(flag: $isCountdownButtonClicked, wantToCheckin: $wantToCheckin)
+                ItemListView(flag: $isCountdownButtonClicked, wantToCheckin: $wantToCheckin, showingAlert: $showingAlert)
                     .environmentObject(vm)
                     .navigationTitle("首页")
                     .toolbar(.hidden, for: .automatic)
@@ -108,6 +112,7 @@ struct HomeView: View {
                     }
                     .frame(minHeight: 800, maxHeight: .infinity)
                     .padding(.top, scrollViewHeight)
+                    // GeometryReader
                     .overlay(alignment: .top) {
                         GeometryReader { geo -> Color in
                             let minY = geo.frame(in: .global).minY
@@ -126,11 +131,17 @@ struct HomeView: View {
                     }
             }
             
-            // 弹窗提醒
+            // 弹窗提醒 - 打卡
             if wantToCheckin {
                 CheckinView(flag: $wantToCheckin)
                     .environmentObject(vm)
                     .zIndex(2)
+            }
+            
+            // 弹窗提醒 - 删除
+            if showingAlert {
+                DeleteView(showingAlert: $showingAlert, flag: $isCountdownButtonClicked)
+                    .environmentObject(vm)
             }
         }
         .onAppear {
