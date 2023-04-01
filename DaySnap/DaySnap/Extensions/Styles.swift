@@ -16,9 +16,7 @@ struct CustomTopToggleStyle: ToggleStyle {
             configuration.label
             Spacer()
             Button {
-                withAnimation(.default) {
-                    configuration.isOn.toggle()
-                }
+                configuration.isOn.toggle()
             } label: {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(configuration.isOn ? (colorSchceme == .dark ? .black : .gray) : (colorSchceme == .dark ? .gray : .white))
@@ -38,6 +36,7 @@ struct CustomTopToggleStyle: ToggleStyle {
                                 Spacer()
                             }
                         }
+                            .animation(.default, value: configuration.isOn)
                     )
                     .padding(2)
             }

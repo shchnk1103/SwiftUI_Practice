@@ -10,13 +10,14 @@ import SwiftUI
 struct EditView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var countdownStore: CountdownStore
-    @Binding var item: Countdown
+    @AppStorage("flag") var flag: Bool = true
     @State private var text: String = ""
     @State private var emojiText: String = ""
     @State private var targetDate: Date = Date()
     @State private var isPinned: Bool = false
     @State private var isReminder: Bool = false
     @State private var reminderDate: Date = Date()
+    @Binding var selectedItem: Countdown?
     
     private let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -25,25 +26,18 @@ struct EditView: View {
     }()
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 32) {
+
             VStack(spacing: 32) {
                 VStack(spacing: 20) {
                     InputWithIconView(imageName: "applepencil", placeholderText: "写点有趣的", text: $text, emojiText: $emojiText)
                         .onAppear {
-                            self.text = self.item.name
-                            self.emojiText = self.item.emojiText
-                        }
-                        .onDisappear {
-                            self.item.name = self.text
-                            self.item.emojiText = self.emojiText
+                            self.text = selectedItem!.name
+                            self.emojiText = selectedItem!.emojiText
                         }
                     
                     CusDatePickerView(selectedDate: $targetDate)
                         .onAppear {
-                            self.targetDate = self.item.targetDate
-                        }
-                        .onDisappear {
-                            self.item.targetDate = self.targetDate
+                            self.targetDate = selectedItem!.targetDate
                         }
                     
                     pinToggle
@@ -54,16 +48,14 @@ struct EditView: View {
                         if isReminder {
                             CusDatePickerView(selectedDate: $reminderDate)
                                 .onAppear {
-                                    self.reminderDate = self.item.notificationDate
-                                }
-                                .onDisappear {
-                                    self.item.notificationDate = self.reminderDate
+                                    self.reminderDate = selectedItem!.notificationDate
                                 }
                         }
                     }
                     .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
                     .cornerRadius(8)
                     .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
+                    .animation(.default, value: isReminder)
                 }
                 
                 button
@@ -73,11 +65,10 @@ struct EditView: View {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .stroke(colorScheme == .dark ? .white : .black, lineWidth: 1)
             }
-            
-            Spacer()
-        }
-        .padding(.horizontal, 15)
-        .padding(.top, 50)
+            .frame(maxHeight: .infinity, alignment: .top)
+            .padding(.horizontal, 15)
+            .padding(.top, 50)
+            .animation(.default, value: isReminder)
     }
     
     var pinToggle: some View {
@@ -92,10 +83,7 @@ struct EditView: View {
         }
         .toggleStyle(CustomTopToggleStyle())
         .onAppear {
-            self.isPinned = self.item.isPinned
-        }
-        .onDisappear {
-            self.item.isPinned = self.isPinned
+            self.isPinned = selectedItem!.isPinned
         }
         .padding(10)
         .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
@@ -115,10 +103,7 @@ struct EditView: View {
         })
         .toggleStyle(CustomTopToggleStyle())
         .onAppear {
-            self.isReminder = self.item.isReminder
-        }
-        .onDisappear {
-            self.item.isReminder = self.isReminder
+            self.isReminder = selectedItem!.isReminder
         }
         .padding(10)
     }
@@ -126,6 +111,9 @@ struct EditView: View {
     var button: some View {
         Button {
             update()
+            
+            // 关闭sheet
+            selectedItem = nil
         } label: {
             HStack {
                 Spacer()
@@ -140,12 +128,17 @@ struct EditView: View {
         }
     }
     
+    // MARK: fuctions
+    
     func update() {
-        let countdown = Countdown(emojiText: emojiText, name: text, targetDate: targetDate, isPinned: isPinned, isReminder: isReminder, notificationDate: reminderDate)
+        guard let selectedCountdown = selectedItem else { return }
         
-        if let index = countdownStore.countdowns.firstIndex(where: { $0.id == item.id }) {
-            countdownStore.countdowns[index] = countdown
-        }
+        let updatedCountdown = Countdown(id: selectedCountdown.id, emojiText: emojiText, name: text, targetDate: targetDate, isPinned: isPinned, isReminder: isReminder, notificationDate: reminderDate)
+        
+        countdownStore.update(countdown: updatedCountdown)
+        
+        flag = false
+        flag = true
     }
 }
 
@@ -153,7 +146,7 @@ struct EditView_Previews: PreviewProvider {
     static let countdownStore = CountdownStore()
     
     static var previews: some View {
-        EditView(item: .constant(Countdown(emojiText: "🥰", name: "健身", targetDate: Date(), isPinned: false, isReminder: false, notificationDate: Date())))
+        EditView(selectedItem: .constant(Countdown(emojiText: "", name: "test", targetDate: Date(), isPinned: false, isReminder: false, notificationDate: Date())))
             .environmentObject(countdownStore)
     }
 }

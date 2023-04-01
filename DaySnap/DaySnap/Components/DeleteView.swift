@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct DeleteView: View {
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var countdownStore: CountdownStore
     @EnvironmentObject var checkinStore: CheckinStore
     @EnvironmentObject var vm: HomeViewModel
+    @AppStorage("flag") var flag: Bool = true
     @Binding var showingAlert: Bool
-    @Binding var flag: Bool
     @State private var appear: Bool = false
     
     var body: some View {
@@ -25,7 +26,7 @@ struct DeleteView: View {
             VStack(alignment: .center) {
                 Circle()
                     .stroke(lineWidth: 1)
-                    .foregroundColor(.black)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
                     .frame(width: 120, height: 120)
                     .overlay {
                         Text(flag ? vm.selectedCountdown?.emojiText ?? "" : vm.selectedData?.emojiText ?? "")
@@ -88,7 +89,7 @@ struct DeleteView: View {
                 .padding()
             }
             .padding()
-            .background(RoundedRectangle(cornerRadius: 8, style: .continuous).foregroundColor(.white))
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
             .frame(height: 410)
             .padding(.horizontal, 30)
             .offset(y: appear ? 0 : 1000)
@@ -111,7 +112,7 @@ struct DeleteView_Previews: PreviewProvider {
     static let vm = HomeViewModel()
     
     static var previews: some View {
-        DeleteView(showingAlert: .constant(true), flag: .constant(true))
+        DeleteView(showingAlert: .constant(true))
             .environmentObject(countdownStore)
             .environmentObject(checkinStore)
             .environmentObject(vm)

@@ -11,7 +11,7 @@ struct AddView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var countdownStore: CountdownStore
     @EnvironmentObject var checkinStore: CheckinStore
-    @State private var isOn: Bool = true
+    @AppStorage("flag") var flag: Bool = true
     @State private var isPinned: Bool = false
     @State private var isReminder: Bool = false
     @State private var text: String = ""
@@ -30,12 +30,12 @@ struct AddView: View {
                     .padding(.top, 20)
                 
                 VStack(spacing: 32) {
-                    SwitchView(isCountdownButtonClicked: $isOn)
+                    SwitchView()
                     
                     VStack(spacing: 20) {
                         InputWithIconView(imageName: "applepencil", placeholderText: "写点有趣的", text: $text, emojiText: $emojiText)
                         
-                        if isOn {
+                        if flag {
                             CusDatePickerView(selectedDate: $deadline)
                         } else {
                             NumberOnlyTextField(persistDate: $persistDate)
@@ -129,7 +129,7 @@ struct AddView: View {
     }
     
     func save() {
-        if isOn {
+        if flag {
             if text.isEmpty {
                 showWarn = true
             } else {
@@ -143,6 +143,9 @@ struct AddView: View {
                 self.isReminder = false
                 
                 showAddSuccess = true
+                
+                flag = false
+                flag = true
             }
         } else {
             if text.isEmpty || persistDate.isEmpty {
@@ -158,6 +161,9 @@ struct AddView: View {
                 self.isReminder = false
                 
                 showAddSuccess = true
+                
+                flag = true
+                flag = false
             }
         }
     }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct TabItem: Identifiable {
     var id = UUID()
@@ -24,3 +25,10 @@ var tabItems = [
     TabItem(icon: "plus.circle", tab: .search),
     TabItem(icon: "person", tab: .me)
 ]
+
+struct TabPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}

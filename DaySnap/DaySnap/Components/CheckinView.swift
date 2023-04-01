@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CheckinView: View {
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var vm: HomeViewModel
     @EnvironmentObject var checkinStore: CheckinStore
     @Binding var flag: Bool
@@ -40,7 +41,7 @@ struct CheckinView: View {
                 Spacer()
             }
             .padding()
-            .background(RoundedRectangle(cornerRadius: 8, style: .continuous))
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
             .foregroundColor(.white)
             .frame(height: 410)
             .padding(.horizontal, 30)
@@ -67,7 +68,7 @@ struct CheckinView: View {
     var icon: some View {
         Circle()
             .stroke(lineWidth: 1)
-            .foregroundColor(.black)
+            .foregroundColor(colorScheme == .dark ? .white : .black)
             .frame(width: 120, height: 120)
             .overlay {
                 Text(vm.selectedData?.emojiText ?? "💪🏼")
@@ -84,7 +85,6 @@ struct CheckinView: View {
                 .fontWeight(.semibold)
             Text("天")
         }
-        .foregroundColor(.black)
     }
     
     var content_2: some View {
@@ -99,7 +99,6 @@ struct CheckinView: View {
                 .fontWeight(.semibold)
             Text("天")
         }
-        .foregroundColor(.black)
     }
     
     var button: some View {
@@ -124,7 +123,7 @@ struct CheckinView: View {
             HStack {
                 Spacer()
                 Text("打卡")
-                    .foregroundColor(.white)
+                    .foregroundColor(colorScheme == .dark ? .black : .white)
                     .font(.title3)
                     .fontWeight(.semibold)
                 Spacer()
@@ -133,7 +132,7 @@ struct CheckinView: View {
         .disabled(!canCheckin())
         .frame(height: 43)
         .background(RoundedRectangle(cornerRadius: 8, style: .continuous))
-        .foregroundColor(.black)
+        .foregroundColor(colorScheme == .dark ? .white : .black)
     }
     // 设置上次 Click In 按钮点击的确切时间
     private func setLastCheckinTime(_ time: Date) {

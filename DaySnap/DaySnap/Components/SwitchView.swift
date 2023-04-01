@@ -11,7 +11,7 @@ struct SwitchView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var countdownStore: CountdownStore
     @EnvironmentObject var checkinStore: CheckinStore
-    @Binding var isCountdownButtonClicked: Bool
+    @AppStorage("flag") var isCountdownButtonClicked: Bool = true
     
     var body: some View {
         HStack(spacing: 10) {
@@ -19,6 +19,7 @@ struct SwitchView: View {
             
             checkinButton
         }
+        .animation(.default, value: isCountdownButtonClicked)
     }
     
     var countdownButton: some View {
@@ -43,7 +44,7 @@ struct SwitchView: View {
         .cornerRadius(8)
         .overlay {
             RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .stroke(colorScheme == .dark ? .white.opacity(0.5) : .black, lineWidth: 1)
+                .stroke(colorScheme == .dark ? .white.opacity(0.5) : .gray.opacity(0.8), lineWidth: 1)
         }
         .shadow(color: colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.25), radius: 4, x: 0, y: 0)
     }
@@ -81,7 +82,7 @@ struct SwitchView_Previews: PreviewProvider {
     static let checkinStore = CheckinStore()
     
     static var previews: some View {
-        SwitchView(isCountdownButtonClicked: .constant(true))
+        SwitchView()
             .environmentObject(countdownStore)
             .environmentObject(checkinStore)
     }

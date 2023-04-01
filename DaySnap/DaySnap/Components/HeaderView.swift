@@ -22,7 +22,6 @@ struct HeaderView: View {
                     .foregroundColor(colorScheme == .dark ? .white.opacity(0.6) : .black.opacity(0.6))
             }
             .padding(.vertical, 27)
-            .padding(.horizontal, 32)
             
             Spacer()
             
@@ -31,17 +30,7 @@ struct HeaderView: View {
                 .frame(width: 85, height: 115)
                 .scaledToFit()
                 .padding(.vertical, 2)
-                .padding(.trailing, 32)
         }
-        .background(colorScheme == .dark ? .black : .white, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
-        .overlay {
-            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .stroke(colorScheme == .dark ? .white.opacity(0.5) : .white, lineWidth: 1)
-        }
-        .shadow(
-            color: colorScheme == .dark ? .white.opacity(0.6) : .black.opacity(0.25),
-            radius: 12, x: 0, y: 0
-        )
     }
 }
 

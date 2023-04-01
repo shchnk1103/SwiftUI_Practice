@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+    @AppStorage("isDarkMode") var isDarkMode: Bool = false
+    @AppStorage("selectedTab") var selectedTab: Tab = .home
     @EnvironmentObject var countdownStore: CountdownStore
     @EnvironmentObject var checkinStore: CheckinStore
-    @State private var selectedTab: Tab = .home
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -26,10 +26,12 @@ struct ContentView: View {
                 MeView()
             }
             
-            TabBarView(selectedTab: $selectedTab)
-                .padding(.bottom, 20)
+            TabBarView()
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            Color.clear.frame(height: 88)
+        }
     }
 }
 

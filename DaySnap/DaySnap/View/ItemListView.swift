@@ -12,12 +12,11 @@ struct ItemListView: View {
     @EnvironmentObject var countdownStore: CountdownStore
     @EnvironmentObject var checkinStore: CheckinStore
     @EnvironmentObject var vm: HomeViewModel
-    @Binding var flag: Bool
+    @AppStorage("flag") var flag: Bool = true
     @Binding var wantToCheckin: Bool
     @Binding var showingAlert: Bool
     @State private var selectedCountdown: Countdown? = nil
     @State private var checkinToDelete: Checkin? = nil
-    @State private var showSheet: Bool = false
     
     var body: some View {
         VStack {
@@ -26,7 +25,7 @@ struct ItemListView: View {
                     Text("nothing")
                     Spacer()
                 } else {
-                    ForEach(countdownStore.countdowns) { countdown in
+                    ForEach(countdownStore.countdowns.sortedByPriority()) { countdown in
                         ItemView(flag: $flag, showingAlert: $showingAlert, wantToCheckin: $wantToCheckin, id: countdown.id)
                             .onTapGesture {
                                 self.selectedCountdown = countdown
@@ -34,7 +33,7 @@ struct ItemListView: View {
                             .padding(.horizontal)
                     }
                     .sheet(item: $selectedCountdown) { countdown in
-                        EditView(item: $countdownStore.countdowns[countdownStore.countdowns.firstIndex(of: countdown)!])
+                        EditView(selectedItem: $selectedCountdown)
                     }
                     
                     Spacer()
@@ -62,7 +61,7 @@ struct ItemListView_Previews: PreviewProvider {
     static let vm = HomeViewModel()
     
     static var previews: some View {
-        ItemListView(flag: .constant(false), wantToCheckin: .constant(false), showingAlert: .constant(false))
+        ItemListView(wantToCheckin: .constant(false), showingAlert: .constant(false))
             .environmentObject(countdownStore)
             .environmentObject(checkinStore)
             .environmentObject(vm)
