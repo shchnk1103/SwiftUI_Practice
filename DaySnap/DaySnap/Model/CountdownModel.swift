@@ -47,6 +47,7 @@ class CountdownStore: ObservableObject {
             if let data = userDefaults.data(forKey: key) {
                 return decode(data: data)
             }
+            
             return []
         }
         

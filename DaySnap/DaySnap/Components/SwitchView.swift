@@ -45,6 +45,7 @@ struct SwitchView: View {
         .overlay {
             RoundedRectangle(cornerRadius: 8, style: .continuous)
                 .stroke(colorScheme == .dark ? .white.opacity(0.5) : .gray.opacity(0.8), lineWidth: 1)
+                .blendMode(.overlay)
         }
         .shadow(color: colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.25), radius: 4, x: 0, y: 0)
     }
@@ -72,6 +73,7 @@ struct SwitchView: View {
         .overlay {
             RoundedRectangle(cornerRadius: 8, style: .continuous)
                 .stroke(colorScheme == .dark ? .white.opacity(0.5) : .gray.opacity(0.8), lineWidth: 1)
+                .blendMode(.overlay)
         }
         .shadow(color: colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.25), radius: 4, x: 0, y: 0)
     }

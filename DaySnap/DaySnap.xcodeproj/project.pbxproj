@@ -35,7 +35,39 @@
 		79BAC0E529BC6AF4006822B9 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BAC0E429BC6AF4006822B9 /* ItemView.swift */; };
 		79BAC0E729BC7148006822B9 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BAC0E629BC7148006822B9 /* TabBarView.swift */; };
 		79BAC0EA29BC751E006822B9 /* TabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BAC0E929BC751E006822B9 /* TabModel.swift */; };
+		79BD2C3E29DABCD90026F1F2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BD2C3D29DABCD90026F1F2 /* WidgetKit.framework */; };
+		79BD2C4029DABCD90026F1F2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BD2C3F29DABCD90026F1F2 /* SwiftUI.framework */; };
+		79BD2C4329DABCD90026F1F2 /* DaySnapWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD2C4229DABCD90026F1F2 /* DaySnapWidgetBundle.swift */; };
+		79BD2C4529DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD2C4429DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift */; };
+		79BD2C4729DABCD90026F1F2 /* DaySnapWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD2C4629DABCD90026F1F2 /* DaySnapWidget.swift */; };
+		79BD2C4929DABCDB0026F1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79BD2C4829DABCDB0026F1F2 /* Assets.xcassets */; };
+		79BD2C4D29DABCDB0026F1F2 /* DaySnapWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 79BD2C3B29DABCD90026F1F2 /* DaySnapWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		79BD2C5329DAF67C0026F1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79BAC0CD29BC5222006822B9 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		79BD2C4B29DABCDB0026F1F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 79BAC0BE29BC5221006822B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79BD2C3A29DABCD90026F1F2;
+			remoteInfo = DaySnapWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		79BD2C4E29DABCDB0026F1F2 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				79BD2C4D29DABCDB0026F1F2 /* DaySnapWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7903A5E729BDACB400A71CC5 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
@@ -67,6 +99,15 @@
 		79BAC0E429BC6AF4006822B9 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		79BAC0E629BC7148006822B9 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		79BAC0E929BC751E006822B9 /* TabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
+		79BD2C3B29DABCD90026F1F2 /* DaySnapWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DaySnapWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		79BD2C3D29DABCD90026F1F2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		79BD2C3F29DABCD90026F1F2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		79BD2C4229DABCD90026F1F2 /* DaySnapWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySnapWidgetBundle.swift; sourceTree = "<group>"; };
+		79BD2C4429DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySnapWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		79BD2C4629DABCD90026F1F2 /* DaySnapWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySnapWidget.swift; sourceTree = "<group>"; };
+		79BD2C4829DABCDB0026F1F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		79BD2C4A29DABCDB0026F1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79BD2C5229DAC0800026F1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +118,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		79BD2C3829DABCD90026F1F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BD2C4029DABCD90026F1F2 /* SwiftUI.framework in Frameworks */,
+				79BD2C3E29DABCD90026F1F2 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -84,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				79BAC0C829BC5221006822B9 /* DaySnap */,
+				79BD2C4129DABCD90026F1F2 /* DaySnapWidget */,
+				79BD2C3C29DABCD90026F1F2 /* Frameworks */,
 				79BAC0C729BC5221006822B9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				79BAC0C629BC5221006822B9 /* DaySnap.app */,
+				79BD2C3B29DABCD90026F1F2 /* DaySnapWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +152,7 @@
 		79BAC0C829BC5221006822B9 /* DaySnap */ = {
 			isa = PBXGroup;
 			children = (
+				79BD2C5229DAC0800026F1F2 /* Info.plist */,
 				7985B04629C06B76003FCDDB /* TestView.swift */,
 				7977D6ED29CD9C8600978CA8 /* Test1.swift */,
 				79BAC0E829BC7511006822B9 /* Model */,
@@ -171,6 +225,27 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		79BD2C3C29DABCD90026F1F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79BD2C3D29DABCD90026F1F2 /* WidgetKit.framework */,
+				79BD2C3F29DABCD90026F1F2 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		79BD2C4129DABCD90026F1F2 /* DaySnapWidget */ = {
+			isa = PBXGroup;
+			children = (
+				79BD2C4229DABCD90026F1F2 /* DaySnapWidgetBundle.swift */,
+				79BD2C4429DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift */,
+				79BD2C4629DABCD90026F1F2 /* DaySnapWidget.swift */,
+				79BD2C4829DABCDB0026F1F2 /* Assets.xcassets */,
+				79BD2C4A29DABCDB0026F1F2 /* Info.plist */,
+			);
+			path = DaySnapWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -181,10 +256,12 @@
 				79BAC0C229BC5221006822B9 /* Sources */,
 				79BAC0C329BC5221006822B9 /* Frameworks */,
 				79BAC0C429BC5221006822B9 /* Resources */,
+				79BD2C4E29DABCDB0026F1F2 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				79BD2C4C29DABCDB0026F1F2 /* PBXTargetDependency */,
 			);
 			name = DaySnap;
 			packageProductDependencies = (
@@ -193,6 +270,23 @@
 			productReference = 79BAC0C629BC5221006822B9 /* DaySnap.app */;
 			productType = "com.apple.product-type.application";
 		};
+		79BD2C3A29DABCD90026F1F2 /* DaySnapWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79BD2C5129DABCDB0026F1F2 /* Build configuration list for PBXNativeTarget "DaySnapWidgetExtension" */;
+			buildPhases = (
+				79BD2C3729DABCD90026F1F2 /* Sources */,
+				79BD2C3829DABCD90026F1F2 /* Frameworks */,
+				79BD2C3929DABCD90026F1F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DaySnapWidgetExtension;
+			productName = DaySnapWidgetExtension;
+			productReference = 79BD2C3B29DABCD90026F1F2 /* DaySnapWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -200,17 +294,20 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					79BAC0C529BC5221006822B9 = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					79BD2C3A29DABCD90026F1F2 = {
+						CreatedOnToolsVersion = 14.3;
 					};
 				};
 			};
 			buildConfigurationList = 79BAC0C129BC5221006822B9 /* Build configuration list for PBXProject "DaySnap" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = "zh-Hans";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -225,6 +322,7 @@
 			projectRoot = "";
 			targets = (
 				79BAC0C529BC5221006822B9 /* DaySnap */,
+				79BD2C3A29DABCD90026F1F2 /* DaySnapWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -236,6 +334,15 @@
 			files = (
 				79BAC0D129BC5222006822B9 /* Preview Assets.xcassets in Resources */,
 				79BAC0CE29BC5222006822B9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79BD2C3929DABCD90026F1F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BD2C5329DAF67C0026F1F2 /* Assets.xcassets in Resources */,
+				79BD2C4929DABCDB0026F1F2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,13 +382,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		79BD2C3729DABCD90026F1F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79BD2C4329DABCD90026F1F2 /* DaySnapWidgetBundle.swift in Sources */,
+				79BD2C4729DABCD90026F1F2 /* DaySnapWidget.swift in Sources */,
+				79BD2C4529DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		79BD2C4C29DABCDB0026F1F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 79BD2C3A29DABCD90026F1F2 /* DaySnapWidgetExtension */;
+			targetProxy = 79BD2C4B29DABCDB0026F1F2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		79BAC0D229BC5222006822B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -328,7 +454,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -342,6 +468,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -382,7 +509,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -395,17 +522,23 @@
 		79BAC0D529BC5222006822B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DaySnap/Preview Content\"";
 				DEVELOPMENT_TEAM = C33N6HTS9N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DaySnap/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "不知道计时 - 打卡";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -415,6 +548,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleShy0N.DaySnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -424,17 +558,23 @@
 		79BAC0D629BC5222006822B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DaySnap/Preview Content\"";
 				DEVELOPMENT_TEAM = C33N6HTS9N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DaySnap/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "不知道计时 - 打卡";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -444,6 +584,63 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleShy0N.DaySnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		79BD2C4F29DABCDB0026F1F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C33N6HTS9N;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DaySnapWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DaySnapWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleShy0N.DaySnap.DaySnapWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		79BD2C5029DABCDB0026F1F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C33N6HTS9N;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DaySnapWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DaySnapWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleShy0N.DaySnap.DaySnapWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -467,6 +664,15 @@
 			buildConfigurations = (
 				79BAC0D529BC5222006822B9 /* Debug */,
 				79BAC0D629BC5222006822B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79BD2C5129DABCDB0026F1F2 /* Build configuration list for PBXNativeTarget "DaySnapWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79BD2C4F29DABCDB0026F1F2 /* Debug */,
+				79BD2C5029DABCDB0026F1F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

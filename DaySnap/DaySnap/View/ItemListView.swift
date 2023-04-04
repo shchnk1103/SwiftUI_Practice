@@ -22,7 +22,12 @@ struct ItemListView: View {
         VStack {
             if flag {
                 if countdownStore.countdowns.isEmpty {
-                    Text("nothing")
+                    Spacer()
+                    
+                    Image("nan")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    
                     Spacer()
                 } else {
                     ForEach(countdownStore.countdowns.sortedByPriority()) { countdown in
@@ -40,7 +45,12 @@ struct ItemListView: View {
                 }
             } else {
                 if checkinStore.checkins.isEmpty {
-                    Text("nothing")
+                    Spacer()
+                    
+                    Image("nv")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    
                     Spacer()
                 } else {
                     ForEach(checkinStore.checkins) { checkin in

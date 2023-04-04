@@ -20,14 +20,8 @@ struct InputWithIconView: View {
                 .font(.title)
                 .multilineTextAlignment(.center)
                 .frame(width: 50, height: 50, alignment: .center)
-                .background(
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .fill(colorScheme == .dark ? .black.opacity(0.6) : .white)
-                )
-                .overlay {
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .stroke(colorScheme == .dark ? Color.white.opacity(0.25) : Color.black.opacity(0.5), lineWidth: 1)
-                }
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                .strokeStyle(cornerRadius: 8)
             
             Image(systemName: imageName)
                 .foregroundColor(colorScheme == .dark ? Color.white.opacity(0.65) : Color.black.opacity(0.85))
@@ -37,12 +31,12 @@ struct InputWithIconView: View {
         }
         .padding(10)
         .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(colorScheme == .dark ? .gray.opacity(0.5) : .white)
+            .ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous)
         )
+        .strokeStyle(cornerRadius: 8)
         .shadow(
             color: colorScheme == .dark ? Color.white.opacity(0.25) : Color.black.opacity(0.25),
-            radius: 8, x: 0, y: 0
+            radius: 8, x: 0, y: 6
         )
     }
 }

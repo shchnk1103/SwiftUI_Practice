@@ -13,7 +13,7 @@ struct HeaderView: View {
     var body: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 24) {
-                Text("你好，John")
+                Text(getGreeting())
                     .font(.headline)
                     .lineLimit(1)
                 
@@ -31,6 +31,21 @@ struct HeaderView: View {
                 .scaledToFit()
                 .padding(.vertical, 2)
         }
+    }
+    
+    func getGreeting() -> String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        let greeting: String
+        
+        if hour < 12 {
+            greeting = "上午好！"
+        } else if hour < 18 {
+            greeting = "下午好！"
+        } else {
+            greeting = "晚上好！"
+        }
+        
+        return greeting
     }
 }
 

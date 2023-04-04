@@ -25,7 +25,7 @@ struct TabBarView: View {
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: hasHomeIndicator ? 34 : 0, style: .continuous))
             .background( background )
             .overlay { overlay }
-            .overlay { stroke }
+            .strokeStyle(cornerRadius: 34)
             .frame(maxHeight: .infinity, alignment: .bottom)
             .ignoresSafeArea()
         }
@@ -86,20 +86,6 @@ struct TabBarView: View {
         }
         .padding(.horizontal, 15)
         .animation(.spring(response: 0.3, dampingFraction: 0.7), value: selectedTab)
-    }
-    
-    var stroke: some View {
-        RoundedRectangle(cornerRadius: 34, style: .continuous)
-            .stroke(
-                .linearGradient(
-                    colors: [
-                        .white.opacity(colorScheme == .dark ? 0.1 : 0.3),
-                        .black.opacity(colorScheme == .dark ? 0.3 : 0.1)
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            )
     }
 }
 
