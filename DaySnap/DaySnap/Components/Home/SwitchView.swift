@@ -12,6 +12,7 @@ struct SwitchView: View {
     @EnvironmentObject var countdownStore: CountdownStore
     @EnvironmentObject var checkinStore: CheckinStore
     @AppStorage("flag") var isCountdownButtonClicked: Bool = true
+    @State private var countdowns: [CountDown] = []
     
     var body: some View {
         HStack(spacing: 10) {
@@ -20,6 +21,9 @@ struct SwitchView: View {
             checkinButton
         }
         .animation(.default, value: isCountdownButtonClicked)
+        .onAppear {
+            countdowns = CountDownManager.shared.fetchAllCountDowns()
+        }
     }
     
     var countdownButton: some View {
@@ -28,7 +32,7 @@ struct SwitchView: View {
         } label: {
             HStack {
                 Spacer()
-                Text("\(countdownStore.countdowns.count)")
+                Text("\(countdowns.count)")
                     .font(.largeTitle)
                     .fontWeight(.semibold)
                 Spacer()

@@ -22,6 +22,7 @@ struct ContentView: View {
                 HomeView()
             case .search:
                 AddView()
+//                test_2()
             case .me:
                 MeView()
             }

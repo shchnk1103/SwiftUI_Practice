@@ -36,15 +36,10 @@ struct ItemView: View {
                         roundedRectangle
                         
                         content
-                        
-                        Image(systemName: "ellipsis.circle")
-                            .font(.title)
-                            .foregroundColor(.secondary)
-                            .padding(.trailing)
                     }
                     .frame(width: geo.size.width)
                     .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
-                    .overlay { stroke }
+                    .strokeStyle(cornerRadius: 8)
                     // pin heart
                     .overlay {
                         if flag {
@@ -87,34 +82,41 @@ struct ItemView: View {
     }
     
     var content: some View {
-        VStack(alignment: .leading) {
-            HStack(spacing: 0) {
-                Text(flag ? "距离" : "坚持")
+        HStack {
+            VStack(alignment: .leading) {
+                HStack(spacing: 0) {
+                    Text(flag ? "距离" : "坚持")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                    Text((flag
+                          ? countdown?.name ?? ""
+                          : checkin?.name ?? "")
+                    )
                     .font(.body)
-                    .foregroundColor(.secondary)
-                Text((flag
-                      ? countdown?.name ?? ""
-                      : checkin?.name ?? "")
-                )
-                .font(.body)
-                .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                }
+                
+                HStack(alignment: .center, spacing: 0) {
+                    Text(flag ? (countdown?.remainingDaysBool ?? true ? "还有 " : "已经 ") : "已经 ")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                    Text(flag
+                         ? String(abs(countdown?.remainingDays ?? 0))
+                         : "\(checkin?.persistDay ?? 0)/\(checkin?.targetDate ?? "")")
+                        .font(.title)
+                        .fontWeight(.semibold)
+                    Text(" 天")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             
-            HStack(alignment: .center, spacing: 0) {
-                Text(flag ? (countdown?.remainingDaysBool ?? true ? "还有 " : "已经 ") : "已经 ")
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                Text(flag
-                     ? String(abs(countdown?.remainingDays ?? 0))
-                     : "\(checkin?.persistDay ?? 0)/\(checkin?.targetDate ?? "")")
-                    .font(.title)
-                    .fontWeight(.semibold)
-                Text(" 天")
-                    .font(.body)
-                    .foregroundColor(.secondary)
-            }
+            Image(systemName: "ellipsis.circle")
+                .font(.title)
+                .foregroundColor(.secondary)
+                .padding(.trailing)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     var checkinButton: some View {
@@ -139,7 +141,7 @@ struct ItemView: View {
         Button {
             showingAlert = true
             if flag {
-                vm.selectedCountdown = countdown
+//                vm.selectedCountdown = countdown
             } else {
                 vm.selectedData = checkin
             }
@@ -178,35 +180,6 @@ struct ItemView: View {
                      )
                 )
             })
-    }
-    
-    var stroke: some View {
-        RoundedRectangle(cornerRadius: 8, style: .continuous)
-            .stroke(
-                .linearGradient(
-                    colors: [
-                        .white.opacity(colorScheme == .dark ? 0.1 : 0.3),
-                        .black.opacity(colorScheme == .dark ? 0.3 : 0.1)
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            )
-    }
-    
-    // MARK: fuctions
-    
-    func daysUntilDate(_ targetDate: Date) -> Int? {
-        let calendar = Calendar.current
-        let today = Date() // 当前日期
-        
-        // 将日期分解为只包含day、month和year的组件
-        let date1 = calendar.dateComponents([.day, .month, .year], from: today)
-        let date2 = calendar.dateComponents([.day, .month, .year], from: targetDate)
-        
-        // 使用组件计算日期之间的时间差（天数）
-        let components = calendar.dateComponents([.day], from: date1, to: date2)
-        return components.day
     }
 }
 

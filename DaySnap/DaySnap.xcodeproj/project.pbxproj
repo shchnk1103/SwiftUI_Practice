@@ -16,8 +16,6 @@
 		7909779429DD412D004A696C /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7909779329DD412D004A696C /* Provider.swift */; };
 		7909779629DD4171004A696C /* SimpleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7909779529DD4171004A696C /* SimpleEntry.swift */; };
 		7909779829DD41C0004A696C /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7909779729DD41C0004A696C /* WidgetView.swift */; };
-		7909779F29DD5D9C004A696C /* DaySnap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7909779D29DD5D9C004A696C /* DaySnap.xcdatamodeld */; };
-		790977A029DD5D9C004A696C /* DaySnap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7909779D29DD5D9C004A696C /* DaySnap.xcdatamodeld */; };
 		791411B529C194D800915867 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791411B429C194D800915867 /* SuccessView.swift */; };
 		791411B729C19B3500915867 /* WarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791411B629C19B3500915867 /* WarnView.swift */; };
 		791411B929C1AA2600915867 /* CheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791411B829C1AA2600915867 /* CheckinView.swift */; };
@@ -51,6 +49,12 @@
 		79BD2C4929DABCDB0026F1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79BD2C4829DABCDB0026F1F2 /* Assets.xcassets */; };
 		79BD2C4D29DABCDB0026F1F2 /* DaySnapWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 79BD2C3B29DABCD90026F1F2 /* DaySnapWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		79BD2C5329DAF67C0026F1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79BAC0CD29BC5222006822B9 /* Assets.xcassets */; };
+		79CE956329DD6BD400289A9E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE956229DD6BD400289A9E /* DataController.swift */; };
+		79CE956529DD6E1000289A9E /* test_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE956429DD6E1000289A9E /* test_2.swift */; };
+		79CE956829DD742C00289A9E /* DaySnap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79CE956629DD742C00289A9E /* DaySnap.xcdatamodeld */; };
+		79CE956929DD742C00289A9E /* DaySnap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 79CE956629DD742C00289A9E /* DaySnap.xcdatamodeld */; };
+		79CE957729DD7A1B00289A9E /* CountDownManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE957629DD7A1B00289A9E /* CountDownManager.swift */; };
+		79CE958129DD91A900289A9E /* CountdownItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE958029DD91A900289A9E /* CountdownItemRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +93,6 @@
 		7909779729DD41C0004A696C /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		7909779B29DD5CD5004A696C /* DaySnap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DaySnap.entitlements; sourceTree = "<group>"; };
 		7909779C29DD5CE3004A696C /* DaySnapWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DaySnapWidgetExtension.entitlements; sourceTree = "<group>"; };
-		7909779E29DD5D9C004A696C /* DaySnap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DaySnap.xcdatamodel; sourceTree = "<group>"; };
 		791411B429C194D800915867 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		791411B629C19B3500915867 /* WarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarnView.swift; sourceTree = "<group>"; };
 		791411B829C1AA2600915867 /* CheckinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinView.swift; sourceTree = "<group>"; };
@@ -124,6 +127,11 @@
 		79BD2C4829DABCDB0026F1F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79BD2C4A29DABCDB0026F1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79BD2C5229DAC0800026F1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		79CE956229DD6BD400289A9E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		79CE956429DD6E1000289A9E /* test_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test_2.swift; sourceTree = "<group>"; };
+		79CE956729DD742C00289A9E /* DaySnap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DaySnap.xcdatamodel; sourceTree = "<group>"; };
+		79CE957629DD7A1B00289A9E /* CountDownManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownManager.swift; sourceTree = "<group>"; };
+		79CE958029DD91A900289A9E /* CountdownItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownItemRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +160,7 @@
 				7985B04629C06B76003FCDDB /* SignInWithApple.swift */,
 				79754BCD29DBE4420075F198 /* Notification.swift */,
 				79754BD329DBFDBB0075F198 /* AppDelegate.swift */,
+				79CE956229DD6BD400289A9E /* DataController.swift */,
 			);
 			path = utility;
 			sourceTree = "<group>";
@@ -159,7 +168,6 @@
 		79BAC0BD29BC5221006822B9 = {
 			isa = PBXGroup;
 			children = (
-				7909779D29DD5D9C004A696C /* DaySnap.xcdatamodeld */,
 				7909779C29DD5CE3004A696C /* DaySnapWidgetExtension.entitlements */,
 				79BAC0C829BC5221006822B9 /* DaySnap */,
 				79BD2C4129DABCD90026F1F2 /* DaySnapWidget */,
@@ -180,6 +188,7 @@
 		79BAC0C829BC5221006822B9 /* DaySnap */ = {
 			isa = PBXGroup;
 			children = (
+				79CE956629DD742C00289A9E /* DaySnap.xcdatamodeld */,
 				7909779B29DD5CD5004A696C /* DaySnap.entitlements */,
 				79BD2C5229DAC0800026F1F2 /* Info.plist */,
 				79BAC0D729BC53CF006822B9 /* View */,
@@ -192,6 +201,7 @@
 				79BAC0CD29BC5222006822B9 /* Assets.xcassets */,
 				79BAC0CF29BC5222006822B9 /* Preview Content */,
 				79754BD129DBEC700075F198 /* test_1.swift */,
+				79CE956429DD6E1000289A9E /* test_2.swift */,
 			);
 			path = DaySnap;
 			sourceTree = "<group>";
@@ -229,12 +239,8 @@
 		79BAC0DF29BC61A3006822B9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				79BAC0D829BC53E6006822B9 /* HeaderView.swift */,
-				79BAC0DA29BC5A60006822B9 /* SwitchView.swift */,
-				79BAC0E429BC6AF4006822B9 /* ItemView.swift */,
-				7907E6CC29BEEE6100C141F2 /* CusDatePickerView.swift */,
-				7985B03F29C0372F003FCDDB /* InputWithIconView.swift */,
-				7985B04129C03BB3003FCDDB /* NumberOnlyTextField.swift */,
+				79CE957D29DD90F600289A9E /* Add */,
+				79CE957C29DD90EC00289A9E /* Home */,
 				791411B429C194D800915867 /* SuccessView.swift */,
 				791411B629C19B3500915867 /* WarnView.swift */,
 				791411B829C1AA2600915867 /* CheckinView.swift */,
@@ -250,6 +256,7 @@
 				7903A5ED29BDC70500A71CC5 /* CountdownModel.swift */,
 				7985B03D29C03408003FCDDB /* CheckinModel.swift */,
 				795BB3FA29C2F51A00A45984 /* HomeViewModel.swift */,
+				79CE957629DD7A1B00289A9E /* CountDownManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,6 +283,27 @@
 				7909779729DD41C0004A696C /* WidgetView.swift */,
 			);
 			path = DaySnapWidget;
+			sourceTree = "<group>";
+		};
+		79CE957C29DD90EC00289A9E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				79BAC0E429BC6AF4006822B9 /* ItemView.swift */,
+				79CE958029DD91A900289A9E /* CountdownItemRow.swift */,
+				79BAC0D829BC53E6006822B9 /* HeaderView.swift */,
+				79BAC0DA29BC5A60006822B9 /* SwitchView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		79CE957D29DD90F600289A9E /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				7985B04129C03BB3003FCDDB /* NumberOnlyTextField.swift */,
+				7985B03F29C0372F003FCDDB /* InputWithIconView.swift */,
+				7907E6CC29BEEE6100C141F2 /* CusDatePickerView.swift */,
+			);
+			path = Add;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,14 +422,18 @@
 				79BAC0DB29BC5A60006822B9 /* SwitchView.swift in Sources */,
 				7903A5E829BDACB400A71CC5 /* AddView.swift in Sources */,
 				79BAC0E329BC659D006822B9 /* ItemListView.swift in Sources */,
+				79CE958129DD91A900289A9E /* CountdownItemRow.swift in Sources */,
 				79754BD229DBEC700075F198 /* test_1.swift in Sources */,
 				79BAC0E729BC7148006822B9 /* TabBarView.swift in Sources */,
 				79BAC0CC29BC5221006822B9 /* ContentView.swift in Sources */,
 				7907E6D729BF15E000C141F2 /* InputLimit.swift in Sources */,
+				79CE957729DD7A1B00289A9E /* CountDownManager.swift in Sources */,
 				79BAC0D929BC53E6006822B9 /* HeaderView.swift in Sources */,
 				79BAC0E529BC6AF4006822B9 /* ItemView.swift in Sources */,
 				791411B529C194D800915867 /* SuccessView.swift in Sources */,
 				79BAC0E129BC61D0006822B9 /* HomeView.swift in Sources */,
+				79CE956529DD6E1000289A9E /* test_2.swift in Sources */,
+				79CE956829DD742C00289A9E /* DaySnap.xcdatamodeld in Sources */,
 				7903A5EE29BDC70500A71CC5 /* CountdownModel.swift in Sources */,
 				79A7340229D01D6D00D6409E /* DeleteView.swift in Sources */,
 				791411B729C19B3500915867 /* WarnView.swift in Sources */,
@@ -410,10 +442,10 @@
 				79754BCE29DBE4420075F198 /* Notification.swift in Sources */,
 				795BB3FB29C2F51A00A45984 /* HomeViewModel.swift in Sources */,
 				7985B04029C0372F003FCDDB /* InputWithIconView.swift in Sources */,
+				79CE956329DD6BD400289A9E /* DataController.swift in Sources */,
 				7985B03E29C03408003FCDDB /* CheckinModel.swift in Sources */,
 				791411B929C1AA2600915867 /* CheckinView.swift in Sources */,
 				7985B04229C03BB3003FCDDB /* NumberOnlyTextField.swift in Sources */,
-				7909779F29DD5D9C004A696C /* DaySnap.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,7 +457,7 @@
 				79BD2C4329DABCD90026F1F2 /* DaySnapWidgetBundle.swift in Sources */,
 				7909779829DD41C0004A696C /* WidgetView.swift in Sources */,
 				79754BD529DC44DF0075F198 /* CountdownModel.swift in Sources */,
-				790977A029DD5D9C004A696C /* DaySnap.xcdatamodeld in Sources */,
+				79CE956929DD742C00289A9E /* DaySnap.xcdatamodeld in Sources */,
 				79BD2C4729DABCD90026F1F2 /* DaySnapWidget.swift in Sources */,
 				7909779429DD412D004A696C /* Provider.swift in Sources */,
 				79BD2C4529DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift in Sources */,
@@ -724,12 +756,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		7909779D29DD5D9C004A696C /* DaySnap.xcdatamodeld */ = {
+		79CE956629DD742C00289A9E /* DaySnap.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				7909779E29DD5D9C004A696C /* DaySnap.xcdatamodel */,
+				79CE956729DD742C00289A9E /* DaySnap.xcdatamodel */,
 			);
-			currentVersion = 7909779E29DD5D9C004A696C /* DaySnap.xcdatamodel */;
+			currentVersion = 79CE956729DD742C00289A9E /* DaySnap.xcdatamodel */;
 			path = DaySnap.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

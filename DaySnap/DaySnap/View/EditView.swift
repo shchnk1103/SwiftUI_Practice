@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditView: View {
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var countdownStore: CountdownStore
+    @EnvironmentObject var vm: HomeViewModel
     @AppStorage("flag") var flag: Bool = true
     @State private var text: String = ""
     @State private var emojiText: String = ""
@@ -17,7 +17,7 @@ struct EditView: View {
     @State private var isPinned: Bool = false
     @State private var isReminder: Bool = false
     @State private var reminderDate: Date = Date()
-    @Binding var selectedItem: Countdown?
+    @Binding var showSheet: Bool
     
     private let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -31,13 +31,13 @@ struct EditView: View {
                 VStack(spacing: 20) {
                     InputWithIconView(imageName: "applepencil", placeholderText: "写点有趣的", text: $text, emojiText: $emojiText)
                         .onAppear {
-                            self.text = selectedItem!.name
-                            self.emojiText = selectedItem!.emojiText
+                            self.text = vm.selectedCountdown?.name ?? ""
+                            self.emojiText = vm.selectedCountdown?.emojiText ?? ""
                         }
                     
                     CusDatePickerView(selectedDate: $targetDate)
                         .onAppear {
-                            self.targetDate = selectedItem!.targetDate
+                            self.targetDate = vm.selectedCountdown?.targetDate ?? Date()
                         }
                     
                     pinToggle
@@ -48,7 +48,7 @@ struct EditView: View {
                         if isReminder {
                             CusDatePickerView(selectedDate: $reminderDate)
                                 .onAppear {
-                                    self.reminderDate = selectedItem!.notificationDate
+                                    self.reminderDate = vm.selectedCountdown?.notificationDate ?? Date()
                                 }
                         }
                     }
@@ -83,7 +83,7 @@ struct EditView: View {
         }
         .toggleStyle(CustomTopToggleStyle())
         .onAppear {
-            self.isPinned = selectedItem!.isPinned
+            self.isPinned = ((vm.selectedCountdown?.isPinned) != nil)
         }
         .padding(10)
         .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
@@ -103,7 +103,7 @@ struct EditView: View {
         })
         .toggleStyle(CustomTopToggleStyle())
         .onAppear {
-            self.isReminder = selectedItem!.isReminder
+            self.isReminder = ((vm.selectedCountdown?.isReminder) != nil)
         }
         .padding(10)
     }
@@ -113,7 +113,7 @@ struct EditView: View {
             update()
             
             // 关闭sheet
-            selectedItem = nil
+            showSheet = false
         } label: {
             HStack {
                 Spacer()
@@ -131,11 +131,9 @@ struct EditView: View {
     // MARK: fuctions
     
     func update() {
-        guard let selectedCountdown = selectedItem else { return }
+        let countdown = vm.selectedCountdown!
         
-        let updatedCountdown = Countdown(id: selectedCountdown.id, emojiText: emojiText, name: text, targetDate: targetDate, isPinned: isPinned, isReminder: isReminder, notificationDate: reminderDate)
-        
-        countdownStore.update(countdown: updatedCountdown)
+        CountDownManager.shared.update(countdown: countdown, newEmoji: emojiText, newTitle: text, newTargetDate: targetDate, newIsPinned: isPinned, newIsReminder: isReminder, newNotificationDate: reminderDate)
         
         flag = false
         flag = true
@@ -143,10 +141,7 @@ struct EditView: View {
 }
 
 struct EditView_Previews: PreviewProvider {
-    static let countdownStore = CountdownStore()
-    
     static var previews: some View {
-        EditView(selectedItem: .constant(Countdown(emojiText: "", name: "test", targetDate: Date(), isPinned: false, isReminder: false, notificationDate: Date())))
-            .environmentObject(countdownStore)
+        EditView(showSheet: .constant(true))
     }
 }

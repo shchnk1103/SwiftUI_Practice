@@ -134,8 +134,20 @@ struct AddView: View {
             if text.isEmpty {
                 showWarn = true
             } else {
-                let newCountdown = Countdown(emojiText: emojiText, name: text, targetDate: deadline, isPinned: isPinned, isReminder: isReminder, notificationDate: reminderDate)
-                countdownStore.add(countdown: newCountdown)
+                if let newCountDown = CountDownManager.shared.initCountDown() {
+                    newCountDown.name = text
+                    newCountDown.emojiText = emojiText
+                    newCountDown.targetDate = deadline
+                    newCountDown.isPinned = isPinned
+                    newCountDown.isReminder = isReminder
+                    newCountDown.notificationDate = reminderDate
+                    
+                    if let savedCountDown = CountDownManager.shared.createCountDown(countdown: newCountDown) {
+                        print("NEW CountDown Created: \(String(describing: savedCountDown.name))")
+                    } else {
+                        print("Failed to create new CountDown")
+                    }
+                }
                 
                 // 请求通知授权
                 let notificationManager = NotificationManager()

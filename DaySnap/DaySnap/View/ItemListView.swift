@@ -9,19 +9,21 @@ import SwiftUI
 
 struct ItemListView: View {
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var countdownStore: CountdownStore
     @EnvironmentObject var checkinStore: CheckinStore
     @EnvironmentObject var vm: HomeViewModel
     @AppStorage("flag") var flag: Bool = true
     @Binding var wantToCheckin: Bool
     @Binding var showingAlert: Bool
-    @State private var selectedCountdown: Countdown? = nil
+    @State private var selectedCountdown: CountDown = CountDown()
     @State private var checkinToDelete: Checkin? = nil
+    @State private var swipeOffset: CGFloat = 0
+    @State private var showSheet: Bool = false
+    @State private var countdowns: [CountDown] = []
     
     var body: some View {
         VStack {
             if flag {
-                if countdownStore.countdowns.isEmpty {
+                if countdowns.isEmpty {
                     Spacer()
                     
                     Image("nan")
@@ -30,15 +32,20 @@ struct ItemListView: View {
                     
                     Spacer()
                 } else {
-                    ForEach(countdownStore.countdowns.sortedByPriority()) { countdown in
-                        ItemView(flag: $flag, showingAlert: $showingAlert, wantToCheckin: $wantToCheckin, id: countdown.id)
-                            .onTapGesture {
-                                self.selectedCountdown = countdown
-                            }
-                            .padding(.horizontal)
+                    ForEach(countdowns) { countdown in
+                        CountdownItemRow(
+                            wantToCheckin: $wantToCheckin,
+                            showingAlert: $showingAlert,
+                            countdown: countdown
+                        )
+                        .padding(.horizontal)
+                        .onTapGesture {
+                            vm.selectedCountdown = countdown
+                            showSheet = true
+                        }
                     }
-                    .sheet(item: $selectedCountdown) { countdown in
-                        EditView(selectedItem: $selectedCountdown)
+                    .sheet(isPresented: $showSheet) {
+                        EditView(showSheet: $showSheet)
                     }
                     
                     Spacer()
@@ -61,6 +68,9 @@ struct ItemListView: View {
                     Spacer()
                 }
             }
+        }
+        .onAppear {
+            countdowns = CountDownManager.shared.fetchAllCountDowns()
         }
     }
 }

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct DeleteView: View {
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var countdownStore: CountdownStore
     @EnvironmentObject var checkinStore: CheckinStore
     @EnvironmentObject var vm: HomeViewModel
     @AppStorage("flag") var flag: Bool = true
@@ -63,11 +62,11 @@ struct DeleteView: View {
                         
                         if flag {
                             if let countdown = vm.selectedCountdown {
-                                countdownStore.delete(countdown: countdown)
+                                CountDownManager.shared.delete(countDown: countdown)
+                                
+                                flag = false
+                                flag = true
                             }
-                            
-                            flag = false
-                            flag = true
                         } else {
                             if let checkin = vm.selectedData {
                                 checkinStore.delete(checkin: checkin)

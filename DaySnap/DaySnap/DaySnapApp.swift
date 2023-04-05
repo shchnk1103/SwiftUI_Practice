@@ -15,14 +15,16 @@ struct DaySnapApp: App {
     // 声明通知管理器
     @StateObject var notificationManager = NotificationManager()
     
+    @StateObject private var dataController = DataController()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+//            test_2()
                 .environmentObject(countdownStore)
                 .environmentObject(checkinStore)
                 .environmentObject(notificationManager)
-//            test_1()
-//                .environmentObject(notificationManager)
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }
