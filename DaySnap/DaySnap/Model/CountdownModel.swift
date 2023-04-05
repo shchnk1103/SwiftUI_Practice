@@ -16,7 +16,7 @@ struct Countdown: Codable, Identifiable, Hashable {
     var isReminder: Bool
     var notificationDate: Date
     
-    var remainingDays: Int? {
+    var remainingDays: Int {
         let calendar = Calendar.current
         let today = Date() // 当前日期
         
@@ -26,11 +26,16 @@ struct Countdown: Codable, Identifiable, Hashable {
         
         // 使用组件计算日期之间的时间差（天数）
         let components = calendar.dateComponents([.day], from: date1, to: date2)
-        return components.day
+        
+        guard let days = components.day else {
+            return 0
+        }
+        
+        return days
     }
     
     var remainingDaysBool: Bool {
-        if remainingDays! < 0 {
+        if remainingDays < 0 {
             return false
         } else {
             return true
@@ -86,22 +91,61 @@ extension Array where Element == Countdown {
     func sortedByPriority() -> [Countdown] {
         let pinnedCountdowns = self.filter { $0.isPinned }
         let unpinnedCountdowns = self.filter { !$0.isPinned }
-        var sortedCountdowns = [Countdown]()
         
-        sortedCountdowns.append(contentsOf: pinnedCountdowns.sorted(by: { countdown1, countdown2 in
-            if countdown1.remainingDays! == countdown2.remainingDays! {
-                return countdown1.name < countdown2.name
+        let sortedPinnedCountdowns = pinnedCountdowns.sorted { countdown1, countdown2 in
+            if countdown1.remainingDays >= 0 {
+                if countdown2.remainingDays >= 0 {
+                    if countdown1.remainingDays == countdown2.remainingDays {
+                        return countdown1.name < countdown2.name
+                    }
+                    return countdown1.remainingDays < countdown2.remainingDays
+                } else {
+                    // countdown1.remainingDays >= 0 && countdown2.remainingDays < 0
+                    return true
+                }
+            } else {
+                if countdown2.remainingDays < 0 {
+                    if countdown1.remainingDays == countdown2.remainingDays {
+                        return countdown1.name < countdown2.name
+                    }
+                    return countdown1.remainingDays < countdown2.remainingDays
+                } else {
+                    // countdown1.remainingDays < 0 && countdown2.remainingDays >= 0
+                    return false
+                }
             }
-            return countdown1.remainingDays! > countdown2.remainingDays!
-        }))
+        }
         
-        sortedCountdowns.append(contentsOf: unpinnedCountdowns.sorted(by: { countdown1, countdown2 in
-            if countdown1.remainingDays! == countdown2.remainingDays! {
-                return countdown1.name < countdown2.name
+        let sortedUnpinnedCountdowns = unpinnedCountdowns.sorted { countdown1, countdown2 in
+            if countdown1.remainingDays >= 0 {
+                if countdown2.remainingDays >= 0 {
+                    if countdown1.remainingDays == countdown2.remainingDays {
+                        return countdown1.name < countdown2.name
+                    }
+                    return countdown1.remainingDays < countdown2.remainingDays
+                } else {
+                    // countdown1.remainingDays >= 0 && countdown2.remainingDays < 0
+                    return true
+                }
+            } else {
+                if countdown2.remainingDays < 0 {
+                    if countdown1.remainingDays == countdown2.remainingDays {
+                        return countdown1.name < countdown2.name
+                    }
+                    return countdown1.remainingDays < countdown2.remainingDays
+                } else {
+                    // countdown1.remainingDays < 0 && countdown2.remainingDays >= 0
+                    return false
+                }
             }
-            return countdown1.remainingDays! > countdown2.remainingDays!
-        }))
+        }
         
-        return sortedCountdowns
+        return sortedPinnedCountdowns + sortedUnpinnedCountdowns
+    }
+}
+
+extension Countdown {
+    static func placeholder(_ id: UUID) -> Countdown {
+        Countdown(emojiText: "🥹", name: "考试", targetDate: Date(), isPinned: false, isReminder: false, notificationDate: Date())
     }
 }

@@ -137,13 +137,15 @@ struct AddView: View {
                 let newCountdown = Countdown(emojiText: emojiText, name: text, targetDate: deadline, isPinned: isPinned, isReminder: isReminder, notificationDate: reminderDate)
                 countdownStore.add(countdown: newCountdown)
                 
-                self.emojiText = "🥳"
-                self.text = ""
-                self.deadline = Date()
-                self.isPinned = false
-                self.isReminder = false
+                // 请求通知授权
+                let notificationManager = NotificationManager()
+                notificationManager.requestAuthorization()
                 
-                showAddSuccess = true
+                // 发送通知
+                notificationManager.sendNotification(title: "\(emojiText) \(text) 就是今天！", date: deadline)
+                
+                // 重置表单
+                reset(flag: true)
                 
                 flag = false
                 flag = true
@@ -155,17 +157,39 @@ struct AddView: View {
                 let newCheckin = Checkin(emojiText: emojiText, name: text, targetDate: persistDate, isPinned: isPinned, isReminder: isReminder)
                 checkinStore.add(checkin: newCheckin)
                 
-                self.emojiText = "🥳"
-                self.text = ""
-                self.persistDate = ""
-                self.isPinned = false
-                self.isReminder = false
+                // 请求通知授权
+                let notificationManager = NotificationManager()
+                notificationManager.requestAuthorization()
                 
-                showAddSuccess = true
+                // 发送通知
+                notificationManager.scheduleRepeatingNotificationForCheckin(title: "\(emojiText) 今天 \(text) 了吗？快来打卡吧！", persisDays: persistDate)
+                
+                // 重置表单
+                reset(flag: false)
                 
                 flag = true
                 flag = false
             }
+        }
+    }
+    
+    func reset(flag: Bool) {
+        if flag {
+            self.emojiText = "🥳"
+            self.text = ""
+            self.deadline = Date()
+            self.isPinned = false
+            self.isReminder = false
+            
+            showAddSuccess = true
+        } else {
+            self.emojiText = "🥳"
+            self.text = ""
+            self.persistDate = ""
+            self.isPinned = false
+            self.isReminder = false
+            
+            showAddSuccess = true
         }
     }
 }

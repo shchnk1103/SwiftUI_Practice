@@ -66,13 +66,13 @@ struct CheckinView: View {
     }
     
     var icon: some View {
-        Circle()
-            .stroke(lineWidth: 1)
-            .foregroundColor(colorScheme == .dark ? .white : .black)
+        Text(vm.selectedData?.emojiText ?? "💪🏼")
+            .font(.system(size: 48))
             .frame(width: 120, height: 120)
+            .background(.regularMaterial, in: Circle())
             .overlay {
-                Text(vm.selectedData?.emojiText ?? "💪🏼")
-                    .font(.system(size: 48))
+                Circle()
+                    .stroke(colorScheme == .dark ? .white : .black, lineWidth: 0.5)
             }
     }
     
@@ -85,6 +85,7 @@ struct CheckinView: View {
                 .fontWeight(.semibold)
             Text("天")
         }
+        .foregroundColor(.primary)
     }
     
     var content_2: some View {
@@ -99,6 +100,7 @@ struct CheckinView: View {
                 .fontWeight(.semibold)
             Text("天")
         }
+        .foregroundColor(.primary)
     }
     
     var button: some View {

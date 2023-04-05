@@ -32,6 +32,10 @@ struct ContentView: View {
         .safeAreaInset(edge: .bottom, spacing: 0) {
             Color.clear.frame(height: 88)
         }
+        .onAppear {
+            UIApplication.shared.applicationIconBadgeNumber = 0
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        }
     }
 }
 

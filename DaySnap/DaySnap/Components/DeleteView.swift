@@ -24,13 +24,13 @@ struct DeleteView: View {
                 .opacity(0.25)
             
             VStack(alignment: .center) {
-                Circle()
-                    .stroke(lineWidth: 1)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                Text(flag ? vm.selectedCountdown?.emojiText ?? "" : vm.selectedData?.emojiText ?? "")
+                    .font(.system(size: 48))
                     .frame(width: 120, height: 120)
+                    .background(.regularMaterial, in: Circle())
                     .overlay {
-                        Text(flag ? vm.selectedCountdown?.emojiText ?? "" : vm.selectedData?.emojiText ?? "")
-                            .font(.system(size: 48))
+                        Circle()
+                            .stroke(colorScheme == .dark ? .white : .black, lineWidth: 0.5)
                     }
                     .padding()
                 

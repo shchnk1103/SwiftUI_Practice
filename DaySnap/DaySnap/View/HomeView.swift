@@ -33,7 +33,7 @@ struct HomeView: View {
             }
             .zIndex(1)
             .padding(.bottom, offset < switchHeight ? -offset : -(switchHeight + textHeight - 15))
-            .background(colorScheme == .dark ? .black : .white)
+            .background(.regularMaterial)
             .shadow(radius: 4)
             // GeometryReader
             .overlay { overlay }
@@ -42,7 +42,6 @@ struct HomeView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 itemList
             }
-            .padding(.top, 10)
             
             // 弹窗提醒 - 打卡
             if wantToCheckin {

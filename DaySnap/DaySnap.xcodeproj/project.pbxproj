@@ -13,16 +13,24 @@
 		7903A5EE29BDC70500A71CC5 /* CountdownModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903A5ED29BDC70500A71CC5 /* CountdownModel.swift */; };
 		7907E6CD29BEEE6100C141F2 /* CusDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7907E6CC29BEEE6100C141F2 /* CusDatePickerView.swift */; };
 		7907E6D729BF15E000C141F2 /* InputLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7907E6D629BF15E000C141F2 /* InputLimit.swift */; };
+		7909779429DD412D004A696C /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7909779329DD412D004A696C /* Provider.swift */; };
+		7909779629DD4171004A696C /* SimpleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7909779529DD4171004A696C /* SimpleEntry.swift */; };
+		7909779829DD41C0004A696C /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7909779729DD41C0004A696C /* WidgetView.swift */; };
+		7909779F29DD5D9C004A696C /* DaySnap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7909779D29DD5D9C004A696C /* DaySnap.xcdatamodeld */; };
+		790977A029DD5D9C004A696C /* DaySnap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7909779D29DD5D9C004A696C /* DaySnap.xcdatamodeld */; };
 		791411B529C194D800915867 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791411B429C194D800915867 /* SuccessView.swift */; };
 		791411B729C19B3500915867 /* WarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791411B629C19B3500915867 /* WarnView.swift */; };
 		791411B929C1AA2600915867 /* CheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791411B829C1AA2600915867 /* CheckinView.swift */; };
 		795BB3FB29C2F51A00A45984 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795BB3FA29C2F51A00A45984 /* HomeViewModel.swift */; };
-		7977D6EE29CD9C8600978CA8 /* Test1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7977D6ED29CD9C8600978CA8 /* Test1.swift */; };
+		79754BCE29DBE4420075F198 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79754BCD29DBE4420075F198 /* Notification.swift */; };
+		79754BD229DBEC700075F198 /* test_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79754BD129DBEC700075F198 /* test_1.swift */; };
+		79754BD429DBFDBB0075F198 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79754BD329DBFDBB0075F198 /* AppDelegate.swift */; };
+		79754BD529DC44DF0075F198 /* CountdownModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903A5ED29BDC70500A71CC5 /* CountdownModel.swift */; };
 		7981060529C82861004D38F0 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7981060429C82861004D38F0 /* EditView.swift */; };
 		7985B03E29C03408003FCDDB /* CheckinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985B03D29C03408003FCDDB /* CheckinModel.swift */; };
 		7985B04029C0372F003FCDDB /* InputWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985B03F29C0372F003FCDDB /* InputWithIconView.swift */; };
 		7985B04229C03BB3003FCDDB /* NumberOnlyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985B04129C03BB3003FCDDB /* NumberOnlyTextField.swift */; };
-		7985B04729C06B76003FCDDB /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985B04629C06B76003FCDDB /* TestView.swift */; };
+		7985B04729C06B76003FCDDB /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985B04629C06B76003FCDDB /* SignInWithApple.swift */; };
 		79A7340229D01D6D00D6409E /* DeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A7340129D01D6D00D6409E /* DeleteView.swift */; };
 		79BAC0CA29BC5221006822B9 /* DaySnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BAC0C929BC5221006822B9 /* DaySnapApp.swift */; };
 		79BAC0CC29BC5221006822B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BAC0CB29BC5221006822B9 /* ContentView.swift */; };
@@ -76,16 +84,24 @@
 		7903A5ED29BDC70500A71CC5 /* CountdownModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownModel.swift; sourceTree = "<group>"; };
 		7907E6CC29BEEE6100C141F2 /* CusDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CusDatePickerView.swift; sourceTree = "<group>"; };
 		7907E6D629BF15E000C141F2 /* InputLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputLimit.swift; sourceTree = "<group>"; };
+		7909779329DD412D004A696C /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		7909779529DD4171004A696C /* SimpleEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleEntry.swift; sourceTree = "<group>"; };
+		7909779729DD41C0004A696C /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
+		7909779B29DD5CD5004A696C /* DaySnap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DaySnap.entitlements; sourceTree = "<group>"; };
+		7909779C29DD5CE3004A696C /* DaySnapWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DaySnapWidgetExtension.entitlements; sourceTree = "<group>"; };
+		7909779E29DD5D9C004A696C /* DaySnap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DaySnap.xcdatamodel; sourceTree = "<group>"; };
 		791411B429C194D800915867 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		791411B629C19B3500915867 /* WarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarnView.swift; sourceTree = "<group>"; };
 		791411B829C1AA2600915867 /* CheckinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinView.swift; sourceTree = "<group>"; };
 		795BB3FA29C2F51A00A45984 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		7977D6ED29CD9C8600978CA8 /* Test1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test1.swift; sourceTree = "<group>"; };
+		79754BCD29DBE4420075F198 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		79754BD129DBEC700075F198 /* test_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test_1.swift; sourceTree = "<group>"; };
+		79754BD329DBFDBB0075F198 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7981060429C82861004D38F0 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		7985B03D29C03408003FCDDB /* CheckinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinModel.swift; sourceTree = "<group>"; };
 		7985B03F29C0372F003FCDDB /* InputWithIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputWithIconView.swift; sourceTree = "<group>"; };
 		7985B04129C03BB3003FCDDB /* NumberOnlyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOnlyTextField.swift; sourceTree = "<group>"; };
-		7985B04629C06B76003FCDDB /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		7985B04629C06B76003FCDDB /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
 		79A7340129D01D6D00D6409E /* DeleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteView.swift; sourceTree = "<group>"; };
 		79BAC0C629BC5221006822B9 /* DaySnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaySnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79BAC0C929BC5221006822B9 /* DaySnapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySnapApp.swift; sourceTree = "<group>"; };
@@ -130,9 +146,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79754BCC29DBE3DF0075F198 /* utility */ = {
+			isa = PBXGroup;
+			children = (
+				7985B04629C06B76003FCDDB /* SignInWithApple.swift */,
+				79754BCD29DBE4420075F198 /* Notification.swift */,
+				79754BD329DBFDBB0075F198 /* AppDelegate.swift */,
+			);
+			path = utility;
+			sourceTree = "<group>";
+		};
 		79BAC0BD29BC5221006822B9 = {
 			isa = PBXGroup;
 			children = (
+				7909779D29DD5D9C004A696C /* DaySnap.xcdatamodeld */,
+				7909779C29DD5CE3004A696C /* DaySnapWidgetExtension.entitlements */,
 				79BAC0C829BC5221006822B9 /* DaySnap */,
 				79BD2C4129DABCD90026F1F2 /* DaySnapWidget */,
 				79BD2C3C29DABCD90026F1F2 /* Frameworks */,
@@ -152,17 +180,18 @@
 		79BAC0C829BC5221006822B9 /* DaySnap */ = {
 			isa = PBXGroup;
 			children = (
+				7909779B29DD5CD5004A696C /* DaySnap.entitlements */,
 				79BD2C5229DAC0800026F1F2 /* Info.plist */,
-				7985B04629C06B76003FCDDB /* TestView.swift */,
-				7977D6ED29CD9C8600978CA8 /* Test1.swift */,
+				79BAC0D729BC53CF006822B9 /* View */,
 				79BAC0E829BC7511006822B9 /* Model */,
 				79BAC0DF29BC61A3006822B9 /* Components */,
 				79BAC0DC29BC5EAB006822B9 /* Extensions */,
-				79BAC0D729BC53CF006822B9 /* View */,
+				79754BCC29DBE3DF0075F198 /* utility */,
 				79BAC0C929BC5221006822B9 /* DaySnapApp.swift */,
 				79BAC0CB29BC5221006822B9 /* ContentView.swift */,
 				79BAC0CD29BC5222006822B9 /* Assets.xcassets */,
 				79BAC0CF29BC5222006822B9 /* Preview Content */,
+				79754BD129DBEC700075F198 /* test_1.swift */,
 			);
 			path = DaySnap;
 			sourceTree = "<group>";
@@ -242,6 +271,9 @@
 				79BD2C4629DABCD90026F1F2 /* DaySnapWidget.swift */,
 				79BD2C4829DABCDB0026F1F2 /* Assets.xcassets */,
 				79BD2C4A29DABCDB0026F1F2 /* Info.plist */,
+				7909779329DD412D004A696C /* Provider.swift */,
+				7909779529DD4171004A696C /* SimpleEntry.swift */,
+				7909779729DD41C0004A696C /* WidgetView.swift */,
 			);
 			path = DaySnapWidget;
 			sourceTree = "<group>";
@@ -357,11 +389,12 @@
 				7981060529C82861004D38F0 /* EditView.swift in Sources */,
 				7903A5EC29BDC10200A71CC5 /* MeView.swift in Sources */,
 				7903A5EA29BDB72E00A71CC5 /* Styles.swift in Sources */,
+				79754BD429DBFDBB0075F198 /* AppDelegate.swift in Sources */,
 				79BAC0EA29BC751E006822B9 /* TabModel.swift in Sources */,
 				79BAC0DB29BC5A60006822B9 /* SwitchView.swift in Sources */,
 				7903A5E829BDACB400A71CC5 /* AddView.swift in Sources */,
 				79BAC0E329BC659D006822B9 /* ItemListView.swift in Sources */,
-				7977D6EE29CD9C8600978CA8 /* Test1.swift in Sources */,
+				79754BD229DBEC700075F198 /* test_1.swift in Sources */,
 				79BAC0E729BC7148006822B9 /* TabBarView.swift in Sources */,
 				79BAC0CC29BC5221006822B9 /* ContentView.swift in Sources */,
 				7907E6D729BF15E000C141F2 /* InputLimit.swift in Sources */,
@@ -373,12 +406,14 @@
 				79A7340229D01D6D00D6409E /* DeleteView.swift in Sources */,
 				791411B729C19B3500915867 /* WarnView.swift in Sources */,
 				79BAC0CA29BC5221006822B9 /* DaySnapApp.swift in Sources */,
-				7985B04729C06B76003FCDDB /* TestView.swift in Sources */,
+				7985B04729C06B76003FCDDB /* SignInWithApple.swift in Sources */,
+				79754BCE29DBE4420075F198 /* Notification.swift in Sources */,
 				795BB3FB29C2F51A00A45984 /* HomeViewModel.swift in Sources */,
 				7985B04029C0372F003FCDDB /* InputWithIconView.swift in Sources */,
 				7985B03E29C03408003FCDDB /* CheckinModel.swift in Sources */,
 				791411B929C1AA2600915867 /* CheckinView.swift in Sources */,
 				7985B04229C03BB3003FCDDB /* NumberOnlyTextField.swift in Sources */,
+				7909779F29DD5D9C004A696C /* DaySnap.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,8 +421,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7909779629DD4171004A696C /* SimpleEntry.swift in Sources */,
 				79BD2C4329DABCD90026F1F2 /* DaySnapWidgetBundle.swift in Sources */,
+				7909779829DD41C0004A696C /* WidgetView.swift in Sources */,
+				79754BD529DC44DF0075F198 /* CountdownModel.swift in Sources */,
+				790977A029DD5D9C004A696C /* DaySnap.xcdatamodeld in Sources */,
 				79BD2C4729DABCD90026F1F2 /* DaySnapWidget.swift in Sources */,
+				7909779429DD412D004A696C /* Provider.swift in Sources */,
 				79BD2C4529DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,6 +565,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DaySnap/DaySnap.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -533,7 +574,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaySnap/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "不知道计时 - 打卡";
+				INFOPLIST_KEY_CFBundleDisplayName = "不知道数日 - 打卡";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -561,6 +602,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DaySnap/DaySnap.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -569,7 +611,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DaySnap/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "不知道计时 - 打卡";
+				INFOPLIST_KEY_CFBundleDisplayName = "不知道数日 - 打卡";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -596,6 +638,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DaySnapWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C33N6HTS9N;
@@ -624,6 +667,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DaySnapWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C33N6HTS9N;
@@ -678,6 +722,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7909779D29DD5D9C004A696C /* DaySnap.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7909779E29DD5D9C004A696C /* DaySnap.xcdatamodel */,
+			);
+			currentVersion = 7909779E29DD5D9C004A696C /* DaySnap.xcdatamodel */;
+			path = DaySnap.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 79BAC0BE29BC5221006822B9 /* Project object */;
 }
