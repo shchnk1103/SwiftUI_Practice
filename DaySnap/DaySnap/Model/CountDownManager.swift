@@ -7,9 +7,14 @@
 
 import Foundation
 import CoreData
+import Combine
 
-class CountDownManager {
+class CountDownManager: ObservableObject {
     static let shared = CountDownManager()
+    
+    @Published var countdowns: [CountDown] = []
+    
+    public let objectWillChange = PassthroughSubject<Void, Never>()
     
     private init() {
         // 初始化管理器，进行所需的设置和配置
@@ -58,31 +63,29 @@ class CountDownManager {
         return nil
     }
     
-    func createCountDown(countdown: CountDown) -> CountDown? {
+    func createCountDown(emojiText: String, name: String, targetDate: Date, isPinned: Bool, isReminder: Bool, notificationDate: Date) {
         let context = getContext()
         if let entity = NSEntityDescription.entity(forEntityName: "CountDown", in: context) {
             let countDown = CountDown(entity: entity, insertInto: context)
             // 计算remainingDays
-            let remainingDays = calRemainingDays(targetDay: countdown.targetDate!)
+            let remainingDays = calRemainingDays(targetDay: targetDate)
             
             countDown.id = UUID()
-            countDown.emojiText = countdown.emojiText
-            countDown.name = countdown.name
-            countDown.targetDate = countdown.targetDate
-            countDown.isPinned = countdown.isPinned
-            countDown.isReminder = countdown.isReminder
-            countDown.notificationDate = countdown.notificationDate
+            countDown.emojiText = emojiText
+            countDown.name = name
+            countDown.targetDate = targetDate
+            countDown.isPinned = isPinned
+            countDown.isReminder = isReminder
+            countDown.notificationDate = notificationDate
             countDown.remainingDays = remainingDays
             
             do {
                 try context.save()
-                return countDown
             } catch let error as NSError {
                 // 处理错误情况
                 print("Could not save. \(error), \(error.userInfo)")
             }
         }
-        return nil
     }
     
     // 检索 CountDown 实体的所有记录
@@ -100,6 +103,9 @@ class CountDownManager {
         
         do {
             let countDowns = try context.fetch(fetchRequest)
+            DispatchQueue.main.async {
+                self.countdowns = countDowns
+            }
             return countDowns
         } catch let error as NSError {
             // 处理错误情况
@@ -115,6 +121,9 @@ class CountDownManager {
 
         do {
             try context.save()
+            
+            // 手动触发视图更新
+            self.objectWillChange.send()
         } catch let error as NSError {
             // 处理错误情况
             print("Could not delete. \(error), \(error.userInfo)")
@@ -123,6 +132,8 @@ class CountDownManager {
     
     func update(countdown: CountDown, newEmoji: String, newTitle: String, newTargetDate: Date, newIsPinned: Bool, newIsReminder: Bool, newNotificationDate: Date) {
         let context = getContext()
+            
+        // 更新倒计时对象
         countdown.name = newTitle
         countdown.emojiText = newEmoji
         countdown.isPinned = newIsPinned
@@ -131,10 +142,15 @@ class CountDownManager {
         countdown.targetDate = newTargetDate
         countdown.remainingDays = calRemainingDays(targetDay: newTargetDate)
         
+        // 更新倒计时对象到数据源
         do {
             try context.save()
+            
+            // 手动触发视图更新
+            self.objectWillChange.send()
         } catch {
             print("Error updating Countdown: \(error.localizedDescription)")
+            return
         }
     }
 }

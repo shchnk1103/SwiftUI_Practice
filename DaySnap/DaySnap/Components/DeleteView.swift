@@ -64,6 +64,8 @@ struct DeleteView: View {
                             if let countdown = vm.selectedCountdown {
                                 CountDownManager.shared.delete(countDown: countdown)
                                 
+                                vm.selectedCountdown = nil
+                                
                                 flag = false
                                 flag = true
                             }

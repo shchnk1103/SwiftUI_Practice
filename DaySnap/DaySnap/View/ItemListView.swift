@@ -10,20 +10,18 @@ import SwiftUI
 struct ItemListView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var checkinStore: CheckinStore
-    @EnvironmentObject var vm: HomeViewModel
     @AppStorage("flag") var flag: Bool = true
     @Binding var wantToCheckin: Bool
     @Binding var showingAlert: Bool
-    @State private var selectedCountdown: CountDown = CountDown()
     @State private var checkinToDelete: Checkin? = nil
-    @State private var swipeOffset: CGFloat = 0
     @State private var showSheet: Bool = false
-    @State private var countdowns: [CountDown] = []
+    @State private var selectedCountdown: CountDown = CountDown()
+    @ObservedObject var countdownManager = CountDownManager.shared
     
     var body: some View {
         VStack {
             if flag {
-                if countdowns.isEmpty {
+                if countdownManager.countdowns.isEmpty {
                     Spacer()
                     
                     Image("nan")
@@ -32,7 +30,7 @@ struct ItemListView: View {
                     
                     Spacer()
                 } else {
-                    ForEach(countdowns) { countdown in
+                    ForEach(countdownManager.countdowns) { countdown in
                         CountdownItemRow(
                             wantToCheckin: $wantToCheckin,
                             showingAlert: $showingAlert,
@@ -40,12 +38,12 @@ struct ItemListView: View {
                         )
                         .padding(.horizontal)
                         .onTapGesture {
-                            vm.selectedCountdown = countdown
+                            selectedCountdown = countdown
                             showSheet = true
                         }
                     }
                     .sheet(isPresented: $showSheet) {
-                        EditView(showSheet: $showSheet)
+                        EditView(countdown: $selectedCountdown)
                     }
                     
                     Spacer()
@@ -68,9 +66,6 @@ struct ItemListView: View {
                     Spacer()
                 }
             }
-        }
-        .onAppear {
-            countdowns = CountDownManager.shared.fetchAllCountDowns()
         }
     }
 }

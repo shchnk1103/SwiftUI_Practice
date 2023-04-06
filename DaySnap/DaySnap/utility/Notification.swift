@@ -44,9 +44,9 @@ class NotificationManager: ObservableObject {
         // 发送通知
         UNUserNotificationCenter.current().add(request) { error in
             if error == nil {
-                print("通知预定失败")
-            } else {
                 print("通知预定成功")
+            } else {
+                print("通知预定失败")
             }
         }
     }
