@@ -9,10 +9,9 @@ import SwiftUI
 
 struct SwitchView: View {
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var countdownStore: CountdownStore
-    @EnvironmentObject var checkinStore: CheckinStore
     @AppStorage("flag") var isCountdownButtonClicked: Bool = true
-    @State private var countdowns: [CountDown] = []
+    @FetchRequest(sortDescriptors: []) var countdowns: FetchedResults<CountDown>
+    @FetchRequest(sortDescriptors: []) var checkins: FetchedResults<CheckIn>
     
     var body: some View {
         HStack(spacing: 10) {
@@ -21,9 +20,6 @@ struct SwitchView: View {
             checkinButton
         }
         .animation(.default, value: isCountdownButtonClicked)
-        .onAppear {
-            countdowns = CountDownManager.shared.fetchAllCountDowns()
-        }
     }
     
     var countdownButton: some View {
@@ -46,11 +42,7 @@ struct SwitchView: View {
         }
         .background(isCountdownButtonClicked ? .black : .white)
         .cornerRadius(8)
-        .overlay {
-            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .stroke(colorScheme == .dark ? .white.opacity(0.5) : .gray.opacity(0.8), lineWidth: 1)
-                .blendMode(.overlay)
-        }
+        .strokeStyle(cornerRadius: 8)
         .shadow(color: colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.25), radius: 4, x: 0, y: 0)
     }
     
@@ -60,7 +52,7 @@ struct SwitchView: View {
         } label: {
             HStack {
                 Spacer()
-                Text("\(checkinStore.checkins.count)")
+                Text("\(checkins.count)")
                     .font(.largeTitle)
                     .fontWeight(.semibold)
                 Spacer()
@@ -74,22 +66,13 @@ struct SwitchView: View {
         }
         .background(isCountdownButtonClicked ? .white : .black)
         .cornerRadius(8)
-        .overlay {
-            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .stroke(colorScheme == .dark ? .white.opacity(0.5) : .gray.opacity(0.8), lineWidth: 1)
-                .blendMode(.overlay)
-        }
+        .strokeStyle(cornerRadius: 8)
         .shadow(color: colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.25), radius: 4, x: 0, y: 0)
     }
 }
 
 struct SwitchView_Previews: PreviewProvider {
-    static let countdownStore = CountdownStore()
-    static let checkinStore = CheckinStore()
-    
     static var previews: some View {
         SwitchView()
-            .environmentObject(countdownStore)
-            .environmentObject(checkinStore)
     }
 }

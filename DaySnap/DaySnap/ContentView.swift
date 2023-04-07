@@ -10,8 +10,6 @@ import SwiftUI
 struct ContentView: View {
     @AppStorage("isDarkMode") var isDarkMode: Bool = false
     @AppStorage("selectedTab") var selectedTab: Tab = .home
-    @EnvironmentObject var countdownStore: CountdownStore
-    @EnvironmentObject var checkinStore: CheckinStore
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -41,12 +39,7 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static let countdownStore = CountdownStore()
-    static let checkinStore = CheckinStore()
-    
     static var previews: some View {
         ContentView()
-            .environmentObject(countdownStore)
-            .environmentObject(checkinStore)
     }
 }

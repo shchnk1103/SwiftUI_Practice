@@ -14,62 +14,38 @@ struct test_2: View {
     
     var body: some View {
         VStack {
-            List(countdowns) { countdown in
-                HStack {
-                    Text(countdown.emojiText ?? "🥰")
-                    
-                    VStack(alignment: .leading) {
-                        HStack(spacing: 0) {
-                            Text("距离")
-                                .font(.body)
-                                .foregroundColor(.secondary)
-                            Text(countdown.name ?? "")
-                            .font(.body)
-                            .foregroundColor(colorScheme == .dark ? .white : .black)
-                        }
-                        
-                        HStack(alignment: .center, spacing: 0) {
-                            Text(countdown.remainingDays > 0 ? "还有 " : "已经 ")
-                                .font(.body)
-                                .foregroundColor(.secondary)
-                            Text(String(abs(countdown.remainingDays)))
-                                .font(.title)
-                                .fontWeight(.semibold)
-                            Text(" 天")
-                                .font(.body)
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Image(systemName: "ellipsis.circle")
-                        .font(.title)
-                        .foregroundColor(.secondary)
-                        .padding(.trailing)
-                }
+            ForEach(0..<5) { _ in
+                Image(systemName: "trash")
+                    .padding()
             }
             
-            Button {
-                let countdown = CountDown(context: moc)
-                countdown.id = UUID()
-                countdown.name = "ss"
-                
-                try? moc.save()
-            } label: {
-                Text("Add")
-            }
+            NavigationStack {
+                List {
+                    ForEach(countdowns, id: \.self) { countdown in
+                        NavigationLink(value: countdown) {
+                            Text(countdown.name ?? "")
+                        }
+                    }
+                    .navigationDestination(for: CountDown.self, destination: { countdown in
+                        EmptyView()
+                            .edgesIgnoringSafeArea(.all)
+                    })
+                    .swipeActions {
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "trash")
+                        }
 
+                    }
+                }
+            }
         }
     }
 }
 
 struct test_2_Previews: PreviewProvider {
-    static let countdownStore = CountdownStore()
-    static let checkinStore = CheckinStore()
-    
     static var previews: some View {
         test_2()
-            .environmentObject(countdownStore)
-            .environmentObject(checkinStore)
     }
 }

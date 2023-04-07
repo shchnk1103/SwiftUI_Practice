@@ -9,9 +9,9 @@ import SwiftUI
 
 struct AddView: View {
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var countdownStore: CountdownStore
-    @EnvironmentObject var checkinStore: CheckinStore
+    @Environment(\.managedObjectContext) var moc
     @AppStorage("flag") var flag: Bool = true
+    
     @State private var isPinned: Bool = false
     @State private var isReminder: Bool = false
     @State private var text: String = ""
@@ -19,6 +19,7 @@ struct AddView: View {
     @State private var deadline: Date = Date()
     @State private var reminderDate: Date = Date()
     @State private var persistDate: String = ""
+    
     @State private var showAddSuccess: Bool = false
     @State private var showWarn: Bool = false
     
@@ -134,7 +135,17 @@ struct AddView: View {
             if text.isEmpty {
                 showWarn = true
             } else {
-                 CountDownManager.shared.createCountDown(emojiText: emojiText, name: text, targetDate: deadline, isPinned: isPinned, isReminder: isReminder, notificationDate: reminderDate)
+                let countdown = CountDown(context: moc)
+                countdown.id = UUID()
+                countdown.emojiText = emojiText
+                countdown.name = text
+                countdown.targetDate = deadline
+                countdown.isPinned = isPinned
+                countdown.isReminder = isReminder
+                countdown.notificationDate = reminderDate
+                countdown.remainingDays = calRemainingDays(targetDay: deadline)
+                
+                try? moc.save()
                 
                 // 请求通知授权
                 let notificationManager = NotificationManager()
@@ -145,16 +156,22 @@ struct AddView: View {
                 
                 // 重置表单
                 reset(flag: true)
-                
-                flag = false
-                flag = true
             }
         } else {
             if text.isEmpty || persistDate.isEmpty {
                 showWarn = true
             } else {
-                let newCheckin = Checkin(emojiText: emojiText, name: text, targetDate: persistDate, isPinned: isPinned, isReminder: isReminder)
-                checkinStore.add(checkin: newCheckin)
+                let checkin = CheckIn(context: moc)
+                checkin.id = UUID()
+                checkin.emojiText = emojiText
+                checkin.name = text
+                checkin.targetDate = persistDate
+                checkin.isPinned = isPinned
+                checkin.isReminder = isReminder
+                checkin.notificationDate = Date()
+                checkin.persistDay = 0
+                
+                try? moc.save()
                 
                 // 请求通知授权
                 let notificationManager = NotificationManager()
@@ -194,12 +211,7 @@ struct AddView: View {
 }
 
 struct AddView_Previews: PreviewProvider {
-    static let countdownStore = CountdownStore()
-    static let checkinStore = CheckinStore()
-    
     static var previews: some View {
         AddView()
-            .environmentObject(countdownStore)
-            .environmentObject(checkinStore)
     }
 }

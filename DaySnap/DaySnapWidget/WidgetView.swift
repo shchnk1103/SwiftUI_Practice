@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct WidgetView: View {
-    @ObservedObject var countdownStore: CountdownStore = CountdownStore()
+//    @ObservedObject var countdownStore: CountdownStore = CountdownStore()
     var entry: Provider.Entry
 
     var body: some View {
         VStack {
             HStack {
-                Text("\(countdownStore.countdowns.count)")
+//                Text("\(countdownStore.countdowns.count)")
             }
         }
     }

@@ -8,77 +8,39 @@
 import SwiftUI
 
 struct ItemListView: View {
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var checkinStore: CheckinStore
     @AppStorage("flag") var flag: Bool = true
+    @FetchRequest(sortDescriptors: []) var countdowns: FetchedResults<CountDown>
+    
     @Binding var wantToCheckin: Bool
     @Binding var showingAlert: Bool
-    @State private var checkinToDelete: Checkin? = nil
-    @State private var showSheet: Bool = false
-    @State private var selectedCountdown: CountDown = CountDown()
-    @ObservedObject var countdownManager = CountDownManager.shared
     
     var body: some View {
         VStack {
             if flag {
-                if countdownManager.countdowns.isEmpty {
-                    Spacer()
-                    
-                    Image("nan")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                    
-                    Spacer()
-                } else {
-                    ForEach(countdownManager.countdowns) { countdown in
-                        CountdownItemRow(
-                            wantToCheckin: $wantToCheckin,
-                            showingAlert: $showingAlert,
-                            countdown: countdown
-                        )
-                        .padding(.horizontal)
-                        .onTapGesture {
-                            selectedCountdown = countdown
-                            showSheet = true
-                        }
-                    }
-                    .sheet(isPresented: $showSheet) {
-                        EditView(countdown: $selectedCountdown)
-                    }
-                    
-                    Spacer()
-                }
+                CountdownView(showingAlert: $showingAlert)
             } else {
-                if checkinStore.checkins.isEmpty {
-                    Spacer()
-                    
-                    Image("nv")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                    
-                    Spacer()
-                } else {
-                    ForEach(checkinStore.checkins) { checkin in
-                        ItemView(flag: $flag, showingAlert: $showingAlert, wantToCheckin: $wantToCheckin, id: checkin.id)
-                            .padding(.horizontal)
-                    }
-                    
-                    Spacer()
+                CheckInView(showingAlert: $showingAlert, wantToCheckin: $wantToCheckin)
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.async {
+                for countdown in countdowns {
+                    countdown.remainingDays = calRemainingDays(targetDay: countdown.targetDate ?? Date())
                 }
+                
+                try? moc.save()
             }
         }
     }
 }
 
 struct ItemListView_Previews: PreviewProvider {
-    static let countdownStore = CountdownStore()
-    static let checkinStore = CheckinStore()
     static let vm = HomeViewModel()
     
     static var previews: some View {
         ItemListView(wantToCheckin: .constant(false), showingAlert: .constant(false))
-            .environmentObject(countdownStore)
-            .environmentObject(checkinStore)
             .environmentObject(vm)
     }
 }

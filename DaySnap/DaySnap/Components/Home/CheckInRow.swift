@@ -1,29 +1,32 @@
 //
-//  CountdownItemRow.swift
+//  CheckInRow.swift
 //  DaySnap
 //
-//  Created by DoubleShy0N on 2023/4/5.
+//  Created by DoubleShy0N on 2023/4/7.
 //
 
 import SwiftUI
 
-struct CountdownItemRow: View {
+struct CheckInRow: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var vm: HomeViewModel
-    @State private var swipeOffset: CGFloat = 0
-    @Binding var wantToCheckin: Bool
+    
     @Binding var showingAlert: Bool
-    var countdown: CountDown
+    @Binding var wantToCheckin: Bool
+    @State private var swipeOffset: CGFloat = 0
+    
+    var checkin: CheckIn
     
     var body: some View {
         ZStack {
             GeometryReader { geo in
                 HStack(spacing: 0) {
+                    // 打卡按钮
                     checkinButton
                     
                     // Content
                     HStack {
-                        icon
+                        roundedRectangle
                         
                         content
                     }
@@ -32,23 +35,14 @@ struct CountdownItemRow: View {
                     .strokeStyle(cornerRadius: 8)
                     // pin heart
                     .overlay {
-                        if countdown.isPinned {
+                        if checkin.isPinned {
                             Image(systemName: "heart.fill")
                                 .foregroundColor(.red)
                                 .position(x: 0, y: 0)
                         }
                     }
                     .offset(x: swipeOffset)
-                    .gesture(
-                        DragGesture()
-                            .onChanged({ value in
-                                guard value.translation.width < 0 else { return }
-                                swipeOffset = value.translation.width
-                            })
-                            .onEnded({ value in
-                                swipeOffset = value.translation.width <= -70 ? -80 : 0
-                            })
-                    )
+                    .gesture(drag)
                     
                     // 删除按钮
                     deleteButton
@@ -59,25 +53,7 @@ struct CountdownItemRow: View {
         }
     }
     
-    var checkinButton: some View {
-        Button {
-            wantToCheckin = true
-            // vm.selectedData = checkin
-            swipeOffset = 0
-        } label: {
-            Image(systemName: "flag.checkered.circle")
-                .font(.title)
-                .foregroundColor(.white)
-                .frame(width: 60, height: 60)
-                .background(Color.cyan, in: Circle())
-        }
-        .offset(x: 60)
-        .offset(x: swipeOffset - 60)
-        .opacity(swipeOffset / 100)
-        .padding(.trailing, 10)
-    }
-    
-    var icon: some View {
+    var roundedRectangle: some View {
         RoundedRectangle(cornerRadius: 8, style: .continuous)
             .stroke(
                 colorScheme == .dark ? .white.opacity(0.5) : .black.opacity(0.5),
@@ -86,7 +62,7 @@ struct CountdownItemRow: View {
             .frame(width: 60, height: 60)
             .foregroundColor(colorScheme == .dark ? .black : .white)
             .overlay {
-                Text(countdown.emojiText ?? "🥰")
+                Text(checkin.emojiText ?? "🥰")
                     .font(.largeTitle)
             }
             .padding(10)
@@ -96,19 +72,20 @@ struct CountdownItemRow: View {
         HStack {
             VStack(alignment: .leading) {
                 HStack(spacing: 0) {
-                    Text("距离")
+                    Text("坚持 ")
                         .font(.body)
                         .foregroundColor(.secondary)
-                    Text(countdown.name ?? "")
-                    .font(.body)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    
+                    Text(checkin.name ?? "")
+                        .font(.body)
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
                 }
                 
                 HStack(alignment: .center, spacing: 0) {
-                    Text(countdown.remainingDays > 0 ? "还有 " : "已经 ")
+                    Text("已经 ")
                         .font(.body)
                         .foregroundColor(.secondary)
-                    Text(String(abs(countdown.remainingDays)))
+                    Text("\(checkin.persistDay)/\(checkin.targetDate ?? "")")
                         .font(.title)
                         .fontWeight(.semibold)
                     Text(" 天")
@@ -125,11 +102,28 @@ struct CountdownItemRow: View {
         }
     }
     
+    var checkinButton: some View {
+        Button {
+            wantToCheckin = true
+            vm.selectedCheckIn = checkin
+            swipeOffset = 0
+        } label: {
+            Image(systemName: "flag.checkered.circle")
+                .font(.title)
+                .foregroundColor(.white)
+                .frame(width: 60, height: 60)
+                .background(Color.cyan, in: Circle())
+        }
+        .offset(x: 60)
+        .offset(x: swipeOffset - 60)
+        .opacity(swipeOffset / 100)
+        .padding(.trailing, 10)
+    }
+    
     var deleteButton: some View {
         Button {
             showingAlert = true
-            vm.selectedCountdown = countdown
-            
+            vm.selectedCheckIn = checkin
             swipeOffset = 0
         } label: {
             Image(systemName: "trash")
@@ -143,10 +137,24 @@ struct CountdownItemRow: View {
         .opacity(-swipeOffset / 100)
         .padding(.leading, 10)
     }
-}
-
-struct CountdownItemRow_Previews: PreviewProvider {
-    static var previews: some View {
-        CountdownItemRow(wantToCheckin: .constant(false), showingAlert: .constant(false), countdown: CountDown(context: DataController().container.viewContext))
+    
+    var drag: some Gesture {
+        DragGesture()
+            .onChanged({ value in
+                swipeOffset = value.translation.width
+            })
+            .onEnded({ value in
+                swipeOffset = value.translation.width >= 70
+                   ? 80
+                   : (value.translation.width <= -70
+                      ? -80
+                      : 0)
+            })
     }
 }
+
+//struct CheckInRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CheckInRow(showingAlert: .constant(false), wantToCheckin: .constant(false), checkin: <#CheckIn#>)
+//    }
+//}

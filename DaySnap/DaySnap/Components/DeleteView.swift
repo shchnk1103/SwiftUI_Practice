@@ -8,22 +8,21 @@
 import SwiftUI
 
 struct DeleteView: View {
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var checkinStore: CheckinStore
     @EnvironmentObject var vm: HomeViewModel
     @AppStorage("flag") var flag: Bool = true
+    
     @Binding var showingAlert: Bool
     @State private var appear: Bool = false
     
     var body: some View {
         ZStack {
-            Color.gray
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            Color.black.opacity(0.15)
                 .ignoresSafeArea()
-                .opacity(0.25)
             
             VStack(alignment: .center) {
-                Text(flag ? vm.selectedCountdown?.emojiText ?? "" : vm.selectedData?.emojiText ?? "")
+                Text(flag ? vm.selectedCountdown?.emojiText ?? "" : vm.selectedCheckIn?.emojiText ?? "")
                     .font(.system(size: 48))
                     .frame(width: 120, height: 120)
                     .background(.regularMaterial, in: Circle())
@@ -33,7 +32,7 @@ struct DeleteView: View {
                     }
                     .padding()
                 
-                Text(flag ? vm.selectedCountdown?.name ?? "" : vm.selectedData?.name ?? "")
+                Text(flag ? vm.selectedCountdown?.name ?? "" : vm.selectedCheckIn?.name ?? "")
                     .fontWeight(.bold)
                     .font(.title)
                     .padding()
@@ -57,40 +56,21 @@ struct DeleteView: View {
                     
                     Spacer()
                     
-                    Button {
-                        showingAlert = false
-                        
-                        if flag {
-                            if let countdown = vm.selectedCountdown {
-                                CountDownManager.shared.delete(countDown: countdown)
-                                
-                                vm.selectedCountdown = nil
-                                
-                                flag = false
-                                flag = true
-                            }
-                        } else {
-                            if let checkin = vm.selectedData {
-                                checkinStore.delete(checkin: checkin)
-                            }
-                            
-                            flag = true
-                            flag = false
-                        }
-                    } label: {
-                        Image(systemName: "checkmark")
-                            .font(.title)
-                            .frame(width: 60, height: 60)
-                            .foregroundColor(.white)
-                            .background(Color.red, in: Circle())
-                    }
+                    deleteButton
                     
                     Spacer()
                 }
                 .padding()
             }
             .padding()
-            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+            .background(
+                .ultraThinMaterial,
+                in: RoundedRectangle(cornerRadius: 8, style: .continuous)
+            )
+            .background(
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .stroke()
+            )
             .frame(height: 410)
             .padding(.horizontal, 30)
             .offset(y: appear ? 0 : 1000)
@@ -105,17 +85,37 @@ struct DeleteView: View {
             }
         }
     }
+    
+    var deleteButton: some View {
+        Button {
+            if flag {
+                do {
+                    moc.delete(vm.selectedCountdown!)
+                    
+                    try? moc.save()
+                }
+            } else {
+                do {
+                    moc.delete(vm.selectedCheckIn!)
+                }
+            }
+            
+            showingAlert = false
+        } label: {
+            Image(systemName: "checkmark")
+                .font(.title)
+                .frame(width: 60, height: 60)
+                .foregroundColor(.white)
+                .background(Color.red, in: Circle())
+        }
+    }
 }
 
 struct DeleteView_Previews: PreviewProvider {
-    static let countdownStore = CountdownStore()
-    static let checkinStore = CheckinStore()
     static let vm = HomeViewModel()
-    
+
     static var previews: some View {
         DeleteView(showingAlert: .constant(true))
-            .environmentObject(countdownStore)
-            .environmentObject(checkinStore)
             .environmentObject(vm)
     }
 }

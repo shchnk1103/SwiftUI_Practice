@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct EditView: View {
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
+    
     @AppStorage("flag") var flag: Bool = true
     
     @State private var text: String = ""
@@ -19,52 +21,53 @@ struct EditView: View {
     @State private var isReminder: Bool = false
     @State private var reminderDate: Date = Date()
     
-    @Binding var countdown: CountDown
+    var countdown: CountDown
     
     var body: some View {
-
-            VStack(spacing: 32) {
-                VStack(spacing: 20) {
-                    InputWithIconView(imageName: "applepencil", placeholderText: "写点有趣的", text: $text, emojiText: $emojiText)
-                        .onAppear {
-                            self.text = countdown.name ?? ""
-                            self.emojiText = countdown.emojiText ?? ""
-                        }
-                    
-                    CusDatePickerView(selectedDate: $targetDate)
-                        .onAppear {
-                            self.targetDate = countdown.targetDate ?? Date()
-                        }
-                    
-                    pinToggle
-                    
-                    VStack {
-                        reminderToggle
-                        
-                        if isReminder {
-                            CusDatePickerView(selectedDate: $reminderDate)
-                                .onAppear {
-                                    self.reminderDate = countdown.notificationDate ?? Date()
-                                }
-                        }
+        VStack(spacing: 32) {
+            VStack(spacing: 20) {
+                InputWithIconView(imageName: "applepencil", placeholderText: "写点有趣的", text: $text, emojiText: $emojiText)
+                    .onAppear {
+                        self.text = countdown.name ?? ""
+                        self.emojiText = countdown.emojiText ?? ""
                     }
-                    .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
-                    .cornerRadius(8)
-                    .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
-                    .animation(.default, value: isReminder)
-                }
                 
-                button
+                CusDatePickerView(selectedDate: $targetDate)
+                    .onAppear {
+                        self.targetDate = countdown.targetDate ?? Date()
+                    }
+                
+                pinToggle
+                
+                VStack {
+                    reminderToggle
+                    
+                    if isReminder {
+                        CusDatePickerView(selectedDate: $reminderDate)
+                            .onAppear {
+                                self.reminderDate = countdown.notificationDate ?? Date()
+                            }
+                    }
+                }
+                .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
+                .cornerRadius(8)
+                .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
+                .animation(.default, value: isReminder)
             }
-            .padding(20)
-            .overlay {
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .stroke(colorScheme == .dark ? .white : .black, lineWidth: 1)
-            }
-            .frame(maxHeight: .infinity, alignment: .top)
-            .padding(.horizontal, 15)
-            .padding(.top, 50)
-            .animation(.default, value: isReminder)
+            
+            button
+        }
+        .padding(20)
+        .overlay {
+            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                .stroke(colorScheme == .dark ? .white : .black, lineWidth: 1)
+        }
+        .frame(maxHeight: .infinity, alignment: .top)
+        .padding(.horizontal, 15)
+        .padding(.top, 50)
+        .animation(.default, value: isReminder)
+        .navigationTitle(countdown.name ?? "Unkown")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     var pinToggle: some View {
@@ -127,14 +130,20 @@ struct EditView: View {
     // MARK: fuctions
     
     func update() {
-        let countdown = countdown
+        countdown.name = text
+        countdown.emojiText = emojiText
+        countdown.targetDate = targetDate
+        countdown.isPinned = isPinned
+        countdown.isReminder = isReminder
+        countdown.notificationDate = reminderDate
+        countdown.remainingDays = calRemainingDays(targetDay: targetDate)
         
-        CountDownManager.shared.update(countdown: countdown, newEmoji: emojiText, newTitle: text, newTargetDate: targetDate, newIsPinned: isPinned, newIsReminder: isReminder, newNotificationDate: reminderDate)
+        try? moc.save()
     }
 }
 
 //struct EditView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        EditView()
+//        EditView(countdown: CountDown())
 //    }
 //}

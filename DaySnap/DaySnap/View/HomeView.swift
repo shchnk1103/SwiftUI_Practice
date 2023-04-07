@@ -9,10 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var countdownStore: CountdownStore
-    @EnvironmentObject var checkinStore: CheckinStore
     @AppStorage("flag") var flag: Bool = true
     @StateObject private var vm = HomeViewModel()
+    
     @State private var wantToCheckin: Bool = false
     @State private var showingAlert: Bool = false
     @State private var offset: CGFloat = 0
@@ -21,10 +20,12 @@ struct HomeView: View {
     @State private var switchOffset: CGFloat = 0
     @State private var switchHeight: CGFloat = 0
     @State private var textHeight: CGFloat = 0
+    @State private var pathCountdown: [CountDown] = []
+    @State private var pathCheckin: [CheckIn] = []
     
     var body: some View {
         ZStack(alignment: .top) {
-            
+
             VStack(alignment: .leading, spacing: 0) {
                 
                 header
@@ -45,9 +46,9 @@ struct HomeView: View {
             
             // 弹窗提醒 - 打卡
             if wantToCheckin {
-                CheckinView(flag: $wantToCheckin)
-                    .environmentObject(vm)
+                ToCheckinView(flag: $wantToCheckin)
                     .zIndex(2)
+                    .environmentObject(vm)
             }
             
             // 弹窗提醒 - 删除
@@ -74,7 +75,6 @@ struct HomeView: View {
                 color: colorScheme == .dark ? .white.opacity(0.6) : .black.opacity(0.25),
                 radius: 12, x: 0, y: 0
             )
-            .frame(height: 120)
             .padding()
             .offset(getOffset())
             .opacity(getOpacity())
@@ -157,12 +157,6 @@ struct HomeView: View {
     var itemList: some View {
         ItemListView(wantToCheckin: $wantToCheckin, showingAlert: $showingAlert)
             .environmentObject(vm)
-            .navigationTitle("首页")
-            .toolbar(.hidden, for: .automatic)
-            .onAppear {
-                flag = false
-                flag = true
-            }
             .frame(maxHeight: .infinity)
             .padding(.top, scrollPaddingTop)
             // GeometryReader
@@ -211,12 +205,7 @@ struct HomeView: View {
 }
 
 struct HomeView_Previews: PreviewProvider {
-    static let countdownStore = CountdownStore()
-    static let checkinStore = CheckinStore()
-    
     static var previews: some View {
         HomeView()
-            .environmentObject(countdownStore)
-            .environmentObject(checkinStore)
     }
 }
