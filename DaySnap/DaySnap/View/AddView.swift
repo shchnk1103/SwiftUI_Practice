@@ -69,7 +69,7 @@ struct AddView: View {
             .padding(.horizontal, 15)
             .animation(.default, value: isReminder)
             
-            if showAddSuccess {                
+            if showAddSuccess {
                 SuccessView(flag: $showAddSuccess)
             }
             
@@ -147,12 +147,12 @@ struct AddView: View {
                 
                 try? moc.save()
                 
-                // 请求通知授权
-                let notificationManager = NotificationManager()
-                notificationManager.requestAuthorization()
-                
-                // 发送通知
-                notificationManager.sendNotification(title: "\(emojiText) \(text) 就是今天！", date: deadline)
+                //                // 请求通知授权
+                //                let notificationManager = NotificationManager()
+                //                notificationManager.requestAuthorization()
+                //
+                //                // 发送通知
+                //                notificationManager.sendNotification(title: "\(emojiText) \(text) 就是今天！", date: deadline, identifier: countdown.id?.uuidString ?? UUID().uuidString)
                 
                 // 重置表单
                 reset(flag: true)
@@ -178,7 +178,7 @@ struct AddView: View {
                 notificationManager.requestAuthorization()
                 
                 // 发送通知
-                notificationManager.scheduleRepeatingNotificationForCheckin(title: "\(emojiText) 今天 \(text) 了吗？快来打卡吧！", persisDays: persistDate)
+                notificationManager.scheduleRepeatingNotificationForCheckin(title: "\(emojiText) 今天 \(text) 了吗？快来打卡吧！", persisDays: persistDate, identifier: checkin.id?.uuidString ?? UUID().uuidString)
                 
                 // 重置表单
                 reset(flag: false)

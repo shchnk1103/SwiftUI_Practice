@@ -12,7 +12,7 @@ struct DaySnapWidget: Widget {
     let kind: String = "DaySnapWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider(dataController: DataController())) { entry in
             WidgetView(entry: entry)
         }
         .configurationDisplayName("DaySnap")
@@ -22,7 +22,7 @@ struct DaySnapWidget: Widget {
 
 struct DaySnapWidget_Previews: PreviewProvider {
     static var previews: some View {
-        WidgetView(entry: SimpleEntry(date: Date()))
+        WidgetView(entry: SimpleEntry(date: Date(), countdowns: []))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

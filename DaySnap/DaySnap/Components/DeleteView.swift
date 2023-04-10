@@ -88,15 +88,23 @@ struct DeleteView: View {
     
     var deleteButton: some View {
         Button {
+            let notificationManager = NotificationManager()
+            
             if flag {
                 do {
                     moc.delete(vm.selectedCountdown!)
                     
                     try? moc.save()
+                    
+                    notificationManager.deleteNotification(identifier: vm.selectedCountdown?.id?.uuidString ?? UUID().uuidString)
                 }
             } else {
                 do {
                     moc.delete(vm.selectedCheckIn!)
+                    
+                    try? moc.save()
+                    
+                    notificationManager.deleteNotification(identifier: vm.selectedCheckIn?.id?.uuidString ?? UUID().uuidString)
                 }
             }
             

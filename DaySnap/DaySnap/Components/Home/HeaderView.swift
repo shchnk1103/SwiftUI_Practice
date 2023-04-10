@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import WeatherKit
 
 struct HeaderView: View {
     @Environment(\.colorScheme) var colorScheme
+    @ObservedObject private var locationManager = LocationManager()
+    @ObservedObject private var weatherKitManager = WeatherKitManager()
+    
+    let weatherService = WeatherService.shared
     
     var body: some View {
         HStack(alignment: .center) {
@@ -25,11 +30,13 @@ struct HeaderView: View {
             
             Spacer()
             
-            Image("avatar")
+            Image(systemName: weatherKitManager.symbol)
                 .resizable()
-                .frame(width: 85, height: 115)
+                .frame(width: 50)
                 .scaledToFit()
-                .padding(.vertical, 2)
+        }
+        .task(id: locationManager.currentLocation) {
+            await weatherKitManager.getWeather(latitude: locationManager.latitude, longitude: locationManager.longitude)
         }
     }
     

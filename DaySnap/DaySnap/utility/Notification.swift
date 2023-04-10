@@ -21,7 +21,7 @@ class NotificationManager: ObservableObject {
         }
     }
     
-    func sendNotification(title: String, date: Date) {
+    func sendNotification(title: String, date: Date, identifier: String) {
         // 创建通知的内容
         let content = UNMutableNotificationContent()
         content.title = title
@@ -38,8 +38,7 @@ class NotificationManager: ObservableObject {
         let trigger = UNCalendarNotificationTrigger(dateMatching: calendar.dateComponents([.year, .month, .day, .hour, .second], from: triggerDate), repeats: false)
         
         // 创建通知请求
-        let uuidString = UUID().uuidString
-        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
         // 发送通知
         UNUserNotificationCenter.current().add(request) { error in
@@ -70,31 +69,40 @@ class NotificationManager: ObservableObject {
     }
     
     // 根据指定的天数设置通知
-    func scheduleNotificationsForDays(content: UNMutableNotificationContent, triggerDate: DateComponents, days: Int) {
+    func scheduleNotificationsForDays(identifier: String, content: UNMutableNotificationContent, triggerDate: DateComponents, days: Int) {
         let calendar = Calendar.current
         let endDate = calendar.date(byAdding: .day, value: days, to: Date())
         let interval = DateComponents(day: 1)
         var currentDate = Date()
 
         while currentDate <= endDate! {
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false))
+            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false))
             UNUserNotificationCenter.current().add(request)
             currentDate = calendar.date(byAdding: interval, to: currentDate)!
         }
     }
     
-    func scheduleRepeatingNotificationForCheckin(title: String, persisDays: String) {
+    func scheduleRepeatingNotificationForCheckin(title: String, persisDays: String, identifier: String) {
         let content = setupNotificationContent(title: title)
         let triggerDate = prepareTriggerDate()
-        scheduleNotificationsForDays(content: content, triggerDate: triggerDate, days: Int(persisDays)!)
+        scheduleNotificationsForDays(identifier: identifier, content: content, triggerDate: triggerDate, days: Int(persisDays)!)
     }
     
+    // 获取通知历史记录
     func getNotificationHistory() {
-        // 获取通知历史记录
         UNUserNotificationCenter.current().getDeliveredNotifications { notifications in
             DispatchQueue.main.async {
                 self.notifications = notifications
             }
         }
+    }
+    
+    // 删除对应的通知
+    func deleteNotification(identifier: String) {
+        let notificationCenter = UNUserNotificationCenter.current()
+        let identifiers = [identifier]
+        
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: identifiers)
+        notificationCenter.removeDeliveredNotifications(withIdentifiers: identifiers)
     }
 }

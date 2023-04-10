@@ -19,7 +19,7 @@ struct DaySnapApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(notificationManager)
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environment(\.managedObjectContext, dataController.context)
         }
         .backgroundTask(.appRefresh("CountdownZero")) {
             scheduleAppRefresh()
@@ -28,6 +28,7 @@ struct DaySnapApp: App {
     }
 }
 
+// 后台任务
 func scheduleAppRefresh() {
     let today = Calendar.current.startOfDay(for: .now)
     let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
