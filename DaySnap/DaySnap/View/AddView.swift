@@ -19,55 +19,60 @@ struct AddView: View {
     @State private var deadline: Date = Date()
     @State private var reminderDate: Date = Date()
     @State private var persistDate: String = ""
+    @State private var selecredCategory: Category = categories[0]
     
     @State private var showAddSuccess: Bool = false
     @State private var showWarn: Bool = false
     
     var body: some View {
         ZStack {
-            VStack(alignment: .leading, spacing: 32) {
-                Text("新建日程")
-                    .font(.title2)
-                    .padding(.top, 20)
-                
-                VStack(spacing: 32) {
-                    SwitchView()
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 32) {
+                    Text("新建日程")
+                        .font(.title2)
+                        .padding(.top, 20)
                     
-                    VStack(spacing: 20) {
-                        InputWithIconView(imageName: "applepencil", placeholderText: "写点有趣的", text: $text, emojiText: $emojiText)
+                    VStack(spacing: 32) {
+                        SwitchView()
                         
-                        if flag {
-                            CusDatePickerView(selectedDate: $deadline)
-                        } else {
-                            NumberOnlyTextField(persistDate: $persistDate)
-                        }
-                        
-                        pinToggle
-                        
-                        VStack {
-                            reminderToggle
+                        VStack(spacing: 20) {
+                            InputWithIconView(imageName: "applepencil", placeholderText: "写点有趣的", text: $text, emojiText: $emojiText)
                             
-                            if isReminder {
-                                CusDatePickerView(selectedDate: $reminderDate)
+                            if flag {
+                                CusDatePickerView(selectedDate: $deadline)
+                                
+                                category
+                            } else {
+                                NumberOnlyTextField(persistDate: $persistDate)
                             }
+                            
+                            pinToggle
+                            
+                            VStack {
+                                reminderToggle
+                                
+                                if isReminder {
+                                    CusDatePickerView(selectedDate: $reminderDate)
+                                }
+                            }
+                            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                            .strokeStyle(cornerRadius: 8)
+                            .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 6)
                         }
-                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
-                        .strokeStyle(cornerRadius: 8)
-                        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 6)
+                        
+                        button
+                    }
+                    .padding(20)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            .stroke(colorScheme == .dark ? Color.white : Color.black, lineWidth: 1)
                     }
                     
-                    button
+                    Spacer()
                 }
-                .padding(20)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .stroke(colorScheme == .dark ? Color.white : Color.black, lineWidth: 1)
-                }
-                
-                Spacer()
+                .padding(.horizontal, 15)
+                .animation(.default, value: isReminder)
             }
-            .padding(.horizontal, 15)
-            .animation(.default, value: isReminder)
             
             if showAddSuccess {
                 SuccessView(flag: $showAddSuccess)
@@ -80,6 +85,36 @@ struct AddView: View {
         .onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
+    }
+    
+    var category: some View {
+        HStack {
+            Image(systemName: "list.bullet")
+                .foregroundColor(.secondary)
+            
+            Text("请选择分类")
+                .foregroundColor(colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25))
+            
+            Spacer()
+            
+            Picker(selection: $selecredCategory, label: Text("选择分类")) {
+                ForEach(categories, id: \.self) { category in
+                    HStack {
+                        Image(systemName: category.icon)
+                        Text(category.name)
+                    }
+                    .tag(category)
+                }
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .fill(Color.gray.opacity(0.15))
+            )
+        }
+        .padding(10)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .strokeStyle(cornerRadius: 8)
+        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 6)
     }
     
     var pinToggle: some View {
@@ -130,6 +165,7 @@ struct AddView: View {
         }
     }
     
+    // MARK: functions
     func save() {
         if flag {
             if text.isEmpty {
@@ -144,6 +180,7 @@ struct AddView: View {
                 countdown.isReminder = isReminder
                 countdown.notificationDate = reminderDate
                 countdown.remainingDays = calRemainingDays(targetDay: deadline)
+                countdown.category = selecredCategory.name
                 
                 try? moc.save()
                 

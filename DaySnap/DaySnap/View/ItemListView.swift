@@ -11,7 +11,11 @@ struct ItemListView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.colorScheme) var colorScheme
     @AppStorage("flag") var flag: Bool = true
-    @FetchRequest(sortDescriptors: []) var countdowns: FetchedResults<CountDown>
+    @FetchRequest(sortDescriptors: [
+        NSSortDescriptor(keyPath: \CountDown.isPinned, ascending: true),
+        NSSortDescriptor(keyPath: \CountDown.name, ascending: true),
+        NSSortDescriptor(keyPath: \CountDown.remainingDays, ascending: true)
+    ]) var countdowns: FetchedResults<CountDown>
     
     @Binding var wantToCheckin: Bool
     @Binding var showingAlert: Bool

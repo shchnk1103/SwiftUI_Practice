@@ -6,9 +6,9 @@
 	<array>
 		<string>processing</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your location to provide weather information.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>We need your location to provide weather information.</string>
+    <key>BGTaskSchedulerPermittedIdentifiers</key>
+    <array>
+        <string>com.DoubleShy0N.DaySnap</string>
+    </array>
 </dict>
 </plist>

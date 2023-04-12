@@ -29,9 +29,11 @@
 		7985B04029C0372F003FCDDB /* InputWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985B03F29C0372F003FCDDB /* InputWithIconView.swift */; };
 		7985B04229C03BB3003FCDDB /* NumberOnlyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985B04129C03BB3003FCDDB /* NumberOnlyTextField.swift */; };
 		7985B04729C06B76003FCDDB /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985B04629C06B76003FCDDB /* SignInWithApple.swift */; };
-		799AFE7929E2900A0045D7C5 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE956229DD6BD400289A9E /* DataController.swift */; };
 		799AFE7F29E407E70045D7C5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799AFE7E29E407E70045D7C5 /* LocationManager.swift */; };
 		799AFE8129E43C900045D7C5 /* WeatherKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799AFE8029E43C900045D7C5 /* WeatherKitManager.swift */; };
+		79A2A66729E52C150020B27E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE956229DD6BD400289A9E /* DataController.swift */; };
+		79A2A66929E52C320020B27E /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A2A66829E52C320020B27E /* CategoryModel.swift */; };
+		79A2A66B29E544240020B27E /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A2A66A29E544240020B27E /* LaunchScreenView.swift */; };
 		79A7340229D01D6D00D6409E /* DeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A7340129D01D6D00D6409E /* DeleteView.swift */; };
 		79AEFA4029DEB78D00DF1FC6 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AEFA3F29DEB78D00DF1FC6 /* CountdownView.swift */; };
 		79AEFA4229DECC2100DF1FC6 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AEFA4129DECC2100DF1FC6 /* functions.swift */; };
@@ -110,6 +112,8 @@
 		7985B04629C06B76003FCDDB /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
 		799AFE7E29E407E70045D7C5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		799AFE8029E43C900045D7C5 /* WeatherKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherKitManager.swift; sourceTree = "<group>"; };
+		79A2A66829E52C320020B27E /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		79A2A66A29E544240020B27E /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		79A7340129D01D6D00D6409E /* DeleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteView.swift; sourceTree = "<group>"; };
 		79AEFA3F29DEB78D00DF1FC6 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		79AEFA4129DECC2100DF1FC6 /* functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
@@ -133,7 +137,7 @@
 		79BD2C4829DABCDB0026F1F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79BD2C4A29DABCDB0026F1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79BD2C5229DAC0800026F1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		79CE956229DD6BD400289A9E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		79CE956229DD6BD400289A9E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataController.swift; path = ../utility/DataController.swift; sourceTree = "<group>"; };
 		79CE956429DD6E1000289A9E /* test_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test_2.swift; sourceTree = "<group>"; };
 		79CE956729DD742C00289A9E /* DaySnap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DaySnap.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,7 +168,6 @@
 				7985B04629C06B76003FCDDB /* SignInWithApple.swift */,
 				79754BCD29DBE4420075F198 /* Notification.swift */,
 				79754BD329DBFDBB0075F198 /* AppDelegate.swift */,
-				79CE956229DD6BD400289A9E /* DataController.swift */,
 				79AEFA4129DECC2100DF1FC6 /* functions.swift */,
 				799AFE7E29E407E70045D7C5 /* LocationManager.swift */,
 				799AFE8029E43C900045D7C5 /* WeatherKitManager.swift */,
@@ -232,6 +235,7 @@
 				7981060429C82861004D38F0 /* EditView.swift */,
 				79AEFA3F29DEB78D00DF1FC6 /* CountdownView.swift */,
 				797AC7B929DFD16200AAAA4F /* CheckInView.swift */,
+				79A2A66A29E544240020B27E /* LaunchScreenView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -261,8 +265,10 @@
 		79BAC0E829BC7511006822B9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				79CE956229DD6BD400289A9E /* DataController.swift */,
 				79BAC0E929BC751E006822B9 /* TabModel.swift */,
 				795BB3FA29C2F51A00A45984 /* HomeViewModel.swift */,
+				79A2A66829E52C320020B27E /* CategoryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -420,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7907E6CD29BEEE6100C141F2 /* CusDatePickerView.swift in Sources */,
+				79A2A66B29E544240020B27E /* LaunchScreenView.swift in Sources */,
 				7981060529C82861004D38F0 /* EditView.swift in Sources */,
 				7903A5EC29BDC10200A71CC5 /* MeView.swift in Sources */,
 				7903A5EA29BDB72E00A71CC5 /* Styles.swift in Sources */,
@@ -444,6 +451,7 @@
 				797AC7BA29DFD16200AAAA4F /* CheckInView.swift in Sources */,
 				79A7340229D01D6D00D6409E /* DeleteView.swift in Sources */,
 				791411B729C19B3500915867 /* WarnView.swift in Sources */,
+				79A2A66929E52C320020B27E /* CategoryModel.swift in Sources */,
 				79BAC0CA29BC5221006822B9 /* DaySnapApp.swift in Sources */,
 				7985B04729C06B76003FCDDB /* SignInWithApple.swift in Sources */,
 				79754BCE29DBE4420075F198 /* Notification.swift in Sources */,
@@ -466,7 +474,7 @@
 				7909779829DD41C0004A696C /* WidgetView.swift in Sources */,
 				79CE956929DD742C00289A9E /* DaySnap.xcdatamodeld in Sources */,
 				79BD2C4729DABCD90026F1F2 /* DaySnapWidget.swift in Sources */,
-				799AFE7929E2900A0045D7C5 /* DataController.swift in Sources */,
+				79A2A66729E52C150020B27E /* DataController.swift in Sources */,
 				7909779429DD412D004A696C /* Provider.swift in Sources */,
 				79BD2C4529DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift in Sources */,
 			);
@@ -616,8 +624,8 @@
 				INFOPLIST_FILE = DaySnap/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "不知道数日 - 打卡";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "HeaderView requires your location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "HeaderView requires your location";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "我们需要您提供您的位置才能给您展示当前的天气状况。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "我们需要您提供您的位置才能给您展示当前的天气状况。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -628,7 +636,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleShy0N.DaySnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -655,8 +663,8 @@
 				INFOPLIST_FILE = DaySnap/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "不知道数日 - 打卡";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "HeaderView requires your location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "HeaderView requires your location";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "我们需要您提供您的位置才能给您展示当前的天气状况。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "我们需要您提供您的位置才能给您展示当前的天气状况。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -667,7 +675,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleShy0N.DaySnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -696,7 +704,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleShy0N.DaySnap.DaySnapWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -725,7 +733,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleShy0N.DaySnap.DaySnapWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

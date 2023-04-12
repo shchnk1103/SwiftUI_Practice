@@ -9,8 +9,8 @@ import SwiftUI
 
 struct TabBarView: View {
     @Environment(\.colorScheme) var colorScheme
-    @AppStorage("selectedTab") var selectedTab: Tab = .home
     @State private var tabWidth: CGFloat = 0
+    @Binding var selectedTab: Tab
     
     var body: some View {
         GeometryReader { geo in
@@ -41,7 +41,7 @@ struct TabBarView: View {
             }
             .font(.title)
             .foregroundColor(selectedTab == item.tab ? .primary : .secondary)
-//            .blendMode(selectedTab == item.tab ? .overlay : .normal)
+            //            .blendMode(selectedTab == item.tab ? .overlay : .normal)
             .overlay {
                 GeometryReader { geo in
                     Color.clear
@@ -91,6 +91,6 @@ struct TabBarView: View {
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView()
+        TabBarView(selectedTab: .constant(.home))
     }
 }

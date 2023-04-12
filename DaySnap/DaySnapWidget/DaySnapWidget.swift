@@ -17,6 +17,7 @@ struct DaySnapWidget: Widget {
         }
         .configurationDisplayName("DaySnap")
         .description("This is a widget about DaySnap.")
+        .supportedFamilies([.systemSmall])
     }
 }
 

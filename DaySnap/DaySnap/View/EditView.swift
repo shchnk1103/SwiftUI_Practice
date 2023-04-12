@@ -20,6 +20,7 @@ struct EditView: View {
     @State private var isPinned: Bool = false
     @State private var isReminder: Bool = false
     @State private var reminderDate: Date = Date()
+    @State private var selecredCategory: Category = categories[0]
     
     var countdown: CountDown
     
@@ -36,6 +37,8 @@ struct EditView: View {
                     .onAppear {
                         self.targetDate = countdown.targetDate ?? Date()
                     }
+                
+                category
                 
                 pinToggle
                 
@@ -68,6 +71,40 @@ struct EditView: View {
         .animation(.default, value: isReminder)
         .navigationTitle(countdown.name ?? "Unkown")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    var category: some View {
+        HStack {
+            Image(systemName: "list.bullet")
+                .foregroundColor(.secondary)
+            
+            Text("请选择分类")
+                .foregroundColor(colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25))
+            
+            Spacer()
+            
+            Picker(selection: $selecredCategory, label: Text("选择分类")) {
+                ForEach(categories, id: \.self) { category in
+                    HStack {
+                        Image(systemName: category.icon)
+                        Text(category.name)
+                    }
+                }
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .fill(Color.gray.opacity(0.15))
+            )
+        }
+        .padding(10)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .strokeStyle(cornerRadius: 8)
+        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 6)
+        .onAppear {
+            if let index = categories.firstIndex(where: { $0.name == countdown.category }) {
+                self.selecredCategory = categories[index]
+            }
+        }
     }
     
     var pinToggle: some View {
@@ -137,6 +174,7 @@ struct EditView: View {
         countdown.isReminder = isReminder
         countdown.notificationDate = reminderDate
         countdown.remainingDays = calRemainingDays(targetDay: targetDate)
+        countdown.category = selecredCategory.name
         
         try? moc.save()
     }

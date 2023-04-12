@@ -7,52 +7,106 @@
 
 import SwiftUI
 
+enum DisplayMode: Int {
+    case system = 0
+    case dark = 1
+    case light = 2
+}
+
 struct MeView: View {
     @Environment(\.colorScheme) var colorScheme
-    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
-    @State private var isDarkModeWithSystem: Bool = false
+    @AppStorage("displayMode") var displayMode: DisplayMode = .system
+    @AppStorage("isDarkModeWithSystem") private var isDarkModeWithSystem: Bool = false
     
     var body: some View {
-        List {
-            Section {
-                HeaderView()
-                    .frame(height: 100)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-            
-            Section {
-                Toggle(isOn: $isDarkMode, label: {
+        NavigationView {
+            List {
+                Section {
                     HStack {
-                        Image(systemName: colorScheme == .dark
-                              ? "sun.min.fill"
-                              : "moon.fill")
-                        .foregroundColor(.primary)
-                        .padding(1)
-                        Text("暗黑模式")
-                            .foregroundColor(colorScheme == .dark ? .white : .black)
+                        Spacer()
+                        
+                        VStack {
+                            Image("light")
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .frame(width: 80, height: 200)
+                            
+                            Image(systemName: colorScheme == .dark ? "circle" : "checkmark.circle")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                        }
+                        .padding()
+                        .padding(.horizontal)
+                        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .strokeStyle(cornerRadius: 12)
+                        .onTapGesture {
+                            displayMode = .light
+                            overrideDisplayMode()
+                        }
+                        
+                        Spacer()
+                        
+                        VStack {
+                            Image("dark")
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .frame(width: 80, height: 200)
+                            
+                            Image(systemName: colorScheme == .dark ? "checkmark.circle" : "circle")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                        }
+                        .padding()
+                        .padding(.horizontal)
+                        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .strokeStyle(cornerRadius: 12)
+                        .onTapGesture {
+                            displayMode = .dark
+                            overrideDisplayMode()
+                        }
+                        
+                        Spacer()
                     }
-                })
-                .toggleStyle(CustomTopToggleStyle())
-                .onChange(of: isDarkMode) { newValue in
-                    self.isDarkMode = isDarkMode
+                    .animation(.default, value: displayMode)
+                    
+                    Toggle(isOn: $isDarkModeWithSystem.animation(), label: {
+                        Text("自动")
+                    })
+                    .toggleStyle(CustomTopToggleStyle())
+                    .onChange(of: isDarkModeWithSystem) { newValue in
+                        if newValue == true {
+                            displayMode = .system
+                        }
+                        overrideDisplayMode()
+                    }
+                } header: {
+                    Text("暗黑模式")
                 }
-                
-                //                    Toggle(isOn: $isDarkModeWithSystem, label: {
-                //                        HStack {
-                //                            Image(systemName: "iphone")
-                //                                .renderingMode(.original)
-                //                                .foregroundColor(.primary)
-                //                                .padding(1)
-                //                            Text("暗黑模式跟随系统")
-                //                                .foregroundColor(colorScheme == .dark ? .white : .black)
-                //                        }
-                //                    })
-                //                    .toggleStyle(CustomTopToggleStyle())
-            } header: {
-                Text("还没有很多的设置")
             }
-            
+            .navigationTitle("设置")
         }
+    }
+    
+    // MARK: functions
+    func overrideDisplayMode() {
+        var userInterfaceStyle: UIUserInterfaceStyle
+        
+        switch displayMode {
+        case .system:
+            userInterfaceStyle = UITraitCollection.current.userInterfaceStyle
+        case .dark:
+            userInterfaceStyle = .dark
+        case .light:
+            userInterfaceStyle = .light
+        }
+        
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        
+        window?.overrideUserInterfaceStyle = userInterfaceStyle
     }
 }
 

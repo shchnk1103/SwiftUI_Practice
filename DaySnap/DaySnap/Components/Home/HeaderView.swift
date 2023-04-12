@@ -32,7 +32,7 @@ struct HeaderView: View {
             
             Image(systemName: weatherKitManager.symbol)
                 .resizable()
-                .frame(width: 50)
+                .frame(width: 50, height: 50)
                 .scaledToFit()
         }
         .task(id: locationManager.currentLocation) {

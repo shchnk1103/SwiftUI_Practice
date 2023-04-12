@@ -136,6 +136,7 @@ struct ToCheckinView: View {
         }
         .disabled(!canCheckin())
         .frame(height: 43)
+        .frame(maxWidth: 300)
         .background(RoundedRectangle(cornerRadius: 8, style: .continuous))
         .foregroundColor(colorScheme == .dark ? .white : .black)
     }
@@ -173,7 +174,7 @@ struct ToCheckinView: View {
 //    static let vm = HomeViewModel()
 //
 //    static var previews: some View {
-//        CheckinView(flag: .constant(true))
+//        ToCheckinView(flag: .constant(false))
 //            .environmentObject(vm)
 //    }
 //}
