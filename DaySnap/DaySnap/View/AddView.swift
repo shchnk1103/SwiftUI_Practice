@@ -49,11 +49,13 @@ struct AddView: View {
                             pinToggle
                             
                             VStack {
-                                reminderToggle
-                                
-                                if isReminder {
-                                    CusDatePickerView(selectedDate: $reminderDate)
+                                if !flag {                                    
+                                    reminderToggle
                                 }
+                                
+                                //if isReminder {
+                                //  CusDatePickerView(selectedDate: $reminderDate)
+                                //}
                             }
                             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
                             .strokeStyle(cornerRadius: 8)
@@ -210,18 +212,17 @@ struct AddView: View {
                 
                 try? moc.save()
                 
-                // 请求通知授权
-                let notificationManager = NotificationManager()
-                notificationManager.requestAuthorization()
-                
-                // 发送通知
-                notificationManager.scheduleRepeatingNotificationForCheckin(title: "\(emojiText) 今天 \(text) 了吗？快来打卡吧！", persisDays: persistDate, identifier: checkin.id?.uuidString ?? UUID().uuidString)
+                if isReminder {
+                    // 请求通知授权
+                    let notificationManager = NotificationManager()
+                    notificationManager.requestAuthorization()
+                    
+                    // 发送通知
+                    notificationManager.scheduleRepeatingNotificationForCheckin(title: "\(emojiText) 今天 \(text) 了吗？快来打卡吧！", persisDays: persistDate, identifier: checkin.id?.uuidString ?? UUID().uuidString)
+                }
                 
                 // 重置表单
                 reset(flag: false)
-                
-                flag = true
-                flag = false
             }
         }
     }

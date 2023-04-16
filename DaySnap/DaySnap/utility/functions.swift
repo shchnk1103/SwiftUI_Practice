@@ -40,8 +40,39 @@ func updateRemainingDays() async {
         try context.save()
 
     } catch let error as NSError {
-        print("Could not fetch. \(error), \(error.userInfo)")
+        print("Could not fetch countdown. \(error), \(error.userInfo)")
     }
+}
+
+func updateIsCheckin() async {
+    let request: NSFetchRequest<CheckIn> = CheckIn.fetchRequest()
+    let context = PersistenceController.shared.container.viewContext
+    
+    do {
+        let checkins = try context.fetch(request)
+        
+        for checkin in checkins {
+            checkin.isCheckin = false
+        }
+        
+        try context.save()
+    } catch let error as NSError {
+        print("Could not fetch checkin. \(error), \(error.userInfo)")
+    }
+}
+
+// MARK: 检查每个CheckIn是否可以点击
+// 检查是否可以点击 Check In 按钮
+func canCheckin(checkin: CheckIn) -> Bool {
+    guard let lastCheckinTime = checkin.lastCheckinTime else { return true }
+    
+    let calendar = Calendar.current
+    let today = Date()
+    
+    let lastCheckinDay = calendar.component(.day, from: lastCheckinTime)
+    let todayDay = calendar.component(.day, from: today)
+    
+    return todayDay != lastCheckinDay
 }
 
 struct PersistenceController {

@@ -8,7 +8,7 @@
 import SwiftUI
 import AuthenticationServices
 
-struct TestView: View {
+struct SignInWithAppleButtonView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @AppStorage("email") var email: String = ""
@@ -26,13 +26,14 @@ struct TestView: View {
                 case let credential as ASAuthorizationAppleIDCredential:
                     let userId = credential.user
                     let email = credential.email
-                    let firstName = credential.fullName?.givenName
-                    let lastName = credential.fullName?.familyName
+                    let firstName = credential.fullName?.familyName
+                    let lastName = credential.fullName?.givenName
                     
                     self.userId = userId
                     self.email = email ?? ""
                     self.firstName = firstName ?? ""
                     self.lastName = lastName ?? ""
+                    print(self.firstName)
                 default:
                     break
                 }
@@ -42,12 +43,11 @@ struct TestView: View {
         }
         .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
         .frame(height: 50)
-        .padding()
     }
 }
 
-struct TestView_Previews: PreviewProvider {
+struct SignInWithAppleButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        TestView()
+        SignInWithAppleButtonView()
     }
 }

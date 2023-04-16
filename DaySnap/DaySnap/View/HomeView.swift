@@ -11,6 +11,7 @@ struct HomeView: View {
     @Environment(\.colorScheme) var colorScheme
     @AppStorage("flag") var flag: Bool = true
     @StateObject private var vm = HomeViewModel()
+    @StateObject private var filter = CountDownFilter()
     
     @State private var wantToCheckin: Bool = false
     @State private var showingAlert: Bool = false
@@ -20,8 +21,7 @@ struct HomeView: View {
     @State private var switchOffset: CGFloat = 0
     @State private var switchHeight: CGFloat = 0
     @State private var textHeight: CGFloat = 0
-    @State private var pathCountdown: [CountDown] = []
-    @State private var pathCheckin: [CheckIn] = []
+    @State private var selectedCategory: Int = 0
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -103,24 +103,54 @@ struct HomeView: View {
                 .frame(height: 60)
                 .offset(y: offset > 0 ? (offset <= switchOffset ? -offset : -switchOffset) : 0)
             
-            Text(flag ? "所有倒数日" : "所有打卡项目")
-                .font(.body)
-                .foregroundColor(.secondary)
-                .padding()
-                .offset(y: offset > 0 ? (offset <= switchOffset ? -offset : -switchOffset) : 0)
-                .opacity(getOpacity())
-                .animation(.easeOut, value: flag)
-                .overlay {
-                    GeometryReader { geo -> Color in
-                        let height = geo.size.height
-                        
-                        DispatchQueue.main.async {
-                            textHeight = height
+            HStack {
+                if selectedCategory == 0 {
+                    Text(flag ? "所有倒数日" : "所有打卡项目")
+                } else {
+                    Text("分类")
+                }
+                
+                Spacer()
+                
+                if flag {
+                    Picker(selection: $selectedCategory) {
+                        ForEach(categories, id: \.id) { category in
+                            HStack {
+                                Image(systemName: category.icon)
+                            }
+                            .tag(category.id)
                         }
-                        
-                        return Color.clear
+                    } label: {
+                        HStack {
+                            Text(categories[selectedCategory].name)
+                            Image(systemName: categories[selectedCategory].icon)
+                        }
+                    }
+                    .frame(width: 60, height: 35)
+                    .onChange(of: selectedCategory) { newValue in
+                        filter.category = categories[newValue].name
                     }
                 }
+            }
+            .frame(height: 8)
+            .font(.body)
+            .foregroundColor(.secondary)
+            .padding()
+            .offset(y: offset > 0 ? (offset <= switchOffset ? -offset : -switchOffset) : 0)
+            .opacity(getOpacity())
+            .animation(.easeOut, value: flag)
+            .overlay {
+                GeometryReader { geo -> Color in
+                    let height = geo.size.height
+                    
+                    DispatchQueue.main.async {
+                        textHeight = height
+                    }
+                    
+                    return Color.clear
+                }
+            }
+            .animation(.default, value: selectedCategory)
         }
         // GeometryReader
         .overlay {
@@ -157,6 +187,7 @@ struct HomeView: View {
     var itemList: some View {
         ItemListView(wantToCheckin: $wantToCheckin, showingAlert: $showingAlert)
             .environmentObject(vm)
+            .environmentObject(filter)
             .frame(maxHeight: .infinity)
             .padding(.top, scrollPaddingTop)
             // GeometryReader

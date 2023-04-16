@@ -8,35 +8,18 @@
 import SwiftUI
 
 struct test_2: View {
-    @Environment(\.colorScheme) var colorScheme
-    @FetchRequest(sortDescriptors: []) var countdowns: FetchedResults<CountDown>
-    @Environment(\.managedObjectContext) var moc
+    @State private var downloadProgress: Double = 0.0
     
     var body: some View {
         VStack {
-            ForEach(0..<5) { _ in
-                Image(systemName: "trash")
-                    .padding()
-            }
+            ProgressView("Downloading...", value: downloadProgress, total: 100.0)
+                .padding(50)
             
-            NavigationStack {
-                List {
-                    ForEach(countdowns, id: \.self) { countdown in
-                        NavigationLink(value: countdown) {
-                            Text(countdown.name ?? "")
-                        }
-                    }
-                    .navigationDestination(for: CountDown.self, destination: { countdown in
-                        EmptyView()
-                            .edgesIgnoringSafeArea(.all)
-                    })
-                    .swipeActions {
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "trash")
-                        }
-
+            Button("Download") {
+                // 在这里模拟下载进程
+                for i in 0...100 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50 * i)) {
+                        downloadProgress = Double(i)
                     }
                 }
             }

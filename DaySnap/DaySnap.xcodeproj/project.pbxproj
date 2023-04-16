@@ -19,12 +19,20 @@
 		791411B729C19B3500915867 /* WarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791411B629C19B3500915867 /* WarnView.swift */; };
 		791411B929C1AA2600915867 /* ToCheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791411B829C1AA2600915867 /* ToCheckinView.swift */; };
 		795BB3FB29C2F51A00A45984 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795BB3FA29C2F51A00A45984 /* HomeViewModel.swift */; };
+		79641DB129E91CAA00D2642F /* CountDownFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79641DB029E91CAA00D2642F /* CountDownFilter.swift */; };
+		79641DB329E9417700D2642F /* PayWallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79641DB229E9417700D2642F /* PayWallView.swift */; };
+		79641DB529E971C400D2642F /* InfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79641DB429E971C400D2642F /* InfoRow.swift */; };
+		79641DB829E97C8300D2642F /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 79641DB729E97C8300D2642F /* RevenueCat */; };
+		79676F6F29EA7CD4004BC7BA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79676F6E29EA7CD4004BC7BA /* StoreKit.framework */; };
+		79676F7129EA811B004BC7BA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79676F7029EA811B004BC7BA /* Extensions.swift */; };
 		79754BCE29DBE4420075F198 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79754BCD29DBE4420075F198 /* Notification.swift */; };
 		79754BD229DBEC700075F198 /* test_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79754BD129DBEC700075F198 /* test_1.swift */; };
 		79754BD429DBFDBB0075F198 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79754BD329DBFDBB0075F198 /* AppDelegate.swift */; };
+		7976962C29EBBC1800BD8632 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976962B29EBBC1800BD8632 /* UserViewModel.swift */; };
 		797AC7BA29DFD16200AAAA4F /* CheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797AC7B929DFD16200AAAA4F /* CheckInView.swift */; };
 		797AC7BC29DFDD2300AAAA4F /* CountDownRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797AC7BB29DFDD2300AAAA4F /* CountDownRow.swift */; };
 		797AC7BE29DFE72500AAAA4F /* CheckInRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797AC7BD29DFE72500AAAA4F /* CheckInRow.swift */; };
+		797F6C8629E7E79C00567ADC /* UserEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797F6C8529E7E79C00567ADC /* UserEditView.swift */; };
 		7981060529C82861004D38F0 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7981060429C82861004D38F0 /* EditView.swift */; };
 		7985B04029C0372F003FCDDB /* InputWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985B03F29C0372F003FCDDB /* InputWithIconView.swift */; };
 		7985B04229C03BB3003FCDDB /* NumberOnlyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985B04129C03BB3003FCDDB /* NumberOnlyTextField.swift */; };
@@ -100,12 +108,19 @@
 		791411B629C19B3500915867 /* WarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarnView.swift; sourceTree = "<group>"; };
 		791411B829C1AA2600915867 /* ToCheckinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToCheckinView.swift; sourceTree = "<group>"; };
 		795BB3FA29C2F51A00A45984 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		79641DB029E91CAA00D2642F /* CountDownFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownFilter.swift; sourceTree = "<group>"; };
+		79641DB229E9417700D2642F /* PayWallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallView.swift; sourceTree = "<group>"; };
+		79641DB429E971C400D2642F /* InfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRow.swift; sourceTree = "<group>"; };
+		79676F6E29EA7CD4004BC7BA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		79676F7029EA811B004BC7BA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		79754BCD29DBE4420075F198 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		79754BD129DBEC700075F198 /* test_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test_1.swift; sourceTree = "<group>"; };
 		79754BD329DBFDBB0075F198 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7976962B29EBBC1800BD8632 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		797AC7B929DFD16200AAAA4F /* CheckInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInView.swift; sourceTree = "<group>"; };
 		797AC7BB29DFDD2300AAAA4F /* CountDownRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownRow.swift; sourceTree = "<group>"; };
 		797AC7BD29DFE72500AAAA4F /* CheckInRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInRow.swift; sourceTree = "<group>"; };
+		797F6C8529E7E79C00567ADC /* UserEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditView.swift; sourceTree = "<group>"; };
 		7981060429C82861004D38F0 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		7985B03F29C0372F003FCDDB /* InputWithIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputWithIconView.swift; sourceTree = "<group>"; };
 		7985B04129C03BB3003FCDDB /* NumberOnlyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOnlyTextField.swift; sourceTree = "<group>"; };
@@ -147,6 +162,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79641DB829E97C8300D2642F /* RevenueCat in Frameworks */,
+				79676F6F29EA7CD4004BC7BA /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,12 +182,13 @@
 		79754BCC29DBE3DF0075F198 /* utility */ = {
 			isa = PBXGroup;
 			children = (
-				7985B04629C06B76003FCDDB /* SignInWithApple.swift */,
 				79754BCD29DBE4420075F198 /* Notification.swift */,
 				79754BD329DBFDBB0075F198 /* AppDelegate.swift */,
 				79AEFA4129DECC2100DF1FC6 /* functions.swift */,
 				799AFE7E29E407E70045D7C5 /* LocationManager.swift */,
 				799AFE8029E43C900045D7C5 /* WeatherKitManager.swift */,
+				79641DB029E91CAA00D2642F /* CountDownFilter.swift */,
+				79676F7029EA811B004BC7BA /* Extensions.swift */,
 			);
 			path = utility;
 			sourceTree = "<group>";
@@ -236,6 +254,7 @@
 				79AEFA3F29DEB78D00DF1FC6 /* CountdownView.swift */,
 				797AC7B929DFD16200AAAA4F /* CheckInView.swift */,
 				79A2A66A29E544240020B27E /* LaunchScreenView.swift */,
+				79641DB229E9417700D2642F /* PayWallView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -254,10 +273,13 @@
 			children = (
 				79CE957D29DD90F600289A9E /* Add */,
 				79CE957C29DD90EC00289A9E /* Home */,
+				7985B04629C06B76003FCDDB /* SignInWithApple.swift */,
 				791411B429C194D800915867 /* SuccessView.swift */,
 				791411B629C19B3500915867 /* WarnView.swift */,
 				791411B829C1AA2600915867 /* ToCheckinView.swift */,
 				79A7340129D01D6D00D6409E /* DeleteView.swift */,
+				797F6C8529E7E79C00567ADC /* UserEditView.swift */,
+				79641DB429E971C400D2642F /* InfoRow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -269,6 +291,7 @@
 				79BAC0E929BC751E006822B9 /* TabModel.swift */,
 				795BB3FA29C2F51A00A45984 /* HomeViewModel.swift */,
 				79A2A66829E52C320020B27E /* CategoryModel.swift */,
+				7976962B29EBBC1800BD8632 /* UserViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,6 +299,7 @@
 		79BD2C3C29DABCD90026F1F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				79676F6E29EA7CD4004BC7BA /* StoreKit.framework */,
 				79BD2C3D29DABCD90026F1F2 /* WidgetKit.framework */,
 				79BD2C3F29DABCD90026F1F2 /* SwiftUI.framework */,
 			);
@@ -337,6 +361,7 @@
 			);
 			name = DaySnap;
 			packageProductDependencies = (
+				79641DB729E97C8300D2642F /* RevenueCat */,
 			);
 			productName = DaySnap;
 			productReference = 79BAC0C629BC5221006822B9 /* DaySnap.app */;
@@ -388,6 +413,7 @@
 			);
 			mainGroup = 79BAC0BD29BC5221006822B9;
 			packageReferences = (
+				79641DB629E97C8300D2642F /* XCRemoteSwiftPackageReference "purchases-ios" */,
 			);
 			productRefGroup = 79BAC0C729BC5221006822B9 /* Products */;
 			projectDirPath = "";
@@ -428,7 +454,9 @@
 				7907E6CD29BEEE6100C141F2 /* CusDatePickerView.swift in Sources */,
 				79A2A66B29E544240020B27E /* LaunchScreenView.swift in Sources */,
 				7981060529C82861004D38F0 /* EditView.swift in Sources */,
+				79641DB529E971C400D2642F /* InfoRow.swift in Sources */,
 				7903A5EC29BDC10200A71CC5 /* MeView.swift in Sources */,
+				7976962C29EBBC1800BD8632 /* UserViewModel.swift in Sources */,
 				7903A5EA29BDB72E00A71CC5 /* Styles.swift in Sources */,
 				79754BD429DBFDBB0075F198 /* AppDelegate.swift in Sources */,
 				79BAC0EA29BC751E006822B9 /* TabModel.swift in Sources */,
@@ -437,11 +465,14 @@
 				79BAC0E329BC659D006822B9 /* ItemListView.swift in Sources */,
 				79754BD229DBEC700075F198 /* test_1.swift in Sources */,
 				79BAC0E729BC7148006822B9 /* TabBarView.swift in Sources */,
+				79676F7129EA811B004BC7BA /* Extensions.swift in Sources */,
 				79AEFA4029DEB78D00DF1FC6 /* CountdownView.swift in Sources */,
 				79BAC0CC29BC5221006822B9 /* ContentView.swift in Sources */,
 				7907E6D729BF15E000C141F2 /* InputLimit.swift in Sources */,
 				799AFE8129E43C900045D7C5 /* WeatherKitManager.swift in Sources */,
 				79AEFA4229DECC2100DF1FC6 /* functions.swift in Sources */,
+				79641DB329E9417700D2642F /* PayWallView.swift in Sources */,
+				79641DB129E91CAA00D2642F /* CountDownFilter.swift in Sources */,
 				79BAC0D929BC53E6006822B9 /* HeaderView.swift in Sources */,
 				791411B529C194D800915867 /* SuccessView.swift in Sources */,
 				79BAC0E129BC61D0006822B9 /* HomeView.swift in Sources */,
@@ -454,6 +485,7 @@
 				79A2A66929E52C320020B27E /* CategoryModel.swift in Sources */,
 				79BAC0CA29BC5221006822B9 /* DaySnapApp.swift in Sources */,
 				7985B04729C06B76003FCDDB /* SignInWithApple.swift in Sources */,
+				797F6C8629E7E79C00567ADC /* UserEditView.swift in Sources */,
 				79754BCE29DBE4420075F198 /* Notification.swift in Sources */,
 				797AC7BE29DFE72500AAAA4F /* CheckInRow.swift in Sources */,
 				795BB3FB29C2F51A00A45984 /* HomeViewModel.swift in Sources */,
@@ -632,11 +664,12 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleShy0N.DaySnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -671,11 +704,12 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleShy0N.DaySnap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -704,7 +738,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleShy0N.DaySnap.DaySnapWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -733,7 +767,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleShy0N.DaySnap.DaySnapWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -774,6 +808,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		79641DB629E97C8300D2642F /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		79641DB729E97C8300D2642F /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79641DB629E97C8300D2642F /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		79CE956629DD742C00289A9E /* DaySnap.xcdatamodeld */ = {

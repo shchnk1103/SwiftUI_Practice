@@ -10,17 +10,26 @@ import WeatherKit
 
 struct HeaderView: View {
     @Environment(\.colorScheme) var colorScheme
-    @ObservedObject private var locationManager = LocationManager()
-    @ObservedObject private var weatherKitManager = WeatherKitManager()
-    
-    let weatherService = WeatherService.shared
+    @AppStorage("weatherIcon") var weatherIcon: String = "icloud.slash"
+    @AppStorage("firstName") var firstName: String = ""
+    @AppStorage("lastName") var lastName: String = ""
     
     var body: some View {
         HStack(alignment: .center) {
-            VStack(alignment: .leading, spacing: 24) {
-                Text(getGreeting())
-                    .font(.headline)
-                    .lineLimit(1)
+            VStack(alignment: .leading, spacing: 14) {
+                HStack(spacing: 0) {
+                    Text(getGreeting())
+                    
+                    HStack(spacing: 0) {
+                        Text(firstName)
+                        Text(lastName)
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                }
+                .font(.headline)
+                .lineLimit(1)
                 
                 Text("很高兴可以再次见到你")
                     .font(.subheadline)
@@ -30,13 +39,10 @@ struct HeaderView: View {
             
             Spacer()
             
-            Image(systemName: weatherKitManager.symbol)
+            Image(systemName: weatherIcon)
                 .resizable()
                 .frame(width: 50, height: 50)
                 .scaledToFit()
-        }
-        .task(id: locationManager.currentLocation) {
-            await weatherKitManager.getWeather(latitude: locationManager.latitude, longitude: locationManager.longitude)
         }
     }
     

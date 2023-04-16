@@ -14,7 +14,7 @@ struct Category: Identifiable, Hashable {
 }
 
 var categories = [
-    Category(id: 1, name: "默认", icon: "list.bullet"),
-    Category(id: 2, name: "Love", icon: "heart.circle"),
-    Category(id: 3, name: "学习", icon: "book.circle.fill")
+    Category(id: 0, name: "默认", icon: "list.bullet"),
+    Category(id: 1, name: "Love", icon: "heart.circle"),
+    Category(id: 2, name: "学习", icon: "book.circle.fill")
 ]

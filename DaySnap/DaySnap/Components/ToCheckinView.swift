@@ -45,6 +45,7 @@ struct ToCheckinView: View {
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
             .foregroundColor(.white)
             .frame(height: 410)
+            .frame(maxWidth: 350)
             .padding(.horizontal, 30)
             .offset(y: appear ? 0 : 1000)
         }
@@ -112,17 +113,19 @@ struct ToCheckinView: View {
     var button: some View {
         Button {
             if let checkin = vm.selectedCheckIn {
-                if canCheckin() {
+                if canCheckin(checkin: checkin) {
                     // 保存点击按钮的日期
-                    checkinDate = Date()
-                    setLastCheckinTime(checkinDate!)
+                    checkin.lastCheckinTime = Date()
                     
                     checkin.persistDay += 1
+                    checkin.isCheckin = true
                     
                     try? moc.save()
                     
                     flag = false
                 }
+            } else {
+                flag = false
             }
         } label: {
             HStack {
@@ -134,39 +137,10 @@ struct ToCheckinView: View {
                 Spacer()
             }
         }
-        .disabled(!canCheckin())
         .frame(height: 43)
         .frame(maxWidth: 300)
         .background(RoundedRectangle(cornerRadius: 8, style: .continuous))
         .foregroundColor(colorScheme == .dark ? .white : .black)
-    }
-    
-    // MARK: functions
-    // 设置上次 Click In 按钮点击的确切时间
-    private func setLastCheckinTime(_ time: Date) {
-        let timeInterval = time.timeIntervalSinceReferenceDate
-        UserDefaults.standard.setValue(timeInterval, forKey: "lastCheckinTime")
-    }
-    
-    // 获取上次 Click In 按钮点击的确切时间
-    private func getLastCheckinTime() -> Date? {
-        guard let timeInterval = UserDefaults.standard.value(forKey: "lastCheckinTime") as? TimeInterval else {
-            return nil
-        }
-        return Date(timeIntervalSinceReferenceDate: timeInterval)
-    }
-    
-    // 检查是否可以点击 Check In 按钮
-    private func canCheckin() -> Bool {
-        guard let lastCheckinTime = getLastCheckinTime() else { return true }
-        
-        let calendar = Calendar.current
-        let today = Date()
-        
-        let lastCheckinDay = calendar.component(.day, from: lastCheckinTime)
-        let todayDay = calendar.component(.day, from: today)
-        
-        return todayDay != lastCheckinDay
     }
 }
 

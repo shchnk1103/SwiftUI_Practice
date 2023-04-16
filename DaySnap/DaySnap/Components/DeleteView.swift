@@ -72,6 +72,7 @@ struct DeleteView: View {
                     .stroke()
             )
             .frame(height: 410)
+            .frame(maxWidth: 350)
             .padding(.horizontal, 30)
             .offset(y: appear ? 0 : 1000)
         }
