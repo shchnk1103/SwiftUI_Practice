@@ -28,7 +28,8 @@ struct MeView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section("用户") {
+                // 用户
+                Section {
                     if userId.isEmpty {
                         SignInWithAppleButtonView()
                     } else {
@@ -77,13 +78,27 @@ struct MeView: View {
                     }
                 }
 
-                Section("暗黑模式") {
+                // 暗黑模式
+                Section {
                     darkmode
                     
                     darkmodeWithSystemToggle
                 }
                 
-                Section("关于") {
+                Section {
+                    NavigationLink {
+                        CategoryManageView()
+                    } label: {
+                        HStack {
+                            Image(systemName: "list.bullet.rectangle.portrait")
+                            Text("分类管理")
+                                .font(.subheadline)
+                        }
+                    }
+                }
+                
+                // 关于
+                Section {
                     Link(destination:
                             URL(string: "mailto:doubleshy0n@qq.com?subject=DaySnap%20\(UIDevice.current.systemVersion)")!
                     ) {

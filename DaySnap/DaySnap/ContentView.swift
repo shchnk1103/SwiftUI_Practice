@@ -11,6 +11,7 @@ import Combine
 struct ContentView: View {
     @ObservedObject private var locationManager = LocationManager()
     @ObservedObject private var weatherKitManager = WeatherKitManager()
+    
     @AppStorage("weatherIcon") var weatherIcon: String = "icloud.slash"
     
     @State private var selectedTab: Tab = .home

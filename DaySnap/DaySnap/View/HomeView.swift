@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct HomeView: View {
     @Environment(\.colorScheme) var colorScheme
     @AppStorage("flag") var flag: Bool = true
+    
     @StateObject private var vm = HomeViewModel()
     @StateObject private var filter = CountDownFilter()
+    @StateObject private var filterCheckin = CheckInFilter()
     
     @State private var wantToCheckin: Bool = false
     @State private var showingAlert: Bool = false
@@ -22,6 +25,7 @@ struct HomeView: View {
     @State private var switchHeight: CGFloat = 0
     @State private var textHeight: CGFloat = 0
     @State private var selectedCategory: Int = 0
+    @State private var selectedStatus: Int = 0
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -60,6 +64,13 @@ struct HomeView: View {
         .onAppear {
             UITableView.appearance().backgroundColor = .clear
             UIScrollView.appearance().backgroundColor = .clear
+        }
+        .onAppear {
+            let decoder = JSONDecoder()
+            if let data = UserDefaults.standard.data(forKey: "categories"),
+               let decoded = try? decoder.decode([Category].self, from: data) {
+                categories = decoded
+            }
         }
     }
     
@@ -103,54 +114,7 @@ struct HomeView: View {
                 .frame(height: 60)
                 .offset(y: offset > 0 ? (offset <= switchOffset ? -offset : -switchOffset) : 0)
             
-            HStack {
-                if selectedCategory == 0 {
-                    Text(flag ? "所有倒数日" : "所有打卡项目")
-                } else {
-                    Text("分类")
-                }
-                
-                Spacer()
-                
-                if flag {
-                    Picker(selection: $selectedCategory) {
-                        ForEach(categories, id: \.id) { category in
-                            HStack {
-                                Image(systemName: category.icon)
-                            }
-                            .tag(category.id)
-                        }
-                    } label: {
-                        HStack {
-                            Text(categories[selectedCategory].name)
-                            Image(systemName: categories[selectedCategory].icon)
-                        }
-                    }
-                    .frame(width: 60, height: 35)
-                    .onChange(of: selectedCategory) { newValue in
-                        filter.category = categories[newValue].name
-                    }
-                }
-            }
-            .frame(height: 8)
-            .font(.body)
-            .foregroundColor(.secondary)
-            .padding()
-            .offset(y: offset > 0 ? (offset <= switchOffset ? -offset : -switchOffset) : 0)
-            .opacity(getOpacity())
-            .animation(.easeOut, value: flag)
-            .overlay {
-                GeometryReader { geo -> Color in
-                    let height = geo.size.height
-                    
-                    DispatchQueue.main.async {
-                        textHeight = height
-                    }
-                    
-                    return Color.clear
-                }
-            }
-            .animation(.default, value: selectedCategory)
+            pickers
         }
         // GeometryReader
         .overlay {
@@ -168,6 +132,69 @@ struct HomeView: View {
                 return Color.clear
             }
         }
+    }
+    
+    var pickers: some View {
+        HStack {
+            Text(flag ? "所有倒数日" : "所有打卡项目")
+            
+            Spacer()
+            
+            if flag {
+                if !categories.isEmpty {
+                    Picker(selection: $selectedCategory) {
+                        ForEach(categories, id: \.id) { category in
+                            HStack {
+                                Image(systemName: category.icon)
+                            }
+                            .tag(category.id)
+                        }
+                    } label: {
+                        HStack {
+                            Text(categories[selectedCategory].name)
+                            Image(systemName: categories[selectedCategory].icon)
+                        }
+                    }
+                    .frame(height: 35)
+                    .onChange(of: selectedCategory) { newValue in
+                        filter.category = categories[newValue].name
+                    }
+                }
+            } else {
+                Picker(selection: $selectedStatus) {
+                    ForEach(statuses, id: \.id) { status in
+                        Text(status.name).tag(status.id)
+                    }
+                } label: {
+                    HStack {
+                        Text(statuses[selectedStatus].name)
+                    }
+                }
+                .frame(height: 35)
+                .onChange(of: selectedStatus) { newValue in
+                    filterCheckin.status = statuses[selectedStatus].name
+                }
+            }
+        }
+        .frame(height: 8)
+        .font(.body)
+        .foregroundColor(.secondary)
+        .padding()
+        .offset(y: offset > 0 ? (offset <= switchOffset ? -offset : -switchOffset) : 0)
+        .opacity(getOpacity())
+        .animation(.easeOut, value: flag)
+        .overlay {
+            GeometryReader { geo -> Color in
+                let height = geo.size.height
+                
+                DispatchQueue.main.async {
+                    textHeight = height
+                }
+                
+                return Color.clear
+            }
+        }
+        .animation(.default, value: selectedCategory)
     }
     
     var overlay: some View {
@@ -188,6 +215,7 @@ struct HomeView: View {
         ItemListView(wantToCheckin: $wantToCheckin, showingAlert: $showingAlert)
             .environmentObject(vm)
             .environmentObject(filter)
+            .environmentObject(filterCheckin)
             .frame(maxHeight: .infinity)
             .padding(.top, scrollPaddingTop)
             // GeometryReader
@@ -210,7 +238,7 @@ struct HomeView: View {
     }
     
     
-    // MARK: fuc
+    // MARK: fuctions
     
     private func getOffset() -> CGSize {
         var size: CGSize = .zero

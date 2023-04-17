@@ -11,6 +11,7 @@ struct CheckInView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var vm: HomeViewModel
+    @EnvironmentObject var filter: CheckInFilter
     @FetchRequest(sortDescriptors: []) var checkins: FetchedResults<CheckIn>
     
     @Binding var showingAlert: Bool
@@ -45,14 +46,24 @@ struct CheckInView: View {
                 .padding(.vertical, 5)
                 .animation(.default, value: progress)
                 
-                ForEach(checkins) { checkin in
+                ForEach(checkins.filter({ checkin in
+                    if filter.status == "全部" || filter.status == "" {
+                        return true
+                    } else if filter.status == "未打卡" {
+                        return checkin.isCheckin == false
+                    } else {
+                        return checkin.isCheckin == true
+                    }
+                })) { checkin in
                     CheckInRow(showingAlert: $showingAlert, wantToCheckin: $wantToCheckin, checkin: checkin)
                         .padding(.horizontal)
-    //                CountDownRow(showingAlert: $showingAlert, countdown: checkin)
-    //                    .onTapGesture {
-    //                        showSheet = true
-    //                        vm.selectedCheckIn = checkin
-    //                    }
+                        .onTapGesture {
+                            showSheet = true
+                            vm.selectedCheckIn = checkin
+                        }
+                }
+                .sheet(isPresented: $showSheet) {
+                    EditCheckinView(checkin: vm.selectedCheckIn!)
                 }
             }
             .onAppear {
@@ -68,9 +79,6 @@ struct CheckInView: View {
                     try? moc.save()
                 }
             }
-//            .sheet(isPresented: $showSheet) {
-//                EditView(countdown: vm.selectedCheckIn!)
-//            }
         }
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct AddView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.managedObjectContext) var moc
+    
     @AppStorage("flag") var flag: Bool = true
     
     @State private var isPinned: Bool = false
@@ -19,7 +20,7 @@ struct AddView: View {
     @State private var deadline: Date = Date()
     @State private var reminderDate: Date = Date()
     @State private var persistDate: String = ""
-    @State private var selecredCategory: Category = categories[0]
+    @State private var selectedCategory: Int = 0
     
     @State private var showAddSuccess: Bool = false
     @State private var showWarn: Bool = false
@@ -49,7 +50,7 @@ struct AddView: View {
                             pinToggle
                             
                             VStack {
-                                if !flag {                                    
+                                if !flag {
                                     reminderToggle
                                 }
                                 
@@ -85,6 +86,7 @@ struct AddView: View {
             }
         }
         .onTapGesture {
+            // 强制隐藏键盘
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
@@ -99,8 +101,8 @@ struct AddView: View {
             
             Spacer()
             
-            Picker(selection: $selecredCategory, label: Text("选择分类")) {
-                ForEach(categories, id: \.self) { category in
+            Picker(selection: $selectedCategory, label: Text("选择分类")) {
+                ForEach(categories, id: \.id) { category in
                     HStack {
                         Image(systemName: category.icon)
                         Text(category.name)
@@ -182,7 +184,7 @@ struct AddView: View {
                 countdown.isReminder = isReminder
                 countdown.notificationDate = reminderDate
                 countdown.remainingDays = calRemainingDays(targetDay: deadline)
-                countdown.category = selecredCategory.name
+                countdown.category = categories[selectedCategory].name
                 
                 try? moc.save()
                 

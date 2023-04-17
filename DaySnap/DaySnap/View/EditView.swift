@@ -20,7 +20,7 @@ struct EditView: View {
     @State private var isPinned: Bool = false
     @State private var isReminder: Bool = false
     @State private var reminderDate: Date = Date()
-    @State private var selecredCategory: Category = categories[0]
+    @State private var selectedCategory: Int = 0
     
     var countdown: CountDown
     
@@ -42,20 +42,20 @@ struct EditView: View {
                 
                 pinToggle
                 
-                VStack {
-                    reminderToggle
-                    
-                    if isReminder {
-                        CusDatePickerView(selectedDate: $reminderDate)
-                            .onAppear {
-                                self.reminderDate = countdown.notificationDate ?? Date()
-                            }
-                    }
-                }
-                .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
-                .cornerRadius(8)
-                .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
-                .animation(.default, value: isReminder)
+                //                VStack {
+                //                    reminderToggle
+                //                    
+                //                    if isReminder {
+                //                        CusDatePickerView(selectedDate: $reminderDate)
+                //                            .onAppear {
+                //                                self.reminderDate = countdown.notificationDate ?? Date()
+                //                            }
+                //                    }
+                //                }
+                //                .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
+                //                .cornerRadius(8)
+                //                .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
+                //                .animation(.default, value: isReminder)
             }
             
             button
@@ -83,7 +83,7 @@ struct EditView: View {
             
             Spacer()
             
-            Picker(selection: $selecredCategory, label: Text("选择分类")) {
+            Picker(selection: $selectedCategory, label: Text("选择分类")) {
                 ForEach(categories, id: \.self) { category in
                     HStack {
                         Image(systemName: category.icon)
@@ -102,7 +102,7 @@ struct EditView: View {
         .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 6)
         .onAppear {
             if let index = categories.firstIndex(where: { $0.name == countdown.category }) {
-                self.selecredCategory = categories[index]
+                self.selectedCategory = index
             }
         }
     }
@@ -174,7 +174,7 @@ struct EditView: View {
         countdown.isReminder = isReminder
         countdown.notificationDate = reminderDate
         countdown.remainingDays = calRemainingDays(targetDay: targetDate)
-        countdown.category = selecredCategory.name
+        countdown.category = categories[selectedCategory].name
         
         try? moc.save()
     }

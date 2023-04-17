@@ -10,6 +10,7 @@ import Combine
 
 class CountDownFilter: ObservableObject {
     let objectWillChange = ObservableObjectPublisher()
+    
     @Published var category: String = "" {
         didSet {
             objectWillChange.send()

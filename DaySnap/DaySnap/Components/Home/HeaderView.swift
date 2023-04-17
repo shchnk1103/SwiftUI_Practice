@@ -13,6 +13,7 @@ struct HeaderView: View {
     @AppStorage("weatherIcon") var weatherIcon: String = "icloud.slash"
     @AppStorage("firstName") var firstName: String = ""
     @AppStorage("lastName") var lastName: String = ""
+    @AppStorage("userId") var userId: String = ""
     
     var body: some View {
         HStack(alignment: .center) {
@@ -20,13 +21,15 @@ struct HeaderView: View {
                 HStack(spacing: 0) {
                     Text(getGreeting())
                     
-                    HStack(spacing: 0) {
-                        Text(firstName)
-                        Text(lastName)
+                    if !userId.isEmpty {                        
+                        HStack(spacing: 0) {
+                            Text(firstName)
+                            Text(lastName)
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
                     }
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 5)
-                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
                 }
                 .font(.headline)
                 .lineLimit(1)
