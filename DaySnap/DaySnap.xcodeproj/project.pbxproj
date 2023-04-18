@@ -20,6 +20,7 @@
 		791411B929C1AA2600915867 /* ToCheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791411B829C1AA2600915867 /* ToCheckinView.swift */; };
 		792002BD29ED1064001F9C6E /* DaySnap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 792002BB29ED1064001F9C6E /* DaySnap.xcdatamodeld */; };
 		792002BE29ED1136001F9C6E /* DaySnap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 792002BB29ED1064001F9C6E /* DaySnap.xcdatamodeld */; };
+		792002C029ED1D64001F9C6E /* ReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792002BF29ED1D64001F9C6E /* ReminderModel.swift */; };
 		795BB3FB29C2F51A00A45984 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795BB3FA29C2F51A00A45984 /* HomeViewModel.swift */; };
 		79641DB129E91CAA00D2642F /* CountDownFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79641DB029E91CAA00D2642F /* CountDownFilter.swift */; };
 		79641DB329E9417700D2642F /* PayWallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79641DB229E9417700D2642F /* PayWallView.swift */; };
@@ -27,6 +28,7 @@
 		79641DB829E97C8300D2642F /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 79641DB729E97C8300D2642F /* RevenueCat */; };
 		79676F6F29EA7CD4004BC7BA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79676F6E29EA7CD4004BC7BA /* StoreKit.framework */; };
 		79676F7129EA811B004BC7BA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79676F7029EA811B004BC7BA /* Extensions.swift */; };
+		7972C95829ED867200CE5CAF /* WeatherAttributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7972C95729ED867200CE5CAF /* WeatherAttributionView.swift */; };
 		79754BCE29DBE4420075F198 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79754BCD29DBE4420075F198 /* Notification.swift */; };
 		79754BD229DBEC700075F198 /* test_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79754BD129DBEC700075F198 /* test_1.swift */; };
 		7976962C29EBBC1800BD8632 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7976962B29EBBC1800BD8632 /* UserViewModel.swift */; };
@@ -112,12 +114,14 @@
 		791411B629C19B3500915867 /* WarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarnView.swift; sourceTree = "<group>"; };
 		791411B829C1AA2600915867 /* ToCheckinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToCheckinView.swift; sourceTree = "<group>"; };
 		792002BC29ED1064001F9C6E /* DaySnap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DaySnap.xcdatamodel; sourceTree = "<group>"; };
+		792002BF29ED1D64001F9C6E /* ReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderModel.swift; sourceTree = "<group>"; };
 		795BB3FA29C2F51A00A45984 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		79641DB029E91CAA00D2642F /* CountDownFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownFilter.swift; sourceTree = "<group>"; };
 		79641DB229E9417700D2642F /* PayWallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallView.swift; sourceTree = "<group>"; };
 		79641DB429E971C400D2642F /* InfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRow.swift; sourceTree = "<group>"; };
 		79676F6E29EA7CD4004BC7BA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		79676F7029EA811B004BC7BA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7972C95729ED867200CE5CAF /* WeatherAttributionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAttributionView.swift; sourceTree = "<group>"; };
 		79754BCD29DBE4420075F198 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		79754BD129DBEC700075F198 /* test_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test_1.swift; sourceTree = "<group>"; };
 		7976962B29EBBC1800BD8632 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 				79A2A66829E52C320020B27E /* CategoryModel.swift */,
 				7976962B29EBBC1800BD8632 /* UserViewModel.swift */,
 				7976962F29EBDFD600BD8632 /* StatusModel.swift */,
+				792002BF29ED1D64001F9C6E /* ReminderModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -340,6 +345,7 @@
 				79BAC0DA29BC5A60006822B9 /* SwitchView.swift */,
 				797AC7BB29DFDD2300AAAA4F /* CountDownRow.swift */,
 				797AC7BD29DFE72500AAAA4F /* CheckInRow.swift */,
+				7972C95729ED867200CE5CAF /* WeatherAttributionView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 				7981060529C82861004D38F0 /* EditView.swift in Sources */,
 				79641DB529E971C400D2642F /* InfoRow.swift in Sources */,
 				7903A5EC29BDC10200A71CC5 /* MeView.swift in Sources */,
+				792002C029ED1D64001F9C6E /* ReminderModel.swift in Sources */,
 				7976962C29EBBC1800BD8632 /* UserViewModel.swift in Sources */,
 				7903A5EA29BDB72E00A71CC5 /* Styles.swift in Sources */,
 				79BAC0EA29BC751E006822B9 /* TabModel.swift in Sources */,
@@ -495,6 +502,7 @@
 				797AC7BA29DFD16200AAAA4F /* CheckInView.swift in Sources */,
 				79A7340229D01D6D00D6409E /* DeleteView.swift in Sources */,
 				792002BD29ED1064001F9C6E /* DaySnap.xcdatamodeld in Sources */,
+				7972C95829ED867200CE5CAF /* WeatherAttributionView.swift in Sources */,
 				791411B729C19B3500915867 /* WarnView.swift in Sources */,
 				79A2A66929E52C320020B27E /* CategoryModel.swift in Sources */,
 				79BAC0CA29BC5221006822B9 /* DaySnapApp.swift in Sources */,

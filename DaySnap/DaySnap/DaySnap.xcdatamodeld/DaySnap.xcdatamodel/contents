@@ -10,6 +10,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notificationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="persistDay" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="reminderEvent" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="targetDate" optional="YES" attributeType="String"/>
     </entity>
     <entity name="CountDown" representedClassName="CountDown" syncable="YES" codeGenerationType="class">
@@ -21,6 +22,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notificationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="remainingDays" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="reminderEvent" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="targetDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
 </model>

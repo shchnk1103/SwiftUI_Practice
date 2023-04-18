@@ -78,7 +78,13 @@ struct CategoryManageView: View {
     }
 
     private func save() {
-        categories.append(Category(id: categories.count, name: name, icon: selectedSymbol))
+        guard !name.isEmpty else {
+            print("Error: name must not be empty.")
+            return
+        }
+        
+        let newCategory = Category(id: categories.count, name: name, icon: selectedSymbol)
+        categories.append(newCategory)
         
         saveCategories()
         
@@ -86,9 +92,13 @@ struct CategoryManageView: View {
     }
     
     private func saveCategories() {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(categories) {
+        let sortedCategories = categories.sorted { $0.id < $1.id }
+        do {
+            let encoder = JSONEncoder()
+            let encoded = try encoder.encode(sortedCategories)
             UserDefaults.standard.set(encoded, forKey: "categories")
+        } catch {
+            print("Error encoding categories: \(error.localizedDescription)")
         }
     }
 }

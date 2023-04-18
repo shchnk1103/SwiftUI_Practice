@@ -26,7 +26,7 @@ struct DaySnapApp: App {
         }
         .backgroundTask(.appRefresh("CountdownZero")) {
             countdownRemainningDaysRefresh()
-            await updateRemainingDays()
+            await updateAboutCountDown()
         }
         .backgroundTask(.appRefresh("CheckinZero")) {
             isCheckinRefresh()

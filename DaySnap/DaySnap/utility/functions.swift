@@ -26,15 +26,35 @@ func calRemainingDays(targetDay: Date) -> Int32 {
     return Int32(days)
 }
 
-func updateRemainingDays() async {
+func updateAboutCountDown() async {
     let request: NSFetchRequest<CountDown> = CountDown.fetchRequest()
     let context = PersistenceController.shared.container.viewContext
 
     do {
         let countdowns = try context.fetch(request)
+        let notificationManager = NotificationManager()
+        let currentDate = Date()
 
         for countdown in countdowns {
+            // 计算距离目标日还有多远
             countdown.remainingDays = calRemainingDays(targetDay: countdown.targetDate ?? Date())
+            
+            // *** 通知 ***
+            // 计算得出下一次通知日
+            var nextNotificationDate = calNextNotificationTime(selectedReminder: Int(countdown.reminderEvent))
+            // 如果下一次通知日在目标日之后
+            if nextNotificationDate > countdown.targetDate ?? Date() {
+                // 那么就直接在目标日通知
+                nextNotificationDate = countdown.targetDate ?? Date()
+                countdown.notificationDate = countdown.targetDate ?? Date()
+            } else {
+                // 如果通知日就是今天，那么就在中午12点发送通知
+                if Calendar.current.isDate(countdown.notificationDate ?? Date(), inSameDayAs: currentDate) {
+                    notificationManager.sendNotification(countdown: countdown, identifier: countdown.id?.uuidString ?? UUID().uuidString)
+                    // 记录下一次通知的日期
+                    countdown.notificationDate = nextNotificationDate
+                }
+            }
         }
 
         try context.save()
@@ -75,6 +95,23 @@ func canCheckin(checkin: CheckIn) -> Bool {
     return todayDay != lastCheckinDay
 }
 
+// 计算下一次需要通知的时间
+func calNextNotificationTime(selectedReminder: Int) -> Date {
+    let date = Date()
+    switch selectedReminder {
+    case 0:
+        return Calendar.current.date(byAdding: .day, value: 1, to: date) ?? Date()
+    case 1:
+        return Calendar.current.date(byAdding: .weekOfYear, value: 1, to: date) ?? Date()
+    case 2:
+        return Calendar.current.date(byAdding: .month, value: 1, to: date) ?? Date()
+    case 3:
+        return Calendar.current.date(byAdding: .year, value: 1, to: date) ?? Date()
+    default:
+        return date
+    }
+}
+
 struct PersistenceController {
     static let shared = PersistenceController()
 
@@ -92,58 +129,3 @@ struct PersistenceController {
         })
     }
 }
-
-//func sortedByPriority() -> [Countdown] {
-//    let pinnedCountdowns = self.filter { $0.isPinned }
-//    let unpinnedCountdowns = self.filter { !$0.isPinned }
-//
-//    let sortedPinnedCountdowns = pinnedCountdowns.sorted { countdown1, countdown2 in
-//        if countdown1.remainingDays >= 0 {
-//            if countdown2.remainingDays >= 0 {
-//                if countdown1.remainingDays == countdown2.remainingDays {
-//                    return countdown1.name < countdown2.name
-//                }
-//                return countdown1.remainingDays < countdown2.remainingDays
-//            } else {
-//                // countdown1.remainingDays >= 0 && countdown2.remainingDays < 0
-//                return true
-//            }
-//        } else {
-//            if countdown2.remainingDays < 0 {
-//                if countdown1.remainingDays == countdown2.remainingDays {
-//                    return countdown1.name < countdown2.name
-//                }
-//                return countdown1.remainingDays < countdown2.remainingDays
-//            } else {
-//                // countdown1.remainingDays < 0 && countdown2.remainingDays >= 0
-//                return false
-//            }
-//        }
-//    }
-//
-//    let sortedUnpinnedCountdowns = unpinnedCountdowns.sorted { countdown1, countdown2 in
-//        if countdown1.remainingDays >= 0 {
-//            if countdown2.remainingDays >= 0 {
-//                if countdown1.remainingDays == countdown2.remainingDays {
-//                    return countdown1.name < countdown2.name
-//                }
-//                return countdown1.remainingDays < countdown2.remainingDays
-//            } else {
-//                // countdown1.remainingDays >= 0 && countdown2.remainingDays < 0
-//                return true
-//            }
-//        } else {
-//            if countdown2.remainingDays < 0 {
-//                if countdown1.remainingDays == countdown2.remainingDays {
-//                    return countdown1.name < countdown2.name
-//                }
-//                return countdown1.remainingDays < countdown2.remainingDays
-//            } else {
-//                // countdown1.remainingDays < 0 && countdown2.remainingDays >= 0
-//                return false
-//            }
-//        }
-//    }
-//
-//    return sortedPinnedCountdowns + sortedUnpinnedCountdowns
-//}

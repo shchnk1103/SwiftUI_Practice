@@ -21,21 +21,27 @@ class NotificationManager: ObservableObject {
         }
     }
     
-    func sendNotification(title: String, date: Date, identifier: String) {
+    func sendNotification(countdown: CountDown, identifier: String) {
         // 创建通知的内容
+        var title = ""
+        if countdown.remainingDays > 0 {
+            title = "\(String(describing: countdown.emojiText)) \(String(describing: countdown.name)) 还有\(countdown.remainingDays)天"
+        } else if countdown.remainingDays == 0 {
+            title = "\(String(describing: countdown.emojiText)) \(String(describing: countdown.name)) 就是今天"
+        }
         let content = UNMutableNotificationContent()
         content.title = title
         content.badge = 1
         content.sound = UNNotificationSound.default
         
-        // 设置触发器，在指定日期和时间的那一天中午12点发送通知
+        // 设置触发器，在指定日期的那一天中午12点发送通知
         let calendar = Calendar.current
         let noon = DateComponents(hour: 12, minute: 0)
-        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        let components = calendar.dateComponents([.year, .month, .day], from: countdown.targetDate ?? Date())
         var triggerDate = calendar.date(from: components)!
         triggerDate = calendar.nextDate(after: triggerDate, matching: noon, matchingPolicy: .nextTime)!
 
-        let trigger = UNCalendarNotificationTrigger(dateMatching: calendar.dateComponents([.year, .month, .day, .hour, .second], from: triggerDate), repeats: false)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: calendar.dateComponents([.year, .month, .day, .hour, .minute], from: triggerDate), repeats: false)
         
         // 创建通知请求
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
@@ -69,10 +75,22 @@ class NotificationManager: ObservableObject {
     }
     
     // 根据指定的天数设置通知
-    func scheduleNotificationsForDays(identifier: String, content: UNMutableNotificationContent, triggerDate: DateComponents, days: Int) {
+    func scheduleNotificationsForDays(identifier: String, content: UNMutableNotificationContent, triggerDate: DateComponents, days: Int, reminderEvent: Int) {
         let calendar = Calendar.current
         let endDate = calendar.date(byAdding: .day, value: days, to: Date())
-        let interval = DateComponents(day: 1)
+        var interval = DateComponents(day: 1)
+        
+        switch reminderEvent {
+        case 1:
+            interval = DateComponents(weekOfYear: 1)
+        case 2:
+            interval = DateComponents(month: 1)
+        case 3:
+            interval = DateComponents(year: 1)
+        default:
+            break
+        }
+        
         var currentDate = Date()
 
         while currentDate <= endDate! {
@@ -82,10 +100,10 @@ class NotificationManager: ObservableObject {
         }
     }
     
-    func scheduleRepeatingNotificationForCheckin(title: String, persisDays: String, identifier: String) {
+    func scheduleRepeatingNotificationForCheckin(title: String, persisDays: String, identifier: String, reminderEvent: Int) {
         let content = setupNotificationContent(title: title)
         let triggerDate = prepareTriggerDate()
-        scheduleNotificationsForDays(identifier: identifier, content: content, triggerDate: triggerDate, days: Int(persisDays)!)
+        scheduleNotificationsForDays(identifier: identifier, content: content, triggerDate: triggerDate, days: Int(persisDays)!, reminderEvent: reminderEvent)
     }
     
     // 获取通知历史记录

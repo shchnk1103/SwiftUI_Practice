@@ -18,9 +18,9 @@ struct AddView: View {
     @State private var text: String = ""
     @State private var emojiText: String = "🥳"
     @State private var deadline: Date = Date()
-    @State private var reminderDate: Date = Date()
     @State private var persistDate: String = ""
     @State private var selectedCategory: Int = 0
+    @State private var selectedReminder: Int = 0
     
     @State private var showAddSuccess: Bool = false
     @State private var showWarn: Bool = false
@@ -50,13 +50,32 @@ struct AddView: View {
                             pinToggle
                             
                             VStack {
-                                if !flag {
-                                    reminderToggle
-                                }
+                                reminderToggle
                                 
-                                //if isReminder {
-                                //  CusDatePickerView(selectedDate: $reminderDate)
-                                //}
+                                if isReminder {
+                                    HStack {
+                                        if flag {
+                                            Text("如果超过目标日期将不通知")
+                                                .font(.footnote)
+                                                .foregroundColor(.secondary)
+                                        } else {
+                                            Text("如果超过坚持天数将不通知")
+                                                .font(.footnote)
+                                                .foregroundColor(.secondary)
+                                        }
+                                        
+                                        Spacer()
+                                        
+                                        Picker("", selection: $selectedReminder) {
+                                            ForEach(reminders) { reminder in
+                                                Text(reminder.name)
+                                                    .foregroundColor(.secondary)
+                                            }
+                                        }
+                                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                                    }
+                                    .padding([.bottom, .horizontal])
+                                }
                             }
                             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
                             .strokeStyle(cornerRadius: 8)
@@ -175,6 +194,8 @@ struct AddView: View {
             if text.isEmpty {
                 showWarn = true
             } else {
+                let date = calNextNotificationTime(selectedReminder: selectedReminder)
+                
                 let countdown = CountDown(context: moc)
                 countdown.id = UUID()
                 countdown.emojiText = emojiText
@@ -182,18 +203,21 @@ struct AddView: View {
                 countdown.targetDate = deadline
                 countdown.isPinned = isPinned
                 countdown.isReminder = isReminder
-                countdown.notificationDate = reminderDate
+                countdown.notificationDate = date
                 countdown.remainingDays = calRemainingDays(targetDay: deadline)
                 countdown.category = categories[selectedCategory].name
+                countdown.reminderEvent = Int16(selectedReminder)
                 
                 try? moc.save()
                 
-                //                // 请求通知授权
-                //                let notificationManager = NotificationManager()
-                //                notificationManager.requestAuthorization()
-                //
-                //                // 发送通知
-                //                notificationManager.sendNotification(title: "\(emojiText) \(text) 就是今天！", date: deadline, identifier: countdown.id?.uuidString ?? UUID().uuidString)
+                if isReminder {
+                    // 请求通知授权
+                    let notificationManager = NotificationManager()
+                    notificationManager.requestAuthorization()
+                    
+                    // 发送通知
+                    notificationManager.sendNotification(countdown: countdown, identifier: countdown.id?.uuidString ?? UUID().uuidString)
+                }
                 
                 // 重置表单
                 reset(flag: true)
@@ -211,6 +235,7 @@ struct AddView: View {
                 checkin.isReminder = isReminder
                 checkin.notificationDate = Date()
                 checkin.persistDay = 0
+                checkin.reminderEvent = Int16(selectedReminder)
                 
                 try? moc.save()
                 
@@ -220,7 +245,7 @@ struct AddView: View {
                     notificationManager.requestAuthorization()
                     
                     // 发送通知
-                    notificationManager.scheduleRepeatingNotificationForCheckin(title: "\(emojiText) 今天 \(text) 了吗？快来打卡吧！", persisDays: persistDate, identifier: checkin.id?.uuidString ?? UUID().uuidString)
+                    notificationManager.scheduleRepeatingNotificationForCheckin(title: "\(emojiText) 今天 \(text) 了吗？快来打卡吧！", persisDays: persistDate, identifier: checkin.id?.uuidString ?? UUID().uuidString, reminderEvent: selectedReminder)
                 }
                 
                 // 重置表单

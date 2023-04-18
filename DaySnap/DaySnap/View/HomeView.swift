@@ -18,6 +18,8 @@ struct HomeView: View {
     
     @State private var wantToCheckin: Bool = false
     @State private var showingAlert: Bool = false
+    @State private var showAttribution: Bool = false
+    
     @State private var offset: CGFloat = 0
     @State private var startOffset: CGFloat = 0
     @State private var scrollPaddingTop: CGFloat = 0
@@ -60,6 +62,11 @@ struct HomeView: View {
                 DeleteView(showingAlert: $showingAlert)
                     .environmentObject(vm)
             }
+            
+            // 弹窗提醒 -  天气归属
+            if showAttribution {
+                WeatherAttributionView(showAttribution: $showAttribution)
+            }
         }
         .onAppear {
             UITableView.appearance().backgroundColor = .clear
@@ -75,7 +82,7 @@ struct HomeView: View {
     }
     
     var header: some View {
-        HeaderView()
+        HeaderView(showAttribution: $showAttribution)
             .padding(.horizontal)
             .background(colorScheme == .dark ? .black : .white, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
             .overlay {

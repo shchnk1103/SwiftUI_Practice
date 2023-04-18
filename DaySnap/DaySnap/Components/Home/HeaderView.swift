@@ -15,6 +15,8 @@ struct HeaderView: View {
     @AppStorage("lastName") var lastName: String = ""
     @AppStorage("userId") var userId: String = ""
     
+    @Binding var showAttribution: Bool
+    
     var body: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 14) {
@@ -42,10 +44,14 @@ struct HeaderView: View {
             
             Spacer()
             
-            Image(systemName: weatherIcon)
-                .resizable()
-                .frame(width: 50, height: 50)
-                .scaledToFit()
+            Button {
+                showAttribution = true
+            } label: {
+                Image(systemName: weatherIcon)
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .scaledToFit()
+            }
         }
     }
     
@@ -67,6 +73,6 @@ struct HeaderView: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView()
+        HeaderView(showAttribution: .constant(false))
     }
 }
