@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ItemListView: View {
-    @Environment(\.managedObjectContext) var moc
-    @Environment(\.colorScheme) var colorScheme
     @AppStorage("flag") var flag: Bool = true
     
     @Binding var wantToCheckin: Bool

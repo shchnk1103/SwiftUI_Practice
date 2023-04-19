@@ -13,7 +13,7 @@ struct CountdownView: View {
     @EnvironmentObject var vm: HomeViewModel
     @EnvironmentObject var filter: CountDownFilter
     @FetchRequest(sortDescriptors: [
-        NSSortDescriptor(keyPath: \CountDown.isPinned, ascending: true),
+        NSSortDescriptor(keyPath: \CountDown.isPinned, ascending: false),
         NSSortDescriptor(keyPath: \CountDown.name, ascending: true),
         NSSortDescriptor(keyPath: \CountDown.remainingDays, ascending: true)
     ]) var countdowns: FetchedResults<CountDown>
@@ -59,7 +59,7 @@ struct CountdownView: View {
                     try? moc.save()
                 }
             }
-        }   
+        }
     }
     
     // MARK: functions

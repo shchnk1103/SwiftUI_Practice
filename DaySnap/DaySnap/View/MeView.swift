@@ -65,15 +65,6 @@ struct MeView: View {
                                 .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
                                 .strokeStyle(cornerRadius: 8)
                             }
-                        } else {
-                            Button {
-                                Purchases.shared.restorePurchases { customerInfo, error in
-                                    userViewModel.isSubscriptionActive = customerInfo?.entitlements.all["pro"]?.isActive == true
-                                }
-                            } label: {
-                                Text("恢复购买")
-                                    .foregroundColor(.pink)
-                            }
                         }
                     }
                 }
@@ -85,6 +76,7 @@ struct MeView: View {
                     darkmodeWithSystemToggle
                 }
                 
+                // 分类管理
                 Section {
                     NavigationLink {
                         CategoryManageView()
@@ -99,6 +91,22 @@ struct MeView: View {
                 
                 // 关于
                 Section {
+                    Link(destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!) {
+                        HStack {
+                            Image(systemName: "doc.fill")
+                            Text("用户许可协议")
+                                .font(.subheadline)
+                        }
+                    }
+                    
+                    Link(destination: URL(string: "https://privacy.1ts.fun/product/2304110EYdpR9DZr9HoM")!) {
+                        HStack {
+                            Image(systemName: "newspaper.fill")
+                            Text("隐私政策")
+                                .font(.subheadline)
+                        }
+                    }
+                    
                     Link(destination:
                             URL(string: "mailto:doubleshy0n@qq.com?subject=DaySnap%20\(UIDevice.current.systemVersion)")!
                     ) {

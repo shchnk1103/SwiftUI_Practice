@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct EditView: View {
     @Environment(\.managedObjectContext) var moc
@@ -21,6 +22,7 @@ struct EditView: View {
     @State private var isReminder: Bool = false
     @State private var reminderDate: Date = Date()
     @State private var selectedCategory: Int = 0
+    @State private var selectedReminder: Int = 0
     
     var countdown: CountDown
     
@@ -42,20 +44,38 @@ struct EditView: View {
                 
                 pinToggle
                 
-                //                VStack {
-                //                    reminderToggle
-                //                    
-                //                    if isReminder {
-                //                        CusDatePickerView(selectedDate: $reminderDate)
-                //                            .onAppear {
-                //                                self.reminderDate = countdown.notificationDate ?? Date()
-                //                            }
-                //                    }
-                //                }
-                //                .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
-                //                .cornerRadius(8)
-                //                .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
-                //                .animation(.default, value: isReminder)
+                VStack {
+                    reminderToggle
+                    
+                    if isReminder {
+                        HStack {
+                            if flag {
+                                Text("如果超过目标日期将不通知")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                            } else {
+                                Text("如果超过坚持天数将不通知")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Spacer()
+                            
+                            Picker("", selection: $selectedReminder) {
+                                ForEach(reminders) { reminder in
+                                    Text(reminder.name)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                        }
+                        .padding([.bottom, .horizontal])
+                    }
+                }
+                .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
+                .cornerRadius(8)
+                .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
+                .animation(.default, value: isReminder)
             }
             
             button
@@ -89,6 +109,7 @@ struct EditView: View {
                         Image(systemName: category.icon)
                         Text(category.name)
                     }
+                    .tag(category.id)
                 }
             }
             .background(
@@ -167,16 +188,33 @@ struct EditView: View {
     // MARK: fuctions
     
     func update() {
-        countdown.name = text
+        let date = calNextNotificationTime(selectedReminder: selectedReminder)
+
         countdown.emojiText = emojiText
+        countdown.name = text
         countdown.targetDate = targetDate
         countdown.isPinned = isPinned
         countdown.isReminder = isReminder
-        countdown.notificationDate = reminderDate
+        countdown.notificationDate = date
         countdown.remainingDays = calRemainingDays(targetDay: targetDate)
         countdown.category = categories[selectedCategory].name
+        countdown.reminderEvent = Int16(selectedReminder)
         
         try? moc.save()
+        
+        WidgetCenter.shared.reloadAllTimelines()
+        
+        let notificationManager = NotificationManager()
+        if isReminder {
+            // 请求通知授权
+            notificationManager.requestAuthorization()
+            
+            // 发送通知
+            notificationManager.sendNotification(countdown: countdown, identifier: countdown.id?.uuidString ?? UUID().uuidString)
+        } else {
+            // 删除通知
+            notificationManager.deleteNotification(identifier: countdown.id?.uuidString ?? UUID().uuidString)
+        }
     }
 }
 

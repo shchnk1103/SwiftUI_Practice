@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct AddView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject var userViewModel: UserViewModel
+    @FetchRequest(sortDescriptors: []) var countdowns: FetchedResults<CountDown>
+    @FetchRequest(sortDescriptors: []) var checkins: FetchedResults<CheckIn>
     
     @AppStorage("flag") var flag: Bool = true
     
@@ -24,15 +28,12 @@ struct AddView: View {
     
     @State private var showAddSuccess: Bool = false
     @State private var showWarn: Bool = false
+    @State private var warnStatus: Int = 0
     
     var body: some View {
-        ZStack {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 32) {
-                    Text("新建日程")
-                        .font(.title2)
-                        .padding(.top, 20)
-                    
+        NavigationStack {
+            ZStack {
+                ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 32) {
                         SwitchView()
                         
@@ -89,24 +90,25 @@ struct AddView: View {
                         RoundedRectangle(cornerRadius: 8, style: .continuous)
                             .stroke(colorScheme == .dark ? Color.white : Color.black, lineWidth: 1)
                     }
+                    .padding(.horizontal, 15)
+                    .animation(.default, value: isReminder)
                     
                     Spacer()
                 }
-                .padding(.horizontal, 15)
-                .animation(.default, value: isReminder)
+                
+                if showAddSuccess {
+                    SuccessView(flag: $showAddSuccess)
+                }
+                
+                if showWarn {
+                    WarnView(flag: $showWarn, status: $warnStatus)
+                }
             }
-            
-            if showAddSuccess {
-                SuccessView(flag: $showAddSuccess)
+            .navigationTitle("新建日程")
+            .onTapGesture {
+                // 强制隐藏键盘
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
-            
-            if showWarn {
-                WarnView(flag: $showWarn)
-            }
-        }
-        .onTapGesture {
-            // 强制隐藏键盘
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
     
@@ -190,67 +192,104 @@ struct AddView: View {
     
     // MARK: functions
     func save() {
+        let isSubscription = userViewModel.isSubscriptionActive
+        
         if flag {
-            if text.isEmpty {
+            guard !text.isEmpty else {
+                // 0 -> text为空
+                warnStatus = 0
                 showWarn = true
-            } else {
-                let date = calNextNotificationTime(selectedReminder: selectedReminder)
-                
-                let countdown = CountDown(context: moc)
-                countdown.id = UUID()
-                countdown.emojiText = emojiText
-                countdown.name = text
-                countdown.targetDate = deadline
-                countdown.isPinned = isPinned
-                countdown.isReminder = isReminder
-                countdown.notificationDate = date
-                countdown.remainingDays = calRemainingDays(targetDay: deadline)
-                countdown.category = categories[selectedCategory].name
-                countdown.reminderEvent = Int16(selectedReminder)
-                
-                try? moc.save()
-                
-                if isReminder {
-                    // 请求通知授权
-                    let notificationManager = NotificationManager()
-                    notificationManager.requestAuthorization()
-                    
-                    // 发送通知
-                    notificationManager.sendNotification(countdown: countdown, identifier: countdown.id?.uuidString ?? UUID().uuidString)
-                }
-                
+                return
+            }
+            
+            if countdowns.count < 5 {
+                addCountDown()
                 // 重置表单
                 reset(flag: true)
+            } else if isSubscription {
+                addCountDown()
+                // 重置表单
+                reset(flag: true)
+            } else {
+                // 用户没有开通会员
+                warnStatus = 1
+                showWarn = true
             }
         } else {
-            if text.isEmpty || persistDate.isEmpty {
+            guard !text.isEmpty || !persistDate.isEmpty else {
+                warnStatus = 0
                 showWarn = true
-            } else {
-                let checkin = CheckIn(context: moc)
-                checkin.id = UUID()
-                checkin.emojiText = emojiText
-                checkin.name = text
-                checkin.targetDate = persistDate
-                checkin.isPinned = isPinned
-                checkin.isReminder = isReminder
-                checkin.notificationDate = Date()
-                checkin.persistDay = 0
-                checkin.reminderEvent = Int16(selectedReminder)
-                
-                try? moc.save()
-                
-                if isReminder {
-                    // 请求通知授权
-                    let notificationManager = NotificationManager()
-                    notificationManager.requestAuthorization()
-                    
-                    // 发送通知
-                    notificationManager.scheduleRepeatingNotificationForCheckin(title: "\(emojiText) 今天 \(text) 了吗？快来打卡吧！", persisDays: persistDate, identifier: checkin.id?.uuidString ?? UUID().uuidString, reminderEvent: selectedReminder)
-                }
-                
+                return
+            }
+            
+            if checkins.count < 5 {
+                addCheckIn()
                 // 重置表单
                 reset(flag: false)
+            } else if isSubscription {
+                addCheckIn()
+                // 重置表单
+                reset(flag: false)
+            } else {
+                warnStatus = 1
+                showWarn = true
             }
+        }
+    }
+    
+    // MARK: functions
+    func addCountDown() {
+        let date = calNextNotificationTime(selectedReminder: selectedReminder)
+        
+        let countdown = CountDown(context: moc)
+        countdown.id = UUID()
+        countdown.emojiText = emojiText
+        countdown.name = text
+        countdown.targetDate = deadline
+        countdown.isPinned = isPinned
+        countdown.isReminder = isReminder
+        countdown.notificationDate = date
+        countdown.remainingDays = calRemainingDays(targetDay: deadline)
+        countdown.category = categories[selectedCategory].name
+        countdown.reminderEvent = Int16(selectedReminder)
+        
+        try? moc.save()
+        
+        WidgetCenter.shared.reloadAllTimelines()
+        
+        if isReminder {
+            // 请求通知授权
+            let notificationManager = NotificationManager()
+            notificationManager.requestAuthorization()
+            
+            // 发送通知
+            notificationManager.sendNotification(countdown: countdown, identifier: countdown.id?.uuidString ?? UUID().uuidString)
+        }
+    }
+    
+    func addCheckIn() {
+        let checkin = CheckIn(context: moc)
+        checkin.id = UUID()
+        checkin.emojiText = emojiText
+        checkin.name = text
+        checkin.targetDate = persistDate
+        checkin.isPinned = isPinned
+        checkin.isReminder = isReminder
+        checkin.notificationDate = Date()
+        checkin.persistDay = 0
+        checkin.reminderEvent = Int16(selectedReminder)
+        
+        try? moc.save()
+        
+        WidgetCenter.shared.reloadAllTimelines()
+        
+        if isReminder {
+            // 请求通知授权
+            let notificationManager = NotificationManager()
+            notificationManager.requestAuthorization()
+            
+            // 发送通知
+            notificationManager.scheduleRepeatingNotificationForCheckin(title: "\(emojiText) 今天 \(text) 了吗？快来打卡吧！", persisDays: persistDate, identifier: checkin.id?.uuidString ?? UUID().uuidString, reminderEvent: selectedReminder)
         }
     }
     

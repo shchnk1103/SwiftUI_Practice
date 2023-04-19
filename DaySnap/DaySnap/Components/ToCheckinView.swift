@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct ToCheckinView: View {
     @Environment(\.managedObjectContext) var moc
@@ -121,6 +122,8 @@ struct ToCheckinView: View {
                     checkin.isCheckin = true
                     
                     try? moc.save()
+                    
+                    WidgetCenter.shared.reloadAllTimelines()
                     
                     flag = false
                 }

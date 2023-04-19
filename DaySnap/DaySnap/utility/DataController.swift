@@ -25,6 +25,7 @@ class DataController: ObservableObject {
         }
         context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         context.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
+        context.automaticallyMergesChangesFromParent = true
     }
     
     func saveContext() {

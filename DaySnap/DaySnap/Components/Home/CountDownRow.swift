@@ -39,26 +39,44 @@ struct CountDownRow: View {
                         
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(spacing: 0) {
-                                Text("距离 ")
+                                Text(countdown.remainingDays == 0 ? "" : "距离 ")
                                     .font(.body)
                                     .foregroundColor(.secondary)
                                 
-                                Text(countdown.name ?? "")
-                                    .font(.body)
+                                if countdown.remainingDays == 0 {
+                                    Image(systemName: "laurel.leading")
+                                        .fontWeight(.semibold)
+                                        .padding(.trailing, 3)
+                                    
+                                    Text(countdown.name ?? "")
+                                        .font(.body)
+                                    
+                                    Image(systemName: "laurel.trailing")
+                                        .fontWeight(.semibold)
+                                        .padding(.leading, 3)
+                                } else {
+                                    Text(countdown.name ?? "")
+                                        .font(.body)
+                                }
                             }
                             
                             HStack(spacing: 0) {
-                                Text(countdown.remainingDays > 0 ? "还有 " : "已经 ")
-                                    .font(.body)
-                                    .foregroundColor(.secondary)
+                                Text(countdown.remainingDays > 0
+                                     ? "还有 "
+                                     : (countdown.remainingDays == 0 ? "就是今天" : "已经 ")
+                                )
+                                .font(.body)
+                                .foregroundColor(.secondary)
                                 
-                                Text(String(abs(countdown.remainingDays)))
-                                    .font(.title)
-                                    .fontWeight(.semibold)
-                                
-                                Text(" 天")
-                                    .font(.body)
-                                    .foregroundColor(.secondary)
+                                if countdown.remainingDays != 0 {
+                                    Text(String(abs(countdown.remainingDays)))
+                                        .font(.title)
+                                        .fontWeight(.semibold)
+                                    
+                                    Text(" 天")
+                                        .font(.body)
+                                        .foregroundColor(.secondary)
+                                }
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)

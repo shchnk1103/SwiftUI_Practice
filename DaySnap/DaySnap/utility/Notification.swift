@@ -21,6 +21,7 @@ class NotificationManager: ObservableObject {
         }
     }
     
+    // 发送通知（CountDown）
     func sendNotification(countdown: CountDown, identifier: String) {
         // 创建通知的内容
         var title = ""

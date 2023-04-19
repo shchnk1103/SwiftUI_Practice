@@ -12,7 +12,9 @@ struct CheckInView: View {
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var vm: HomeViewModel
     @EnvironmentObject var filter: CheckInFilter
-    @FetchRequest(sortDescriptors: []) var checkins: FetchedResults<CheckIn>
+    @FetchRequest(sortDescriptors: [
+        NSSortDescriptor(keyPath: \CheckIn.isCheckin, ascending: true),
+    ]) var checkins: FetchedResults<CheckIn>
     
     @Binding var showingAlert: Bool
     @Binding var wantToCheckin: Bool

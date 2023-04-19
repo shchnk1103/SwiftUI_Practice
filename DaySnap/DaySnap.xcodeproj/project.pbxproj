@@ -18,6 +18,14 @@
 		791411B529C194D800915867 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791411B429C194D800915867 /* SuccessView.swift */; };
 		791411B729C19B3500915867 /* WarnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791411B629C19B3500915867 /* WarnView.swift */; };
 		791411B929C1AA2600915867 /* ToCheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791411B829C1AA2600915867 /* ToCheckinView.swift */; };
+		791C3D1C29EFC21F001C7D88 /* SmallCountDownWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C3D1B29EFC21F001C7D88 /* SmallCountDownWidget.swift */; };
+		791C3D1E29EFC2BC001C7D88 /* MediumCountDownWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C3D1D29EFC2BC001C7D88 /* MediumCountDownWidget.swift */; };
+		791C3D2329EFCB36001C7D88 /* CheckInWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C3D2229EFCB36001C7D88 /* CheckInWidget.swift */; };
+		791C3D2529EFCBA6001C7D88 /* CheckInWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C3D2429EFCBA6001C7D88 /* CheckInWidgetView.swift */; };
+		791C3D2729EFCBF6001C7D88 /* CheckInWidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C3D2629EFCBF6001C7D88 /* CheckInWidgetEntry.swift */; };
+		791C3D2929EFCC71001C7D88 /* CheckInWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C3D2829EFCC71001C7D88 /* CheckInWidgetProvider.swift */; };
+		791C3D2C29EFD6A5001C7D88 /* SmallCheckInWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C3D2B29EFD6A5001C7D88 /* SmallCheckInWidget.swift */; };
+		791C3D2E29EFDAF7001C7D88 /* MediumCheckInWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C3D2D29EFDAF7001C7D88 /* MediumCheckInWidget.swift */; };
 		792002BD29ED1064001F9C6E /* DaySnap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 792002BB29ED1064001F9C6E /* DaySnap.xcdatamodeld */; };
 		792002BE29ED1136001F9C6E /* DaySnap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 792002BB29ED1064001F9C6E /* DaySnap.xcdatamodeld */; };
 		792002C029ED1D64001F9C6E /* ReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792002BF29ED1D64001F9C6E /* ReminderModel.swift */; };
@@ -67,7 +75,7 @@
 		79BD2C4029DABCD90026F1F2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BD2C3F29DABCD90026F1F2 /* SwiftUI.framework */; };
 		79BD2C4329DABCD90026F1F2 /* DaySnapWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD2C4229DABCD90026F1F2 /* DaySnapWidgetBundle.swift */; };
 		79BD2C4529DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD2C4429DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift */; };
-		79BD2C4729DABCD90026F1F2 /* DaySnapWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD2C4629DABCD90026F1F2 /* DaySnapWidget.swift */; };
+		79BD2C4729DABCD90026F1F2 /* CountDownWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD2C4629DABCD90026F1F2 /* CountDownWidget.swift */; };
 		79BD2C4929DABCDB0026F1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79BD2C4829DABCDB0026F1F2 /* Assets.xcassets */; };
 		79BD2C4D29DABCDB0026F1F2 /* DaySnapWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 79BD2C3B29DABCD90026F1F2 /* DaySnapWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		79BD2C5329DAF67C0026F1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79BAC0CD29BC5222006822B9 /* Assets.xcassets */; };
@@ -113,6 +121,14 @@
 		791411B429C194D800915867 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		791411B629C19B3500915867 /* WarnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarnView.swift; sourceTree = "<group>"; };
 		791411B829C1AA2600915867 /* ToCheckinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToCheckinView.swift; sourceTree = "<group>"; };
+		791C3D1B29EFC21F001C7D88 /* SmallCountDownWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCountDownWidget.swift; sourceTree = "<group>"; };
+		791C3D1D29EFC2BC001C7D88 /* MediumCountDownWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumCountDownWidget.swift; sourceTree = "<group>"; };
+		791C3D2229EFCB36001C7D88 /* CheckInWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInWidget.swift; sourceTree = "<group>"; };
+		791C3D2429EFCBA6001C7D88 /* CheckInWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInWidgetView.swift; sourceTree = "<group>"; };
+		791C3D2629EFCBF6001C7D88 /* CheckInWidgetEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInWidgetEntry.swift; sourceTree = "<group>"; };
+		791C3D2829EFCC71001C7D88 /* CheckInWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInWidgetProvider.swift; sourceTree = "<group>"; };
+		791C3D2B29EFD6A5001C7D88 /* SmallCheckInWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCheckInWidget.swift; sourceTree = "<group>"; };
+		791C3D2D29EFDAF7001C7D88 /* MediumCheckInWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumCheckInWidget.swift; sourceTree = "<group>"; };
 		792002BC29ED1064001F9C6E /* DaySnap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DaySnap.xcdatamodel; sourceTree = "<group>"; };
 		792002BF29ED1D64001F9C6E /* ReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderModel.swift; sourceTree = "<group>"; };
 		795BB3FA29C2F51A00A45984 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -161,7 +177,7 @@
 		79BD2C3F29DABCD90026F1F2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		79BD2C4229DABCD90026F1F2 /* DaySnapWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySnapWidgetBundle.swift; sourceTree = "<group>"; };
 		79BD2C4429DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySnapWidgetLiveActivity.swift; sourceTree = "<group>"; };
-		79BD2C4629DABCD90026F1F2 /* DaySnapWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySnapWidget.swift; sourceTree = "<group>"; };
+		79BD2C4629DABCD90026F1F2 /* CountDownWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownWidget.swift; sourceTree = "<group>"; };
 		79BD2C4829DABCDB0026F1F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79BD2C4A29DABCDB0026F1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79BD2C5229DAC0800026F1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -191,6 +207,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79012D2129EE694300154741 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				79BAC0E029BC61D0006822B9 /* HomeView.swift */,
+				79BAC0E229BC659D006822B9 /* ItemListView.swift */,
+				79AEFA3F29DEB78D00DF1FC6 /* CountdownView.swift */,
+				797AC7B929DFD16200AAAA4F /* CheckInView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		791C3D1929EFC114001C7D88 /* CountDownWidget */ = {
+			isa = PBXGroup;
+			children = (
+				791C3D1A29EFC1EC001C7D88 /* Views */,
+				7909779529DD4171004A696C /* SimpleEntry.swift */,
+				7909779329DD412D004A696C /* Provider.swift */,
+				7909779729DD41C0004A696C /* WidgetView.swift */,
+				79BD2C4629DABCD90026F1F2 /* CountDownWidget.swift */,
+			);
+			path = CountDownWidget;
+			sourceTree = "<group>";
+		};
+		791C3D1A29EFC1EC001C7D88 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				791C3D1B29EFC21F001C7D88 /* SmallCountDownWidget.swift */,
+				791C3D1D29EFC2BC001C7D88 /* MediumCountDownWidget.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		791C3D2029EFCAB4001C7D88 /* LiveActivityWidget */ = {
+			isa = PBXGroup;
+			children = (
+				79BD2C4429DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift */,
+			);
+			path = LiveActivityWidget;
+			sourceTree = "<group>";
+		};
+		791C3D2129EFCAC8001C7D88 /* CheckInWidget */ = {
+			isa = PBXGroup;
+			children = (
+				791C3D2A29EFD693001C7D88 /* Views */,
+				791C3D2229EFCB36001C7D88 /* CheckInWidget.swift */,
+				791C3D2429EFCBA6001C7D88 /* CheckInWidgetView.swift */,
+				791C3D2629EFCBF6001C7D88 /* CheckInWidgetEntry.swift */,
+				791C3D2829EFCC71001C7D88 /* CheckInWidgetProvider.swift */,
+			);
+			path = CheckInWidget;
+			sourceTree = "<group>";
+		};
+		791C3D2A29EFD693001C7D88 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				791C3D2B29EFD6A5001C7D88 /* SmallCheckInWidget.swift */,
+				791C3D2D29EFDAF7001C7D88 /* MediumCheckInWidget.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		79754BCC29DBE3DF0075F198 /* utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,14 +335,11 @@
 		79BAC0D729BC53CF006822B9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				79BAC0E029BC61D0006822B9 /* HomeView.swift */,
-				79BAC0E229BC659D006822B9 /* ItemListView.swift */,
+				79012D2129EE694300154741 /* Home */,
 				79BAC0E629BC7148006822B9 /* TabBarView.swift */,
 				7903A5E729BDACB400A71CC5 /* AddView.swift */,
 				7903A5EB29BDC10200A71CC5 /* MeView.swift */,
 				7981060429C82861004D38F0 /* EditView.swift */,
-				79AEFA3F29DEB78D00DF1FC6 /* CountdownView.swift */,
-				797AC7B929DFD16200AAAA4F /* CheckInView.swift */,
 				79A2A66A29E544240020B27E /* LaunchScreenView.swift */,
 				79641DB229E9417700D2642F /* PayWallView.swift */,
 				7976962D29EBDAF800BD8632 /* EditCheckinView.swift */,
@@ -326,14 +400,12 @@
 		79BD2C4129DABCD90026F1F2 /* DaySnapWidget */ = {
 			isa = PBXGroup;
 			children = (
+				791C3D2129EFCAC8001C7D88 /* CheckInWidget */,
+				791C3D2029EFCAB4001C7D88 /* LiveActivityWidget */,
+				791C3D1929EFC114001C7D88 /* CountDownWidget */,
 				79BD2C4229DABCD90026F1F2 /* DaySnapWidgetBundle.swift */,
-				79BD2C4429DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift */,
-				79BD2C4629DABCD90026F1F2 /* DaySnapWidget.swift */,
 				79BD2C4829DABCDB0026F1F2 /* Assets.xcassets */,
 				79BD2C4A29DABCDB0026F1F2 /* Info.plist */,
-				7909779329DD412D004A696C /* Provider.swift */,
-				7909779529DD4171004A696C /* SimpleEntry.swift */,
-				7909779729DD41C0004A696C /* WidgetView.swift */,
 			);
 			path = DaySnapWidget;
 			sourceTree = "<group>";
@@ -525,13 +597,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				791C3D2929EFCC71001C7D88 /* CheckInWidgetProvider.swift in Sources */,
 				7909779629DD4171004A696C /* SimpleEntry.swift in Sources */,
 				79BD2C4329DABCD90026F1F2 /* DaySnapWidgetBundle.swift in Sources */,
+				791C3D1E29EFC2BC001C7D88 /* MediumCountDownWidget.swift in Sources */,
+				791C3D2C29EFD6A5001C7D88 /* SmallCheckInWidget.swift in Sources */,
 				7909779829DD41C0004A696C /* WidgetView.swift in Sources */,
-				79BD2C4729DABCD90026F1F2 /* DaySnapWidget.swift in Sources */,
+				791C3D1C29EFC21F001C7D88 /* SmallCountDownWidget.swift in Sources */,
+				79BD2C4729DABCD90026F1F2 /* CountDownWidget.swift in Sources */,
 				792002BE29ED1136001F9C6E /* DaySnap.xcdatamodeld in Sources */,
+				791C3D2329EFCB36001C7D88 /* CheckInWidget.swift in Sources */,
 				79A2A66729E52C150020B27E /* DataController.swift in Sources */,
+				791C3D2729EFCBF6001C7D88 /* CheckInWidgetEntry.swift in Sources */,
 				7909779429DD412D004A696C /* Provider.swift in Sources */,
+				791C3D2529EFCBA6001C7D88 /* CheckInWidgetView.swift in Sources */,
+				791C3D2E29EFDAF7001C7D88 /* MediumCheckInWidget.swift in Sources */,
 				79BD2C4529DABCD90026F1F2 /* DaySnapWidgetLiveActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

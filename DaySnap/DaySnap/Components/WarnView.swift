@@ -9,6 +9,9 @@ import SwiftUI
 
 struct WarnView: View {
     @Binding var flag: Bool
+    // status: 0 -> text, 1 -> isSubscription
+    @Binding var status: Int
+    
     @State private var appear: Bool = false
     
     var body: some View {
@@ -17,7 +20,7 @@ struct WarnView: View {
                 .ignoresSafeArea()
             
             GeometryReader { geo in
-                VStack {
+                VStack(alignment: .center) {
                     Spacer()
                     
                     Image(systemName: "exclamationmark.circle")
@@ -25,11 +28,38 @@ struct WarnView: View {
                     
                     Spacer()
                     
-                    Text("请您填写完整！")
+                    if status == 0 {
+                        Text("请您填写完整！")
+                            .foregroundColor(.primary.opacity(0.7))
+                    } else {
+                        VStack(spacing: 10) {
+                            Text("抱歉")
+                                .font(.headline)
+                                .foregroundColor(.primary.opacity(0.7))
+                                .multilineTextAlignment(.center)
+                            
+                            Text("基础用户最多只能各创建5项")
+                                .font(.headline)
+                                .foregroundColor(.primary.opacity(0.7))
+                                .multilineTextAlignment(.center)
+                            
+                            NavigationLink {
+                                PayWallView()
+                            } label: {
+                                Text("点击前往升级 ->")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
                     
                     Spacer()
                 }
-                .frame(width: geo.size.width / 2, height: geo.size.width / 2)
+                .frame(
+                    width: geo.frame(in: .global).width / 3 * 2,
+                    height: geo.frame(in: .global).height / 3
+                )
                 .background(.regularMaterial)
                 .cornerRadius(12)
                 .opacity(appear ? 1 : 0.5)
@@ -49,6 +79,6 @@ struct WarnView: View {
 
 struct WarnView_Previews: PreviewProvider {
     static var previews: some View {
-        WarnView(flag: .constant(false))
+        WarnView(flag: .constant(false), status: .constant(1))
     }
 }

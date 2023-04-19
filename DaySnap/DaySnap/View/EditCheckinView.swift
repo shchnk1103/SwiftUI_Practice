@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct EditCheckinView: View {
     @Environment(\.managedObjectContext) var moc
@@ -132,6 +133,8 @@ struct EditCheckinView: View {
         checkin.notificationDate = reminderDate
         
         try? moc.save()
+        
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
 

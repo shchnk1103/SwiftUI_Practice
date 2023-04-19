@@ -30,7 +30,11 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
         let request: NSFetchRequest<CountDown> = CountDown.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "isPinned", ascending: true)]
+        request.sortDescriptors = [
+            NSSortDescriptor(keyPath: \CountDown.isPinned, ascending: false),
+            NSSortDescriptor(keyPath: \CountDown.name, ascending: true),
+            NSSortDescriptor(keyPath: \CountDown.remainingDays, ascending: true)
+        ]
         
         do {
             let countdowns = try dataController.context.fetch(request)

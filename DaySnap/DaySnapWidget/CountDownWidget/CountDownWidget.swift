@@ -8,20 +8,20 @@
 import WidgetKit
 import SwiftUI
 
-struct DaySnapWidget: Widget {
-    let kind: String = "DaySnapWidget"
+struct CountDownWidget: Widget {
+    let kind: String = "CountDownWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider(dataController: DataController())) { entry in
             WidgetView(entry: entry)
         }
-        .configurationDisplayName("DaySnap")
-        .description("This is a widget about DaySnap.")
-        .supportedFamilies([.systemSmall])
+        .configurationDisplayName("不知道数日 - 打卡")
+        .description("这是倒数日的小组件")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
-struct DaySnapWidget_Previews: PreviewProvider {
+struct CountDownWidget_Previews: PreviewProvider {
     static var previews: some View {
         WidgetView(entry: SimpleEntry(date: Date(), countdowns: []))
             .previewContext(WidgetPreviewContext(family: .systemSmall))

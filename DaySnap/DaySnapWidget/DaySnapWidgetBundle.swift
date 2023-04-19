@@ -11,7 +11,8 @@ import SwiftUI
 @main
 struct DaySnapWidgetBundle: WidgetBundle {
     var body: some Widget {
-        DaySnapWidget()
-//        DaySnapWidgetLiveActivity()
+        CountDownWidget()
+        CheckInWidget()
+        // DaySnapWidgetLiveActivity()
     }
 }
