@@ -15,7 +15,7 @@ struct MediumCheckInWidget: View {
     var body: some View {
         let checkinsCount = entry.checkins.filter({ $0.isCheckin }).count
         let progress = Double(checkinsCount) / Double(entry.checkins.count)
-        let recentCheckIns = entry.checkins
+        let recentCheckIns = entry.checkins.prefix(3)
         
         HStack {
             ZStack {

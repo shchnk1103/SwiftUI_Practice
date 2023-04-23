@@ -19,6 +19,12 @@ struct CheckInWidgetView: View {
             SmallCheckInWidget(entry: entry)
         case .systemMedium:
             MediumCheckInWidget(entry: entry)
+        case .accessoryInline:
+            InlineCheckInWidget(entry: entry)
+        case .accessoryCircular:
+            CircularCheckInWidget(entry: entry)
+        case .accessoryRectangular:
+            RectangularCheckInWidget(entry: entry)
         default:
             Text("Unkown")
         }

@@ -1,0 +1,114 @@
+{
+  "identifier" : "B08CD1A1",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6447186010",
+    "_developerTeamID" : "C33N6HTS9N",
+    "_lastSynchronizedDate" : 703847567.38857901
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21317401",
+      "localizations" : [
+
+      ],
+      "name" : "Pro",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "6.99",
+          "familyShareable" : false,
+          "groupNumber" : 3,
+          "internalID" : "6447749895",
+          "introductoryOffer" : {
+            "internalID" : "C8DF38AC",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "解锁所有功能",
+              "displayName" : "连续包年",
+              "locale" : "zh_CN"
+            }
+          ],
+          "productID" : "daysnap_36_1y_1w0",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Annual ¥38, 1-week free",
+          "subscriptionGroupID" : "21317401",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "0.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6447759706",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "解锁所有功能",
+              "displayName" : "连续包月",
+              "locale" : "zh_CN"
+            }
+          ],
+          "productID" : "daysnap_6_1m_1w0",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Monthly ¥6",
+          "subscriptionGroupID" : "21317401",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "1.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "6447778183",
+          "introductoryOffer" : {
+            "internalID" : "90079E3B",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "解锁全部权限",
+              "displayName" : "连续包季",
+              "locale" : "zh_CN"
+            }
+          ],
+          "productID" : "daysnap_12_1q_1w0",
+          "recurringSubscriptionPeriod" : "P3M",
+          "referenceName" : "Quarter ¥12, 1-week free",
+          "subscriptionGroupID" : "21317401",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

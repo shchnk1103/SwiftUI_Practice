@@ -67,10 +67,6 @@ struct DeleteView: View {
                 .ultraThinMaterial,
                 in: RoundedRectangle(cornerRadius: 8, style: .continuous)
             )
-            .background(
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .stroke()
-            )
             .frame(height: 410)
             .frame(maxWidth: 350)
             .padding(.horizontal, 30)

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct WidgetView: View {
     @Environment(\.colorScheme) var colorScheme
@@ -19,6 +20,12 @@ struct WidgetView: View {
             SmallCountDownWidget(entry: entry)
         case .systemMedium:
             MediumCountDownWidget(entry: entry)
+        case .accessoryCircular:
+            CircularCountDownWidget(entry: entry)
+        case .accessoryRectangular:
+            RectangularCountDownWidget(entry: entry)
+        case .accessoryInline:
+            InlineCountDownWidget(entry: entry)
         default:
             Text("Unkown")
         }

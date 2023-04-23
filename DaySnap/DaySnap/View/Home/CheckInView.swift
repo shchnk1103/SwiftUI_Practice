@@ -35,7 +35,7 @@ struct CheckInView: View {
                 Spacer()
             }
         } else {
-            VStack {
+            VStack(spacing: 5) {
                 ProgressView(value: progress, total: 1.0) {
                     HStack {
                         Image(systemName: "megaphone")

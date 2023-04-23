@@ -40,6 +40,7 @@ struct CountdownView: View {
                 return countdown.category == filter.category
             })) { countdown in
                 CountDownRow(showingAlert: $showingAlert, countdown: countdown)
+                    .padding(.horizontal)
                     .onTapGesture {
                         showSheet = true
                         vm.selectedCountdown = countdown

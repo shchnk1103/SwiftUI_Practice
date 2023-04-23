@@ -31,84 +31,94 @@ struct AddView: View {
     @State private var warnStatus: Int = 0
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 32) {
-                        SwitchView()
+        if #available(iOS 16.0, *) {
+            NavigationStack {
+                addContent
+            }
+        } else {
+            NavigationView {
+                addContent
+            }
+        }
+    }
+    
+    var addContent: some View {
+        ZStack {
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 32) {
+                    SwitchView()
+                    
+                    VStack(spacing: 20) {
+                        InputWithIconView(imageName: "applepencil", placeholderText: "写点有趣的", text: $text, emojiText: $emojiText)
                         
-                        VStack(spacing: 20) {
-                            InputWithIconView(imageName: "applepencil", placeholderText: "写点有趣的", text: $text, emojiText: $emojiText)
+                        if flag {
+                            CusDatePickerView(selectedDate: $deadline)
                             
-                            if flag {
-                                CusDatePickerView(selectedDate: $deadline)
-                                
-                                category
-                            } else {
-                                NumberOnlyTextField(persistDate: $persistDate)
-                            }
-                            
-                            pinToggle
-                            
-                            VStack {
-                                reminderToggle
-                                
-                                if isReminder {
-                                    HStack {
-                                        if flag {
-                                            Text("如果超过目标日期将不通知")
-                                                .font(.footnote)
-                                                .foregroundColor(.secondary)
-                                        } else {
-                                            Text("如果超过坚持天数将不通知")
-                                                .font(.footnote)
-                                                .foregroundColor(.secondary)
-                                        }
-                                        
-                                        Spacer()
-                                        
-                                        Picker("", selection: $selectedReminder) {
-                                            ForEach(reminders) { reminder in
-                                                Text(reminder.name)
-                                                    .foregroundColor(.secondary)
-                                            }
-                                        }
-                                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
-                                    }
-                                    .padding([.bottom, .horizontal])
-                                }
-                            }
-                            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
-                            .strokeStyle(cornerRadius: 8)
-                            .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 6)
+                            category
+                        } else {
+                            NumberOnlyTextField(persistDate: $persistDate)
                         }
                         
-                        button
+                        pinToggle
+                        
+                        VStack {
+                            reminderToggle
+                            
+                            if isReminder {
+                                HStack {
+                                    if flag {
+                                        Text("如果超过目标日期将不通知")
+                                            .font(.footnote)
+                                            .foregroundColor(.secondary)
+                                    } else {
+                                        Text("如果超过坚持天数将不通知")
+                                            .font(.footnote)
+                                            .foregroundColor(.secondary)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    Picker("", selection: $selectedReminder) {
+                                        ForEach(reminders) { reminder in
+                                            Text(reminder.name)
+                                                .foregroundColor(.secondary)
+                                        }
+                                    }
+                                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                                }
+                                .padding([.bottom, .horizontal])
+                            }
+                        }
+                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                        .strokeStyle(cornerRadius: 8)
+                        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 6)
                     }
-                    .padding(20)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .stroke(colorScheme == .dark ? Color.white : Color.black, lineWidth: 1)
-                    }
-                    .padding(.horizontal, 15)
-                    .animation(.default, value: isReminder)
                     
-                    Spacer()
+                    button
                 }
+                .padding(20)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 8, style: .continuous)
+                        .stroke(colorScheme == .dark ? Color.white : Color.black, lineWidth: 1)
+                }
+                .padding(.horizontal, 15)
+                .animation(.default, value: isReminder)
                 
-                if showAddSuccess {
-                    SuccessView(flag: $showAddSuccess)
-                }
-                
-                if showWarn {
-                    WarnView(flag: $showWarn, status: $warnStatus)
-                }
+                Spacer()
             }
-            .navigationTitle("新建日程")
-            .onTapGesture {
-                // 强制隐藏键盘
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            
+            if showAddSuccess {
+                SuccessView(flag: $showAddSuccess)
             }
+            
+            if showWarn {
+                WarnView(flag: $showWarn, status: $warnStatus)
+            }
+        }
+        .navigationTitle("新建日程")
+        .onTapGesture {
+            // 强制隐藏键盘
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
     

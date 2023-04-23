@@ -15,6 +15,8 @@ struct SignInWithAppleButtonView: View {
     @AppStorage("firstName") var firstName: String = ""
     @AppStorage("lastName") var lastName: String = ""
     @AppStorage("userId") var userId: String = ""
+    @AppStorage("isLogin") var isLogin: Bool = false
+    @AppStorage("identityToken") var identityToken: Data?
     
     var body: some View {
         SignInWithAppleButton(.signIn) { request in
@@ -24,16 +26,20 @@ struct SignInWithAppleButtonView: View {
             case .success(let authorization):
                 switch authorization.credential {
                 case let credential as ASAuthorizationAppleIDCredential:
-                    let userId = credential.user
-                    let email = credential.email
-                    let firstName = credential.fullName?.familyName
-                    let lastName = credential.fullName?.givenName
-                    
-                    self.userId = userId
-                    self.email = email ?? ""
-                    self.firstName = firstName ?? ""
-                    self.lastName = lastName ?? ""
-                    print(self.firstName)
+                    if let email = credential.email,
+                       let fullNmae = credential.fullName {
+                        let userId = credential.user
+                        let identityToken = credential.identityToken
+                        
+                        self.userId = userId
+                        self.email = email
+                        self.firstName = fullNmae.familyName ?? ""
+                        self.lastName = fullNmae.givenName ?? ""
+                        self.isLogin = true
+                        self.identityToken = identityToken
+                    } else {
+                        self.isLogin = true
+                    }
                 default:
                     break
                 }

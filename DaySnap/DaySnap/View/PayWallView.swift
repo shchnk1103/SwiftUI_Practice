@@ -10,7 +10,10 @@ import RevenueCat
 
 struct PayWallView: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userViewModel: UserViewModel
+    
+    // @StateObject private var storeManager = StoreManager()
     
     @State private var currentOffering: Offering?
     
@@ -64,6 +67,8 @@ struct PayWallView: View {
                     currentOffering = offer
                 }
             }
+            
+             // storeManager.fetchProducts()
         }
     }
     
@@ -139,8 +144,11 @@ struct PayWallView: View {
                 ForEach(currentOffering!.availablePackages) { pkg in
                     Button {
                         Purchases.shared.purchase(package: pkg) { transaction, customerInfo, error, userCancelled in
-                            if customerInfo?.entitlements.all["pro"]?.isActive == true {
+                            if customerInfo?.entitlements["pro"]?.isActive == true {
                                 userViewModel.isSubscriptionActive = true
+                                
+                                dismiss()
+                                print("000000000")
                             }
                         }
                     } label: {
@@ -153,6 +161,19 @@ struct PayWallView: View {
                     }
                 }
             }
+            
+//            ForEach(storeManager.products) { product in
+//                Button {
+//                    storeManager.purchase(product: product)
+//                } label: {
+//                    Text("\(product.displayName) \(product.displayPrice)")
+//                        .foregroundColor(colorScheme == .dark ? .black : .white)
+//                        .frame(height: 40)
+//                        .frame(maxWidth: .infinity)
+//                        .background(RoundedRectangle(cornerRadius: 8, style: .continuous))
+//                        .strokeStyle(cornerRadius: 8)
+//                }
+//            }
             
             Image("astronaut-pro")
                 .resizable()

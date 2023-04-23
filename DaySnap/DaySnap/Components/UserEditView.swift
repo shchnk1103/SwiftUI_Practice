@@ -7,6 +7,7 @@
 
 import SwiftUI
 import RevenueCat
+import AuthenticationServices
 
 struct UserEditView: View {
     @Environment(\.dismiss) var dismiss
@@ -17,6 +18,8 @@ struct UserEditView: View {
     @AppStorage("firstName") var firstName: String = ""
     @AppStorage("lastName") var lastName: String = ""
     @AppStorage("userId") var userId: String = ""
+    @AppStorage("isLogin") var isLogin: Bool = false
+    @AppStorage("identityToken") var identityToken: Data?
     
     @State private var newFirstName: String = ""
     @State private var newLastName: String = ""
@@ -62,20 +65,6 @@ struct UserEditView: View {
                 .padding()
                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
                 
-                //            Button {
-                //                userId = ""
-                //
-                //                dismiss()
-                //            } label: {
-                //                Text("退出登录")
-                //                    .fontWeight(.semibold)
-                //                    .foregroundColor(.red)
-                //                    .padding(.vertical)
-                //                    .frame(maxWidth: .infinity)
-                //                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
-                //            }
-                //            .padding(.top)
-                
                 Button {
                     firstName = newFirstName
                     lastName = newLastName
@@ -93,28 +82,21 @@ struct UserEditView: View {
                             .foregroundColor(colorScheme == .dark ? .black.opacity(0.8) : .white)
                     }
                 }
-                .padding(.vertical)
+                .padding(.top)
                 
                 Button {
-                    Purchases.shared.restorePurchases { customerInfo, error in
-                        userViewModel.isSubscriptionActive = customerInfo?.entitlements.all["pro"]?.isActive == true
-                        
-                        if userViewModel.isSubscriptionActive {
-                            let alert = UIAlertController(title: "购买恢复成功", message: "您的订阅已恢复", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "知道了", style: .default))
-                            // present the alert
-                            DispatchQueue.main.async {
-                                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                                    let window = UIWindow(windowScene: windowScene)
-                                    window.rootViewController?.present(alert, animated: true)
-                                }
-                            }
-                        }
-                    }
+                    isLogin = false
+                    
+                    dismiss()
                 } label: {
-                    Text("恢复购买")
-                        .foregroundColor(.pink)
+                    Text("退出登录")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.red)
+                        .padding(.vertical)
+                        .frame(maxWidth: .infinity)
+                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
                 }
+                .padding(.bottom)
                 
                 Image("astronaut")
                     .resizable()
@@ -127,7 +109,7 @@ struct UserEditView: View {
             .onAppear {
                 self.newFirstName = firstName
                 self.newLastName = lastName
-        }
+            }
         }
     }
 }

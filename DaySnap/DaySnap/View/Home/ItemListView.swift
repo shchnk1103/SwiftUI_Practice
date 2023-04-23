@@ -14,7 +14,7 @@ struct ItemListView: View {
     @Binding var showingAlert: Bool
     
     var body: some View {
-        VStack {
+        VStack(spacing: 5) {
             if flag {
                 CountdownView(showingAlert: $showingAlert)
             } else {

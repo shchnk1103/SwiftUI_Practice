@@ -17,13 +17,13 @@ struct CountDownWidget: Widget {
         }
         .configurationDisplayName("不知道数日 - 打卡")
         .description("这是倒数日的小组件")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular, .accessoryInline])
     }
 }
 
 struct CountDownWidget_Previews: PreviewProvider {
     static var previews: some View {
         WidgetView(entry: SimpleEntry(date: Date(), countdowns: []))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .previewContext(WidgetPreviewContext(family: .accessoryCircular))
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 import WeatherKit
 import CoreLocation
 
+@available(iOS 16.0, *)
 @MainActor class WeatherKitManager: ObservableObject {
     @Published var weather: Weather?
     

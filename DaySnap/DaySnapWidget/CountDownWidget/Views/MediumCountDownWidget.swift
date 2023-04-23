@@ -13,7 +13,7 @@ struct MediumCountDownWidget: View {
     var entry: Provider.Entry
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 5) {
             HStack {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .stroke(
@@ -87,9 +87,9 @@ struct MediumCountDownWidget: View {
                 Text("目标日期：")
                 
                 Text(entry.countdowns.first?.targetDate ?? Date(), style: .date)
+                    .fontWeight(.semibold)
             }
             .font(.title3)
-            .fontWeight(.semibold)
             .foregroundColor(colorScheme == .dark ? Color.black.opacity(0.8) : Color.white.opacity(0.6))
             .padding(.horizontal, 7)
             .padding(.vertical, 5)

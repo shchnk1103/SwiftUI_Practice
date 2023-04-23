@@ -17,7 +17,7 @@ struct CheckInWidget: Widget {
         }
         .configurationDisplayName("不知道数日 - 打卡")
         .description("这是打卡的小组件")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryInline, .accessoryCircular, .accessoryRectangular])
     }
 }
 

@@ -13,7 +13,7 @@ struct HeaderView: View {
     @AppStorage("weatherIcon") var weatherIcon: String = "icloud.slash"
     @AppStorage("firstName") var firstName: String = ""
     @AppStorage("lastName") var lastName: String = ""
-    @AppStorage("userId") var userId: String = ""
+    @AppStorage("isLogin") var isLogin: Bool = true
     
     @Binding var showAttribution: Bool
     
@@ -23,7 +23,7 @@ struct HeaderView: View {
                 HStack(spacing: 0) {
                     Text(getGreeting())
                     
-                    if !userId.isEmpty {                        
+                    if isLogin {
                         HStack(spacing: 0) {
                             Text(firstName)
                             Text(lastName)
@@ -47,10 +47,17 @@ struct HeaderView: View {
             Button {
                 showAttribution = true
             } label: {
-                Image(systemName: weatherIcon)
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .scaledToFit()
+                if weatherIcon == "icloud.slash" {
+                    Image("astronaut")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .scaledToFit()
+                } else {
+                    Image(systemName: weatherIcon)
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .scaledToFit()
+                }
             }
         }
     }

@@ -6,9 +6,11 @@
 	<array>
 		<string>processing</string>
 	</array>
-    <key>BGTaskSchedulerPermittedIdentifiers</key>
-    <array>
-        <string>com.DoubleShy0N.DaySnap</string>
-    </array>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.DoubleShy0N.DaySnap</string>
+	</array>
+	<key>NSAllowsArbitraryLoads</key>
+	<false/>
 </dict>
 </plist>

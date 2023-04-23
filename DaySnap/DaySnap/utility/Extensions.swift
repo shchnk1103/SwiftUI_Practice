@@ -8,6 +8,7 @@
 import Foundation
 import RevenueCat
 import StoreKit
+import SwiftUI
 
 /* Some methods to make displaying subscription terms easier */
 
@@ -40,5 +41,12 @@ extension SubscriptionPeriod {
         let periodString = "\(self.value) \(self.durationTitle)"
         let pluralized = self.value > 1 ?  periodString: periodString
         return pluralized
+    }
+}
+
+@available(iOS 16.0, *)
+extension Text {
+    func semibold() -> Text {
+        return self.fontWeight(.semibold)
     }
 }

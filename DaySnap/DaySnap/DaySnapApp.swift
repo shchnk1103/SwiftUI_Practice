@@ -10,7 +10,18 @@ import BackgroundTasks
 import RevenueCat
 
 @main
-struct DaySnapApp: App {
+struct DaySnapApp {
+    static func main() {
+        if #available(iOS 16.0, *) {
+            New_iOSApp.main()
+        } else {
+            Old_iOSApp.main()
+        }
+    }
+}
+
+@available(iOS 16.0, *)
+struct NewAppScene: Scene {
     // 声明通知管理器
     @StateObject var notificationManager = NotificationManager()
     
@@ -37,6 +48,41 @@ struct DaySnapApp: App {
     init() {
         Purchases.logLevel = .debug
         Purchases.configure(withAPIKey: "appl_WbrBpKtbIpFjxSIVtHtCyWkSzXO")
+    }
+}
+
+@available(iOS 16.0, *)
+struct New_iOSApp: App {
+    var body: some Scene {
+        NewAppScene()
+    }
+}
+
+struct AppScene: Scene {
+    // 声明通知管理器
+    @StateObject var notificationManager = NotificationManager()
+    
+    @StateObject private var dataController = DataController()
+    @StateObject private var userViewModel = UserViewModel()
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environmentObject(notificationManager)
+                .environmentObject(userViewModel)
+                .environment(\.managedObjectContext, dataController.context)
+        }
+    }
+    
+    init() {
+        Purchases.logLevel = .debug
+        Purchases.configure(withAPIKey: "appl_WbrBpKtbIpFjxSIVtHtCyWkSzXO")
+    }
+}
+
+struct Old_iOSApp: App {
+    var body: some Scene {
+        AppScene()
     }
 }
 

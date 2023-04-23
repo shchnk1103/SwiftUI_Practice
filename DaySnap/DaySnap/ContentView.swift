@@ -9,8 +9,10 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
+    #if canImport(WeatherKitManager)
     @ObservedObject private var locationManager = LocationManager()
     @ObservedObject private var weatherKitManager = WeatherKitManager()
+    #endif
     
     @AppStorage("weatherIcon") var weatherIcon: String = "icloud.slash"
     
@@ -27,7 +29,6 @@ struct ContentView: View {
                     HomeView()
                 case .search:
                     AddView()
-                    //  test_2()
                 case .me:
                     MeView()
                 }
@@ -41,11 +42,13 @@ struct ContentView: View {
                 UIApplication.shared.applicationIconBadgeNumber = 0
                 UNUserNotificationCenter.current().removeAllDeliveredNotifications()
             }
+            #if canImport(WeatherKitManager)
             .task(id: locationManager.currentLocation) {
                 await weatherKitManager.getWeather(latitude: locationManager.latitude, longitude: locationManager.longitude)
                 
                 weatherIcon = weatherKitManager.symbol
             }
+            #endif
         } else {
             LaunchScreenView()
                 .onAppear {
