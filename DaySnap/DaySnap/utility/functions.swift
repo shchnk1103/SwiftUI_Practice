@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 func calRemainingDays(targetDay: Date) -> Int32 {
     let calendar = Calendar.current
@@ -128,4 +129,26 @@ struct PersistenceController {
             }
         })
     }
+}
+
+func colorToString(color: Color) -> String {
+    let uiColor = UIColor(color)
+    var red: CGFloat = 0
+    var green: CGFloat = 0
+    var blue: CGFloat = 0
+    var alpha: CGFloat = 0
+    uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+    
+    return "\(red),\(green),\(blue),\(alpha)"
+}
+
+func stringToColor(color: String) -> Color {
+    let color = color.components(separatedBy: ",")
+    if let red = Double(color[0]),
+       let green = Double(color[1]),
+       let blue = Double(color[2]),
+       let alpha = Double(color[3]) {
+        return Color(red: red, green: green, blue: blue, opacity: alpha)
+    }
+    return Color.primary
 }

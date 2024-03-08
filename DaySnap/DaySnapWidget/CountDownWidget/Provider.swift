@@ -37,10 +37,10 @@ struct Provider: TimelineProvider {
         ]
         
         do {
-            let countdowns = try dataController.context.fetch(request)
-            let entry = SimpleEntry(date: Date(), countdowns: countdowns)
-            let timeline = Timeline(entries: [entry], policy: .atEnd)
-            completion(timeline)
+//            let countdowns = try dataController.context.fetch(request)
+//            let entry = SimpleEntry(date: Date(), countdowns: countdowns)
+//            let timeline = Timeline(entries: [entry], policy: .atEnd)
+//            completion(timeline)
         } catch {
             let entry = SimpleEntry(date: Date(), countdowns: [])
             let timeline = Timeline(entries: [entry], policy: .atEnd)

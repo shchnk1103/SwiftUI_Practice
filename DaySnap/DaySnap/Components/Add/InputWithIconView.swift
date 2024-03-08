@@ -35,8 +35,8 @@ struct InputWithIconView: View {
         )
         .strokeStyle(cornerRadius: 8)
         .shadow(
-            color: colorScheme == .dark ? Color.white.opacity(0.25) : Color.black.opacity(0.25),
-            radius: 8, x: 0, y: 6
+            color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25),
+            radius: 4, x: 0, y: 2
         )
     }
 }

@@ -35,10 +35,10 @@ struct CheckInWidgetProvider: TimelineProvider {
         ]
         
         do {
-            let checkins = try dataController.context.fetch(request)
-            let entry = CheckInWidgetEntry(date: Date(), checkins: checkins)
-            let timeline = Timeline(entries: [entry], policy: .atEnd)
-            completion(timeline)
+//            let checkins = try dataController.context.fetch(request)
+//            let entry = CheckInWidgetEntry(date: Date(), checkins: checkins)
+//            let timeline = Timeline(entries: [entry], policy: .atEnd)
+//            completion(timeline)
         } catch {
             let entry = CheckInWidgetEntry(date: Date(), checkins: [])
             let timeline = Timeline(entries: [entry], policy: .atEnd)

@@ -16,7 +16,11 @@ struct AddView: View {
     @FetchRequest(sortDescriptors: []) var checkins: FetchedResults<CheckIn>
     
     @AppStorage("flag") var flag: Bool = true
-    
+    // 自定义颜色
+    @AppStorage("colorCustom") var colorCustom: String = ""
+    // 自定义按钮颜色
+    @AppStorage("colorButton") var colorButton: String = ""
+    // 数据
     @State private var isPinned: Bool = false
     @State private var isReminder: Bool = false
     @State private var text: String = ""
@@ -25,7 +29,7 @@ struct AddView: View {
     @State private var persistDate: String = ""
     @State private var selectedCategory: Int = 0
     @State private var selectedReminder: Int = 0
-    
+    // 弹窗
     @State private var showAddSuccess: Bool = false
     @State private var showWarn: Bool = false
     @State private var warnStatus: Int = 0
@@ -91,7 +95,11 @@ struct AddView: View {
                         }
                         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
                         .strokeStyle(cornerRadius: 8)
-                        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 6)
+                        .shadow(
+                            color: colorScheme == .dark
+                            ? .white.opacity(0.25)
+                            : .black.opacity(0.25),
+                            radius: 4, x: 0, y: 2)
                     }
                     
                     button
@@ -149,7 +157,7 @@ struct AddView: View {
         .padding(10)
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
         .strokeStyle(cornerRadius: 8)
-        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 6)
+        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 4, x: 0, y: 2)
     }
     
     var pinToggle: some View {
@@ -166,7 +174,7 @@ struct AddView: View {
         .padding(10)
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
         .strokeStyle(cornerRadius: 8)
-        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 6)
+        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 4, x: 0, y: 2)
     }
     
     var reminderToggle: some View {
@@ -191,12 +199,20 @@ struct AddView: View {
                 Spacer()
                 Text("添加")
                     .fontWeight(.bold)
-                    .foregroundColor(colorScheme == .dark ? .black : .white)
+                    .foregroundColor(
+                        colorScheme == .dark
+                        ? (colorCustom == ""
+                           ? .black.opacity(0.8)
+                           : .white.opacity(0.8))
+                        : (colorCustom == ""
+                           ? .white
+                           : .white.opacity(0.8))
+                    )
                     .padding(.vertical, 12)
                 Spacer()
             }
             .background(RoundedRectangle(cornerRadius: 8, style: .continuous))
-            .foregroundColor(colorScheme == .dark ? .white : .black)
+            .buttonBackgroundColor()
         }
     }
     

@@ -31,6 +31,14 @@ struct CountDownRow: View {
                         Text(countdown.emojiText ?? "🥰")
                             .font(.largeTitle)
                     }
+                    // pin heart
+                    .overlay {
+                        if countdown.isPinned {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.red)
+                                .position(x: 0, y: 0)
+                        }
+                    }
                     .padding(10)
 
                 VStack(alignment: .leading, spacing: 0) {
@@ -95,14 +103,6 @@ struct CountDownRow: View {
             }
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
             .strokeStyle(cornerRadius: 8)
-            // pin heart
-            .overlay {
-                if countdown.isPinned {
-                    Image(systemName: "heart.fill")
-                        .foregroundColor(.red)
-                        .position(x: 0, y: 0)
-                }
-            }
         } trailingActions: { context in
             SwipeAction(systemImage: "trash", backgroundColor: .red) {
                 context.state.wrappedValue = .closed

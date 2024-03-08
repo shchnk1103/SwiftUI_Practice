@@ -10,10 +10,12 @@ import WeatherKit
 
 struct HeaderView: View {
     @Environment(\.colorScheme) var colorScheme
+    // Weather
     @AppStorage("weatherIcon") var weatherIcon: String = "icloud.slash"
+    // User
     @AppStorage("firstName") var firstName: String = ""
     @AppStorage("lastName") var lastName: String = ""
-    @AppStorage("isLogin") var isLogin: Bool = true
+    @AppStorage("userId") var userId: String = ""
     
     @Binding var showAttribution: Bool
     
@@ -23,7 +25,7 @@ struct HeaderView: View {
                 HStack(spacing: 0) {
                     Text(getGreeting())
                     
-                    if isLogin {
+                    if !userId.isEmpty {
                         HStack(spacing: 0) {
                             Text(firstName)
                             Text(lastName)
@@ -44,19 +46,17 @@ struct HeaderView: View {
             
             Spacer()
             
-            Button {
-                showAttribution = true
-            } label: {
-                if weatherIcon == "icloud.slash" {
-                    Image("astronaut")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .scaledToFit()
-                } else {
+            if weatherIcon == "icloud.slash" {
+                Image("astronaut")
+                    .resizable()
+                    .frame(width: 60, height: 60)
+                    .scaledToFit()
+            } else {
+                Button {
+                    showAttribution = true
+                } label: {
                     Image(systemName: weatherIcon)
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .scaledToFit()
+                        .font(.system(size: 36))
                 }
             }
         }

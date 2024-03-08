@@ -35,7 +35,10 @@ struct CusDatePickerView: View {
         .padding(10)
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
         .strokeStyle(cornerRadius: 8)
-        .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 6)
+        .shadow(
+            color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25),
+            radius: 4, x: 0, y: 2
+        )
     }
 }
 

@@ -14,6 +14,8 @@ struct EditView: View {
     @Environment(\.dismiss) var dismiss
     
     @AppStorage("flag") var flag: Bool = true
+    // 自定义颜色
+    @AppStorage("colorCustom") var colorCustom: String = ""
     
     @State private var text: String = ""
     @State private var emojiText: String = ""
@@ -72,8 +74,8 @@ struct EditView: View {
                         .padding([.bottom, .horizontal])
                     }
                 }
-                .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
-                .cornerRadius(8)
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                .strokeStyle(cornerRadius: 8)
                 .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
                 .animation(.default, value: isReminder)
             }
@@ -143,8 +145,8 @@ struct EditView: View {
             self.isPinned = countdown.isPinned
         }
         .padding(10)
-        .background(colorScheme == .dark ? .gray.opacity(0.5) : .white)
-        .cornerRadius(8)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .strokeStyle(cornerRadius: 8)
         .shadow(color: colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25), radius: 8, x: 0, y: 0)
     }
     
@@ -176,12 +178,20 @@ struct EditView: View {
                 Spacer()
                 Text("更新")
                     .fontWeight(.bold)
-                    .foregroundColor(colorScheme == .dark ? .black : .white)
+                    .foregroundColor(
+                        colorScheme == .dark
+                        ? (colorCustom == ""
+                           ? .black.opacity(0.8)
+                           : .white.opacity(0.8))
+                        : (colorCustom == ""
+                           ? .white
+                           : .white.opacity(0.8))
+                    )
                     .padding(.vertical, 12)
                 Spacer()
             }
             .background(RoundedRectangle(cornerRadius: 8, style: .continuous))
-            .foregroundColor(colorScheme == .dark ? .white : .black)
+            .buttonBackgroundColor()
         }
     }
     

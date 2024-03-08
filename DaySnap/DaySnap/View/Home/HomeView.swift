@@ -15,17 +15,18 @@ struct HomeView: View {
     @StateObject private var vm = HomeViewModel()
     @StateObject private var filter = CountDownFilter()
     @StateObject private var filterCheckin = CheckInFilter()
-    
+    // 通知
     @State private var wantToCheckin: Bool = false
     @State private var showingAlert: Bool = false
     @State private var showAttribution: Bool = false
-    
+    // Header的自适应
     @State private var offset: CGFloat = 0
     @State private var startOffset: CGFloat = 0
     @State private var scrollPaddingTop: CGFloat = 0
     @State private var switchOffset: CGFloat = 0
     @State private var switchHeight: CGFloat = 0
     @State private var textHeight: CGFloat = 0
+    // 分类
     @State private var selectedCategory: Int = 0
     @State private var selectedStatus: Int = 0
     
@@ -33,7 +34,6 @@ struct HomeView: View {
         ZStack(alignment: .top) {
 
             VStack(alignment: .leading, spacing: 0) {
-                
                 header
                 
                 switchCenter
@@ -41,7 +41,15 @@ struct HomeView: View {
             .zIndex(1)
             .padding(.bottom, offset < switchHeight ? -offset : -(switchHeight + textHeight - 15))
             .background(.regularMaterial)
-            .shadow(radius: 4)
+            .overlay {
+                Rectangle()
+                    .stroke(Color.clear)
+                    .shadow(
+                        color: colorScheme == .dark ? .white : .black,
+                        radius: 4, x: 0, y: 0
+                    )
+                    .ignoresSafeArea()
+            }
             // GeometryReader
             .overlay { overlay }
             
@@ -87,12 +95,12 @@ struct HomeView: View {
             .background(colorScheme == .dark ? .black : .white, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
             .overlay {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .stroke(colorScheme == .dark ? .white.opacity(0.5) : .white, lineWidth: 1)
+                    .stroke(colorScheme == .dark ? .white.opacity(0.5) : .white.opacity(0.25), lineWidth: 0.25)
+                    .shadow(
+                        color: colorScheme == .dark ? .white.opacity(0.6) : .black.opacity(0.5),
+                        radius: 4, x: 0, y: 0
+                    )
             }
-            .shadow(
-                color: colorScheme == .dark ? .white.opacity(0.6) : .black.opacity(0.25),
-                radius: 12, x: 0, y: 0
-            )
             .padding()
             .offset(getOffset())
             .opacity(getOpacity())

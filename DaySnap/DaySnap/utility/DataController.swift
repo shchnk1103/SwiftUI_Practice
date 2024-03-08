@@ -7,45 +7,66 @@
 
 import Foundation
 import CoreData
+import SwiftData
 
-class DataController: ObservableObject {
-    let persistentContainer: NSPersistentContainer
-    let context: NSManagedObjectContext
+struct DataController {
+    let appGroupContainerID = "group.com.DoubleShy0N.DaySnap"
     
-    init() {
-        persistentContainer = NSPersistentContainer(name: "DaySnap")
-        let url = URL.storeURL(for: "group.com.DoubleShy0N.DaySnap", databaseName: "DaySnap")
-        let storeDescription = NSPersistentStoreDescription(url: url)
-        persistentContainer.persistentStoreDescriptions = [storeDescription]
+    static let shared = DataController()
+    
+    let container: NSPersistentContainer
+    
+    init(inMemory: Bool = false) {
+        guard let modelURL = Bundle.main.url(forResource: "DaySnap", withExtension: "momd") else {
+            fatalError("Unable to find DaySnap data model in the bundle.")
+        }
         
-        persistentContainer.loadPersistentStores { description, error in
+        guard let coreDataModel = NSManagedObjectModel(contentsOf: modelURL) else {
+            fatalError("Unable to create the DaySnap Core Data model.")
+        }
+        
+        container = NSPersistentContainer(name: "DaySnap", managedObjectModel: coreDataModel)
+        if inMemory {
+            container.persistentStoreDescriptions.first!.url = URL(filePath: "/dev/null")
+        } else {
+            guard let appGroupContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupContainerID) else {
+                fatalError("Shared file container could not be created.")
+            }
+            
+            let url = appGroupContainer.appendingPathComponent("DaySnap.sqlite")
+            
+            if let description = container.persistentStoreDescriptions.first {
+                description.url = url
+                description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            }
+        }
+        container.loadPersistentStores { storeDescription, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
-        context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        context.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
-        context.automaticallyMergesChangesFromParent = true
+        
+        container.viewContext.automaticallyMergesChangesFromParent = true
     }
     
-    func saveContext() {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
+//    func saveContext() {
+//        if context.hasChanges {
+//            do {
+//                try context.save()
+//            } catch {
+//                let NsError = error as NSError
+//                fatalError("Unresolved error \(NsError), \(NsError.userInfo)")
+//            }
+//        }
+//    }
 }
 
 public extension URL {
     static func storeURL(for appGroup: String, databaseName: String) -> URL {
-        guard let fileCotainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
+        guard let fileContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
             fatalError("Unable to create URL for \(appGroup)")
         }
         
-        return fileCotainer.appendingPathComponent("\(databaseName).sqlite")
+        return fileContainer.appendingPathComponent("\(databaseName).sqlite")
     }
 }

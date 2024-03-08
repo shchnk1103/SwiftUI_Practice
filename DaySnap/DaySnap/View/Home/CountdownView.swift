@@ -6,17 +6,21 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CountdownView: View {
     @Environment(\.colorScheme) var colorScheme
-    @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject var vm: HomeViewModel
-    @EnvironmentObject var filter: CountDownFilter
-    @FetchRequest(sortDescriptors: [
-        NSSortDescriptor(keyPath: \CountDown.isPinned, ascending: false),
-        NSSortDescriptor(keyPath: \CountDown.name, ascending: true),
-        NSSortDescriptor(keyPath: \CountDown.remainingDays, ascending: true)
-    ]) var countdowns: FetchedResults<CountDown>
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \SDCountDown.name, order: .forward)
+    var countdowns: [SDCountDown]
+//    @Environment(\.managedObjectContext) var moc
+//    @EnvironmentObject var vm: HomeViewModel
+//    @EnvironmentObject var filter: CountDownFilter
+//    @FetchRequest(sortDescriptors: [
+//        NSSortDescriptor(keyPath: \CountDown.isPinned, ascending: false),
+//        NSSortDescriptor(keyPath: \CountDown.name, ascending: true),
+//        NSSortDescriptor(keyPath: \CountDown.remainingDays, ascending: true)
+//    ]) var countdowns: FetchedResults<CountDown>
     
     @Binding var showingAlert: Bool
     @State private var showSheet: Bool = false
@@ -33,21 +37,17 @@ struct CountdownView: View {
                 Spacer()
             }
         } else {
-            ForEach(countdowns.filter({ countdown in
-                if filter.category == "默认" || filter.category == "" {
-                    return true
-                }
-                return countdown.category == filter.category
-            })) { countdown in
-                CountDownRow(showingAlert: $showingAlert, countdown: countdown)
-                    .padding(.horizontal)
-                    .onTapGesture {
-                        showSheet = true
-                        vm.selectedCountdown = countdown
-                    }
+            ForEach(countdowns) { countdown in
+                Text(countdown.name)
+//                CountDownRow(showingAlert: $showingAlert, countdown: countdown)
+//                    .padding(.horizontal)
+//                    .onTapGesture {
+//                        showSheet = true
+//                        vm.selectedCountdown = countdown
+//                    }
             }
             .sheet(isPresented: $showSheet) {
-                EditView(countdown: vm.selectedCountdown!)
+//                EditView(countdown: vm.selectedCountdown!)
             }
             .onAppear {
                 DispatchQueue.main.async {
@@ -57,7 +57,7 @@ struct CountdownView: View {
                     
                     print("init countdown's remainingDays success in CountdownView")
                     
-                    try? moc.save()
+//                    try? moc.save()
                 }
             }
         }
@@ -68,15 +68,16 @@ struct CountdownView: View {
     func deleteCountdown(at offsets: IndexSet) {
         for offset in offsets {
             let countdown = countdowns[offset]
-            moc.delete(countdown)
+//            moc.delete(countdown)
         }
         
-        try? moc.save()
+//        try? moc.save()
     }
 }
 
 struct CountdownView_Previews: PreviewProvider {
     static var previews: some View {
         CountdownView(showingAlert: .constant(false))
+            .modelContainer(PreviewSampleData.container)
     }
 }
