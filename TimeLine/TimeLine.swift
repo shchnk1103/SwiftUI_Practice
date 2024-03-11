@@ -1,8 +1,8 @@
 //
-//  ContentView.swift
+//  TimeLine.swift
 //  TimeLine
 //
-//  Created by DoubleShy0N on 2024/3/10.
+//  Created by DoubleShy0N on 2024/3/11.
 //
 
 import SwiftUI
@@ -103,8 +103,4 @@ struct TDModel: Identifiable {
     var id = UUID()
     var title: String
     var isCompleted: Bool
-}
-
-#Preview {
-    ContentView()
 }
