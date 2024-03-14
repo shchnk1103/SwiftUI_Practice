@@ -24,7 +24,7 @@ struct ContentView: View {
                     activeTint: type2 ? .white : .primary,
                     inActiveTint: .gray.opacity(0.5)
                 ) { size in
-                    RoundedRectangle(cornerRadius: type2 ? 30 : 0)
+                    RoundedRectangle(cornerRadius: type2 ? 30 : 2)
                         .fill(.blue)
                         .frame(height: type2 ? size.height : 4)
                         .padding(.horizontal, type2 ? 0 : 10)
